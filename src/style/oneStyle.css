@@ -1,5 +1,5 @@
 /* Manual configurated style for replacing react-bootstrap CSS */
-/* Author By Suryanto */
+/* Written By Suryanto */
 
 .myImageBannerFrame {
 	height: 100vh;
@@ -14,10 +14,22 @@
 .myBannerButton {
 	padding: 10px 25px 2px 25px;
 	width: 220px !important;
+	bottom: 50px;
 	transform: translate(-50%, -50%);
 	border-radius: 12px;
 }
 
 .myCenterTitle2 {
 	letter-spacing: 5px;
+}
+
+.myHighlightProductFrame {
+	width: 98%;
+	background-color: red;
+}
+
+.myHighlightProductImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

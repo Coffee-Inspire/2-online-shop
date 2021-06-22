@@ -1,17 +1,14 @@
 import React from 'react'
 import {Row} from 'react-bootstrap'
 
-import imageBanner from '../../assets/images/image-example-1.jpg'
 import BannerButton from '../atoms/BannerButton'
 
-
-
-function Banner() {
+function Banner(props) {
     return (
         <Row className="position-relative myImageBannerFrame">
             <img 
                 alt=""
-                src={imageBanner}
+                src={props.image}
                 className="p-0 myImageBanner"
             />
             <BannerButton text={"shop now"}/>
