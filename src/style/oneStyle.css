@@ -1,0 +1,23 @@
+/* Manual configurated style for replacing react-bootstrap CSS */
+/* Author By Suryanto */
+
+.myImageBannerFrame {
+	height: 100vh;
+}
+
+.myImageBanner {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.myBannerButton {
+	padding: 10px 25px 2px 25px;
+	width: 220px !important;
+	transform: translate(-50%, -50%);
+	border-radius: 12px;
+}
+
+.myCenterTitle2 {
+	letter-spacing: 5px;
+}
