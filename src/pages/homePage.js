@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container} from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import imageBanner from '../assets/images/image-example-1.jpg'
 
@@ -8,7 +8,7 @@ import CenterTitle from '../components/atoms/CenterTitle'
 import CenterTitle2 from '../components/atoms/CenterTitle2'
 import NewProductSection from '../components/templates/NewProductSection'
 
-function homePage() {
+function HomePage() {
 
     let DUMMMY_HOMEPAGE = [
         {
@@ -19,10 +19,10 @@ function homePage() {
     return (
         <Container fluid>
             <CenterTitle text={"promo this week"} />
-            <Banner image={imageBanner}/>
-            <NewProductSection image={imageBanner}/>
+            <Banner image={imageBanner} />
+            <NewProductSection image={imageBanner} />
         </Container>
     )
 }
 
-export default homePage
+export default HomePage

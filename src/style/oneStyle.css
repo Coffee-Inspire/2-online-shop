@@ -1,6 +1,20 @@
 /* Manual configurated style for replacing react-bootstrap CSS */
 /* Written By Suryanto */
 
+.myNavbar{
+	background-color: rgba(244,244,244,1);
+}
+
+.myNavbarEmblemFrame{
+	width: 300px;
+	padding: 0;
+}
+
+.myNavbarEmblem{
+	object-fit: cover;
+	width: 80%;
+}
+
 .myImageBannerFrame {
 	height: 100vh;
 }
