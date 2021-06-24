@@ -1,16 +1,16 @@
 /* Manual configurated style for replacing react-bootstrap CSS */
 /* Written By Suryanto */
 
-.myNavbar{
-	background-color: rgba(244,244,244,1);
+.myNavbar {
+	background-color: rgba(244, 244, 244, 1);
 }
 
-.myNavbarEmblemFrame{
+.myNavbarEmblemFrame {
 	width: 300px;
 	padding: 0;
 }
 
-.myNavbarEmblem{
+.myNavbarEmblem {
 	object-fit: cover;
 	width: 80%;
 }
@@ -46,4 +46,22 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.myFooterRow {
+	border-top: 2px solid rgb(150, 150, 150);
+	font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.myFooterImageFrame {
+	width: 300px;
+}
+
+.myFooterImage {
+	width: 100%;
+	object-fit: cover;
+}
+
+.myFooterContactItems {
+	font-family: "Roboto", sans-serif !important;
 }

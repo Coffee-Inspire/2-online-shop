@@ -5,7 +5,6 @@ import imageBanner from '../assets/images/image-example-1.jpg'
 
 import Banner from '../components/organisms/Banner'
 import CenterTitle from '../components/atoms/CenterTitle'
-import CenterTitle2 from '../components/atoms/CenterTitle2'
 import NewProductSection from '../components/templates/NewProductSection'
 
 function HomePage() {

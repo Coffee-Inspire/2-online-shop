@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import Navigation from './components/templates/Navigation';
 import HomePage from './pages/HomePage';
+import Footer from './components/templates/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }
