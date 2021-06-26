@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import imageBanner from '../../assets/images/image-example-1.jpg'
 
 export const REQUEST = "REQUEST";

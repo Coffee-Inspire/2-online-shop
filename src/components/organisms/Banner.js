@@ -5,13 +5,13 @@ import BannerButton from '../atoms/BannerButton'
 
 function Banner(props) {
     return (
-        <Row className="position-relative myImageBannerFrame">
+        <Row className={props.plain ? "myBannerMargin myImageBannerFrame" : "position-relative myImageBannerFrame"}>
             <img 
                 alt=""
                 src={props.image}
                 className="p-0 myImageBanner"
             />
-            <BannerButton text={"shop now"}/>
+            {!props.plain && <BannerButton text={"shop now"}/>}
         </Row>
     )
 }
