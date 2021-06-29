@@ -1,6 +1,24 @@
 /* Manual configurated style for replacing react-bootstrap CSS */
 /* Written By Suryanto */
 
+@media (max-width: 414px) {
+	.myCardFrame {
+		width: 350px !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.myRibbonMargin {
+		margin: 50px 0px 50px 0px !important;
+	}
+	.myProductDetailContainer {
+		margin: 50px 0px 100px 0px !important;
+	}
+	.myProductDetailFrame {
+		width: 320px !important;
+	}
+}
+
 .myNavbar {
 	background-color: rgba(244, 244, 244, 1);
 }
@@ -72,4 +90,60 @@
 
 .myFooterContactItems {
 	font-family: "Roboto", sans-serif !important;
+}
+
+.myRibbonMargin {
+	margin: 50px 30px 50px 30px;
+}
+
+.myProductsAreaMargin {
+	margin: 80px 30px 80px 30px;
+}
+
+.myFilterBox {
+	background-color: #ebebeb;
+}
+
+.myFilterBoxInline {
+	border-bottom: 1px solid black;
+}
+
+.myProductListRow {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 400px);
+	justify-content: center;
+	grid-gap: 20px 60px;
+}
+
+.myCardFrame {
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	width: 400px;
+	box-shadow: 5px 5px 8px #888888;
+}
+
+.myCardImageFrame {
+	width: 100%;
+}
+
+.myCardImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.myCardImage:hover {
+	opacity: 0.8;
+	transition: 0.2s;
+}
+
+.myProductDetailContainer {
+	margin: 150px 0px 150px 0px;
+}
+
+.myProductDetailFrame {
+	width: 500px;
+}
+
+.myProductDetailImage {
+	width: 100%;
 }

@@ -3,13 +3,15 @@ import './App.css';
 import './style/oneStyle.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-
 import Navigation from './components/templates/Navigation';
+import Footer from './components/templates/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
-import Footer from './components/templates/Footer';
+import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
+import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
 
 function App() {
+
   return (
     <Router>
       <Navigation />
@@ -19,6 +21,12 @@ function App() {
         </Route>
         <Route path="/about">
           <AboutUsPage/>
+        </Route>
+        <Route exact path="/cosmetic">
+          <CatalogCosmeticPage/>
+        </Route>
+        <Route path="/cosmetic/:id">
+          <DetailCosmeticsPage/>
         </Route>
       </Switch>
       <Footer/>
