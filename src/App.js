@@ -1,24 +1,69 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import './style/oneStyle.css';
+import './style/twoStyle.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {useSelector } from 'react-redux';
+
+import Navigation from './components/templates/Navigation';
+import Footer from './components/templates/Footer';
+import HomePage from './pages/HomePage';
+import AboutUsPage from './pages/AboutUsPage';
+import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
+import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
+
+// Admin
+import AdminPage from './pages/AdminPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
+  const isLogin = useSelector(state => state.auth.isLogged)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+
+      <Switch>
+        <Route path="/admin">
+        </Route>
+        <Route path="/dashboard">
+        </Route>
+        <Route path="/">
+          <Navigation />
+        </Route>
+      </Switch>
+
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="/admin">
+            <AdminPage />
+          </Route>
+        <Route path="/dashboard">
+          {!isLogin && <Redirect to="/admin" />}
+          <DashboardPage />
+        </Route>
+        <Route path="/about">
+          <AboutUsPage/>
+        </Route>
+        <Route exact path="/cosmetic">
+          <CatalogCosmeticPage/>
+        </Route>
+        <Route path="/cosmetic/:id">
+          <DetailCosmeticsPage/>
+        </Route>
+      </Switch>
+
+      <Switch>
+        <Route path="/admin">
+        </Route>
+        <Route path="/dashboard">
+        </Route>
+        <Route path="/">
+          <Footer/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

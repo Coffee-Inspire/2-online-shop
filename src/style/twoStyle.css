@@ -1,0 +1,25 @@
+.barBrown {
+  background-color: #A98D4A !important;
+  height: 70px;
+}
+
+.btnBrown {
+  background-color: #A98D4A !important;
+  border-color: #A98D4A !important;
+}
+
+.btnBrown:hover {
+  background-color: #926933 !important;
+  border-color: #926933 !important;
+}
+
+.btnBrown:active {
+  background-color: #926933 !important;
+  border-color: #926933 !important;
+}
+
+.btnBrown:focus, .btnBrown:active + .btnBrown:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+          box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+}
+/*# sourceMappingURL=twoStyle.css.map */
