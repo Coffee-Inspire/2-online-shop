@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './style/oneStyle.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import './style/twoStyle.css';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {useSelector } from 'react-redux';
 
 import Navigation from './components/templates/Navigation';
 import Footer from './components/templates/Footer';
@@ -10,14 +12,36 @@ import AboutUsPage from './pages/AboutUsPage';
 import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
 import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
 
+// Admin
+import AdminPage from './pages/AdminPage';
+import DashboardPage from './pages/DashboardPage';
+
 function App() {
+  const isLogin = useSelector(state => state.auth.isLogged)
 
   return (
     <Router>
-      <Navigation />
+
+      <Switch>
+        <Route path="/admin">
+        </Route>
+        <Route path="/dashboard">
+        </Route>
+        <Route path="/">
+          <Navigation />
+        </Route>
+      </Switch>
+
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route path="/admin">
+            <AdminPage />
+          </Route>
+        <Route path="/dashboard">
+          {!isLogin && <Redirect to="/admin" />}
+          <DashboardPage />
         </Route>
         <Route path="/about">
           <AboutUsPage/>
@@ -29,7 +53,16 @@ function App() {
           <DetailCosmeticsPage/>
         </Route>
       </Switch>
-      <Footer/>
+
+      <Switch>
+        <Route path="/admin">
+        </Route>
+        <Route path="/dashboard">
+        </Route>
+        <Route path="/">
+          <Footer/>
+        </Route>
+      </Switch>
     </Router>
   );
 }
