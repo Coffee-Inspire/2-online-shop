@@ -1,0 +1,28 @@
+$brown-color : #A98D4A !important;
+$brown2-color : #926933 !important;
+$brown-shadow : rgba(169,141,74, 0.50) !important;
+
+.barBrown {
+    background-color: $brown-color ;
+    height: 70px;
+}
+
+.btnBrown {
+    background-color: $brown-color ;
+    border-color: $brown-color ;
+}
+
+.btnBrown:hover {
+    background-color: $brown2-color;
+    border-color: $brown2-color;
+}
+
+.btnBrown:active {
+    background-color: $brown2-color;
+    border-color: $brown2-color;
+}
+
+.btnBrown:focus, .btnBrown:active+.btnBrown:focus {
+    box-shadow: 0 0 0 0.25rem $brown-shadow;
+}
+
