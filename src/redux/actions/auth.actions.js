@@ -45,8 +45,8 @@ export const loginAction = (data, history, setStatus) => (dispatch) => {
         .post(process.env.REACT_APP_URL_AUTH+"/login", data)
         .then(result => {
             if(result.data.token !== undefined) {
-                localStorage.ifgfToken = result.data.token
-                localStorage.ifgfPayload = JSON.stringify(result.data.user);
+                localStorage.phanenToken = result.data.token
+                localStorage.phanenPayload = JSON.stringify(result.data.user);
                 dispatch(loginSuccess(result.data.token))
                 
                 history.push('/dashboard');
