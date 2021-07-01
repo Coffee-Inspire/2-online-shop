@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom"
 import {getProductCosmeticAction} from '../redux/actions/productCosmetic.actions';
 import Counter from '../components/molecules/Counter';
 
-function DetailCosmeticsPage() {
+function DetailFashionPage() {
     
     let {id} = useParams()
     const dispatch = useDispatch()
@@ -22,7 +22,6 @@ function DetailCosmeticsPage() {
 
     const [itemData, setItemData] = useState(
     {
-        itemImage : "",
         itemName: "" ,
         itemPrice: "" ,
         itemQuantity: quantity,
@@ -32,7 +31,6 @@ function DetailCosmeticsPage() {
     function addToCart (){
         let localItemData = JSON.parse(localStorage.getItem("items")) 
         if (localItemData) items.push(...localItemData)
-        itemData.itemImage = viewProduct.image
         itemData.itemName = viewProduct.name
         itemData.itemPrice = viewProduct.price
         itemData.itemQuantity = quantity
@@ -97,4 +95,4 @@ function DetailCosmeticsPage() {
     )
 }
 
-export default DetailCosmeticsPage
+export default DetailFashionPage
