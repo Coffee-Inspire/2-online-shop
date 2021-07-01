@@ -8,10 +8,14 @@ import NavDashboard from '../components/templates/NavDashboard';
 function DashboardPage() {
     return (
         <Container fluid className="p-0 d-flex flex-row">
-            <NavDashboard />
-            <div className="w-100">
+            <div className="navbarDashboard">
+                <NavDashboard />
+            </div>
+            <div className="w-100 bodyDashboard">
                 <BarBrown />
-                asdasd
+                <Row className="m-0 p-3">
+                    asdads
+                </Row>
                 <Switch>
 
                 </Switch>

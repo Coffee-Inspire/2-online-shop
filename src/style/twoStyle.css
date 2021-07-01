@@ -1,3 +1,24 @@
+@media (min-width: 992px) {
+  .navbar-animation {
+    margin-left: 0px !important;
+    opacity: 1 !important;
+  }
+  .dashImage {
+    zoom: 40% !important;
+  }
+  .navbarDashboard {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+  }
+  .bodyDashboard {
+    margin-left: auto !important;
+  }
+}
+
+.cursorDefault {
+  cursor: default;
+}
+
 .barBrown {
   background-color: #A98D4A !important;
   height: 70px;
@@ -21,5 +42,32 @@
 .btnBrown:focus, .btnBrown:active + .btnBrown:focus {
   -webkit-box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
           box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+}
+
+.dashNavEmblem {
+  -o-object-fit: cover;
+     object-fit: cover;
+  zoom: 50%;
+}
+
+.navbar-animation {
+  margin-left: -210px;
+  opacity: 0;
+  overflow: visible;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.navbar-collapse.show {
+  opacity: 1;
+  margin-left: 0px;
+}
+
+.navbarDashboard {
+  position: absolute;
+}
+
+.bodyDashboard {
+  margin-left: 88px;
 }
 /*# sourceMappingURL=twoStyle.css.map */

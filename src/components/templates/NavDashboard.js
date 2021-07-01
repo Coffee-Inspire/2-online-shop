@@ -14,11 +14,11 @@ function NavDashboard() {
     }
 
     return (
-        <Navbar sticky="top" bg="light" variant="light" expand="lg" className="px-3 px-lg-4 vh-100 align-items-end flex-column flex-nowrap">
+        <Navbar sticky="top" bg="light" variant="light" expand="lg" className="px-3 px-lg-4 vh-100 align-items-end d-flex flex-column flex-nowrap">
         {/* <Navbar.Brand href="#home" disabled>IFGF</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="any" className="mt-3"/>
         <Navbar.Collapse id="" className="flex-column mt-3 navbar-animation">
-            <Navbar.Brand href="" className="cursorDefault"><img alt="" src={emblem} className="myNavbarEmblem"></img></Navbar.Brand>
+            <Navbar.Brand href="" className="cursorDefault"><img alt="" src={emblem} className="dashNavEmblem"></img></Navbar.Brand>
             <hr className="text-white w-100"></hr>
             <Nav className="mt-3 flex-column w-100">
             <Nav.Link href="/dashboard">Home Page Details</Nav.Link>
@@ -29,7 +29,6 @@ function NavDashboard() {
             <Nav.Link href="/dashboard/DashFooter">Footer Details</Nav.Link>
             <Nav.Link href="/dashboard/DashAdmin">Change Password Admin</Nav.Link>
             <Nav.Link onClick={() => logoutHandle()}>Logout</Nav.Link>
-            {/* <Nav.Link onClick={() => dispatch(sendEmailAction())}>Send Email</Nav.Link> */}
             </Nav>
         </Navbar.Collapse>
         </Navbar>
