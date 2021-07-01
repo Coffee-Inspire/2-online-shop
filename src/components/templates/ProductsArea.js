@@ -11,6 +11,7 @@ function ProductsArea(props) {
             <Col className=" pl-0 pe-4" xs={12} lg={3}>
                 <div className="myFilterBox px-3 pb-4">
                     <FilterBox 
+                        fashion={props.fashion && props.fashion}
                         setSearchText={props.setSearchText}
                         setSearchCategory={props.setSearchCategory}
                         setTriggerSortLowestPrice={props.setTriggerSortLowestPrice}

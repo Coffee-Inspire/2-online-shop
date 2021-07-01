@@ -15,6 +15,7 @@ import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
 // Admin
 import AdminPage from './pages/AdminPage';
 import DashboardPage from './pages/DashboardPage';
+import CatalogFashionPage from './pages/CatalogFashionPage';
 
 function App() {
   const isLogin = useSelector(state => state.auth.isLogged)
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/cosmetic/:id">
           <DetailCosmeticsPage/>
+        </Route>
+        <Route exact path="/fashion">
+          <CatalogFashionPage/>
         </Route>
       </Switch>
 

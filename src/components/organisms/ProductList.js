@@ -1,10 +1,7 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
 import {Row , Col} from 'react-bootstrap'
 
 function ProductList(props) {
-
-    let history = useHistory();
 
     return (
         <Row className="d-flex justify-content-center d-lg-grid myProductListRow">
@@ -15,7 +12,7 @@ function ProductList(props) {
                             alt=""
                             src={item.image}
                             className="myCardImage"
-                            onClick={(e)=>history.push(`/cosmetic/${item.id}`)}
+                            onClick={(e)=>window.location=`/cosmetic/${item.id}`}
                         />
                     </div>
                     <div className="my-3 pl-3">
