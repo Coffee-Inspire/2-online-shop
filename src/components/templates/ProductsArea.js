@@ -5,7 +5,6 @@ import FilterBox from '../organisms/FilterBox'
 import ProductList from '../organisms/ProductList'
 
 function ProductsArea(props) {
-
     return (
         <Row className="myProductsAreaMargin">
             <Col className=" pl-0 pe-4" xs={12} lg={3}>
@@ -21,7 +20,7 @@ function ProductsArea(props) {
                 </div>
             </Col>
             <Col xs={12} lg={9}>
-                <ProductList data={props.dataProduct}/>
+                <ProductList fashion={props.fashion && props.fashion} data={props.dataProduct}/>
             </Col>
         </Row>
     )

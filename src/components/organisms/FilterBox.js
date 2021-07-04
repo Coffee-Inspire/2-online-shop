@@ -48,10 +48,12 @@ function FilterBox(props) {
                         className="my-2 p-0" 
                         onClick={(e)=>{ 
                                 e.preventDefault(); 
-                                props.setSearchCategory("face");
+                                if(props.fashion){
+                                    props.setSearchCategory("top");
+                                } else props.setSearchCategory("face");
                                 }}
-                    >
-                        Face
+                    >   
+                        {props.fashion ? <span>Top</span> : <span>Face</span>}
                     </Button>
                 </Col>
                 <Col className="p-0" lg={12}>
@@ -60,12 +62,42 @@ function FilterBox(props) {
                         className="my-2 p-0" 
                         onClick={(e)=>{ 
                                 e.preventDefault(); 
-                                props.setSearchCategory("body");
+                                if(props.fashion){
+                                    props.setSearchCategory("bottom");
+                                } else props.setSearchCategory("body");
                                 }}
                     >
-                        Body
+                        {props.fashion ? <span>Bottom</span> : <span>Body</span>}
                     </Button>
                 </Col>
+                {props.fashion &&
+                    <>
+                        <Col className="p-0" lg={12}>
+                            <Button 
+                                variant="none" 
+                                className="my-2 p-0" 
+                                onClick={(e)=>{ 
+                                        e.preventDefault(); 
+                                        props.setSearchCategory("headwear");
+                                        }}
+                            >
+                                Headwear
+                            </Button>
+                        </Col>
+                        <Col className="p-0" lg={12}>
+                            <Button 
+                                variant="none" 
+                                className="my-2 p-0" 
+                                onClick={(e)=>{ 
+                                        e.preventDefault(); 
+                                        props.setSearchCategory("merchandise");
+                                        }}
+                            >
+                                Merchandise
+                            </Button>
+                        </Col>
+                    </>
+                }
                 <Col className="p-0" lg={12}>
                     <Button 
                         variant="none" 

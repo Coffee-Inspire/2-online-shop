@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import productImage from '../../assets/images/image-example-2.jpg'
+import productImage from '../../assets/images/image-example-3.jpg'
 
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
@@ -7,58 +7,64 @@ export const SUCCESS = "SUCCESS";
 
 let DUMMY_PRODUCT_FASHION = [
     {
-        id : "1",
-        name : `signature pink parfume`,
+        id : "21",
+        name : `hblack tees`,
         image : productImage,
         price : 200000,
         quantity : 100,
+        size : ["s","m"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `body`
+        category : `top`
     },
     {
-        id : "2",
-        name : `peach lipstick`,
+        id : "22",
+        name : `luxury bag`,
         image : productImage,
         price : 100000,
         quantity : 50,
+        size : ["s","m","l"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `face`
+        category : `merchandise`
     },
     {
-        id : "3",
-        name : `eye scrub`,
+        id : "23",
+        name : `summer one piece set`,
         image : productImage,
         price : 300000,
         quantity : 30,
-        description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `face`
-    },
-    {
-        id : "4",
-        name : `special peach cosmetic set`,
-        image : productImage,
-        price : 700000,
-        quantity : 10,
+        size : ["s","m","l","xl"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
         category : `package`
     },
     {
-        id : "5",
-        name : `apple powder`,
+        id : "24",
+        name : `lethal jacket`,
+        image : productImage,
+        price : 700000,
+        quantity : 10,
+        size : ["s","m","l","xl","xxl"],
+        description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
+        category : `top`
+    },
+    {
+        id : "25",
+        name : `ebony vintage jeans`,
         image : productImage,
         price : 500000,
         quantity : 50,
+        size : ["s","m","l","xl"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `body`
+        category : `bottom`
     },
     {
-        id : "6",
-        name : `face mask`,
+        id : "26",
+        name : `cute sunglasses`,
         image : productImage,
         price : 400000,
         quantity : 60,
+        size : ["m"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `face`
+        category : `headwear`
     }
 ];
 

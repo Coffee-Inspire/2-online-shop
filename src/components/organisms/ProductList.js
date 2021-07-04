@@ -12,7 +12,12 @@ function ProductList(props) {
                             alt=""
                             src={item.image}
                             className="myCardImage"
-                            onClick={(e)=>window.location=`/cosmetic/${item.id}`}
+                            onClick={(e)=>{
+                                if(props.fashion){
+                                    window.location=`/fashion/${item.id}`
+                                } else
+                                window.location=`/cosmetic/${item.id}`
+                            }}
                         />
                     </div>
                     <div className="my-3 pl-3">

@@ -147,3 +147,17 @@
 .myProductDetailImage {
 	width: 100%;
 }
+
+.myCartItemImageFrame {
+	width: 100%;
+}
+
+.myCartItemImage {
+	width: 100%;
+	object-fit: cover;
+}
+
+.myClickStyleNone:focus {
+	outline: none;
+	box-shadow: none;
+}
