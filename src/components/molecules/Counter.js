@@ -16,9 +16,9 @@ function Counter(props) {
             <Col xs={10} lg={5}>
                 <Form className="d-flex flex-row border border-secondary rounded-3">
                     <div className="text-center d-flex px-3 border-right border-secondary"><span className="fw-bold align-self-center">Quantity</span></div>
-                    <Button variant="none" className="rounded-0 fw-bold" onClick={decrease}>-</Button>
+                    <Button variant="none" className="rounded-0 fw-bold myClickStyleNone" onClick={decrease}>-</Button>
                     <Form.Control className="bg-white border-0 rounded-0 p-4 text-center fw-bold" placeholder="1" value={props.quantity} type="number" disabled/>
-                    <Button variant="none" className="rounded-0 fw-bold" onClick={increase}>+</Button>
+                    <Button variant="none" className="rounded-0 fw-bold myClickStyleNone" onClick={increase}>+</Button>
                 </Form>
             </Col>
         </Row>

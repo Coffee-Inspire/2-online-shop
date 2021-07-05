@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './style/oneStyle.css';
 import './style/twoStyle.css';
+import {useState} from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {useSelector } from 'react-redux';
 
@@ -11,14 +12,16 @@ import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
 import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
 import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
+import CatalogFashionPage from './pages/CatalogFashionPage';
+import DetailFashionPage from './pages/DetailFashionPage';
 
 // Admin
 import AdminPage from './pages/AdminPage';
 import DashboardPage from './pages/DashboardPage';
-import CatalogFashionPage from './pages/CatalogFashionPage';
 
 function App() {
   const isLogin = useSelector(state => state.auth.isLogged)
+  const [number, setNumber] = useState(JSON.parse(localStorage.getItem("items")).length)
 
   return (
     <Router>
@@ -29,7 +32,7 @@ function App() {
         <Route path="/dashboard">
         </Route>
         <Route path="/">
-          <Navigation />
+          <Navigation number={number} setNumber={setNumber} />
         </Route>
       </Switch>
 
@@ -51,10 +54,13 @@ function App() {
           <CatalogCosmeticPage/>
         </Route>
         <Route path="/cosmetic/:id">
-          <DetailCosmeticsPage/>
+          <DetailCosmeticsPage number={number} setNumber={setNumber}/>
         </Route>
         <Route exact path="/fashion">
           <CatalogFashionPage/>
+        </Route>
+        <Route path="/fashion/:id">
+          <DetailFashionPage number={number} setNumber={setNumber}/>
         </Route>
       </Switch>
 

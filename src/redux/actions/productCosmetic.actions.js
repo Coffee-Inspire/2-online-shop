@@ -7,7 +7,7 @@ export const SUCCESS = "SUCCESS";
 
 let DUMMY_PRODUCT_COSMETIC = [
     {
-        id : "1",
+        id : "11",
         name : `signature pink parfume`,
         image : productImage,
         price : 200000,
@@ -16,7 +16,7 @@ let DUMMY_PRODUCT_COSMETIC = [
         category : `body`
     },
     {
-        id : "2",
+        id : "12",
         name : `peach lipstick`,
         image : productImage,
         price : 100000,
@@ -25,7 +25,7 @@ let DUMMY_PRODUCT_COSMETIC = [
         category : `face`
     },
     {
-        id : "3",
+        id : "13",
         name : `eye scrub`,
         image : productImage,
         price : 300000,
@@ -34,7 +34,7 @@ let DUMMY_PRODUCT_COSMETIC = [
         category : `face`
     },
     {
-        id : "4",
+        id : "14",
         name : `special peach cosmetic set`,
         image : productImage,
         price : 700000,
@@ -43,7 +43,7 @@ let DUMMY_PRODUCT_COSMETIC = [
         category : `package`
     },
     {
-        id : "5",
+        id : "15",
         name : `apple powder`,
         image : productImage,
         price : 500000,
@@ -52,7 +52,7 @@ let DUMMY_PRODUCT_COSMETIC = [
         category : `body`
     },
     {
-        id : "6",
+        id : "16",
         name : `face mask`,
         image : productImage,
         price : 400000,

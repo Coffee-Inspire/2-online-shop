@@ -2,7 +2,7 @@ import {React, useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { Container } from 'react-bootstrap'
 
-import {getProductCosmeticAction} from '../redux/actions/productCosmetic.actions';
+import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 
 import Ribbon from '../components/molecules/Ribbon'
 import ProductsArea from '../components/templates/ProductsArea'
@@ -19,7 +19,9 @@ function CatalogFashionPage(props) {
     const [triggerSortHighestPrice, setTriggerSortHighestPrice] = useState(false)
     const [triggerSortProductName, setTriggerSortProductName] = useState(false)
 
-    let dataProductNew = dataProduct.filter((item)=>item.name.includes(searchText) && item.category.includes(searchCategory))
+    let dataProductNew = dataProduct.filter((item)=>
+        item.name.toUpperCase().includes(searchText.toUpperCase()) && item.category.toUpperCase().includes(searchCategory.toUpperCase())
+    )
 
     function sortLowestPrice(){
         dataProductNew.sort((a,b)=>(a.price - b.price))
@@ -50,7 +52,7 @@ function CatalogFashionPage(props) {
     }
 
     useEffect(() => {
-        dispatch(getProductCosmeticAction(setDataProduct))
+        dispatch(getProductFashionAction(setDataProduct))
     }, [dispatch])
     
     return (

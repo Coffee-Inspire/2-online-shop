@@ -1,4 +1,4 @@
-import { REQUEST, FAILED, SUCCESS } from '../actions/profile.actions'
+import { REQUEST, FAILED, SUCCESS } from '../actions/productFashion.actions'
 
 const initialState = {
     data : [],
@@ -35,4 +35,4 @@ const productFashion = (state = initialState, action) => {
     }
 }
 
-export default productCosmetic;
+export default productFashion;

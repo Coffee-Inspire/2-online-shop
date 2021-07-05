@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom"
 import {getProductCosmeticAction} from '../redux/actions/productCosmetic.actions';
 import Counter from '../components/molecules/Counter';
 
-function DetailCosmeticsPage() {
+function DetailCosmeticsPage(props) {
     
     let {id} = useParams()
     const dispatch = useDispatch()
@@ -22,6 +22,7 @@ function DetailCosmeticsPage() {
 
     const [itemData, setItemData] = useState(
     {
+        itemID : "",
         itemImage : "",
         itemName: "" ,
         itemPrice: "" ,
@@ -32,6 +33,7 @@ function DetailCosmeticsPage() {
     function addToCart (){
         let localItemData = JSON.parse(localStorage.getItem("items")) 
         if (localItemData) items.push(...localItemData)
+        itemData.itemID = viewProduct.id
         itemData.itemImage = viewProduct.image
         itemData.itemName = viewProduct.name
         itemData.itemPrice = viewProduct.price
@@ -39,6 +41,7 @@ function DetailCosmeticsPage() {
         itemData.price = quantity * viewProduct.price
         items.push(itemData)
         localStorage.setItem("items" , JSON.stringify(items))
+        props.setNumber(props.number + 1)
         setTriggerSuccess(true)
     }
 
@@ -71,9 +74,9 @@ function DetailCosmeticsPage() {
                             <Col className="p-0 align-self-center align-self-lg-start" xs={10} lg={6}>
                                 <Button variant="dark" className="d-flex flex-row mt-4 py-3 rounded-5 w-100" onClick={addToCart}>
                                     <Col xs={3} lg={1}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-fill" viewBox="0 0 16 16">
-                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-fill" viewBox="0 0 16 16">
+                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                        </svg>
                                     </Col>
                                     <Col xs={9} lg={11}> 
                                         Buy Now 
