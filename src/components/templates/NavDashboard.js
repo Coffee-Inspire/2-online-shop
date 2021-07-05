@@ -21,14 +21,20 @@ function NavDashboard() {
             <Navbar.Brand href="" className="cursorDefault"><img alt="" src={emblem} className="dashNavEmblem"></img></Navbar.Brand>
             <hr className="text-white w-100"></hr>
             <Nav className="mt-3 flex-column w-100">
-            <Nav.Link href="/dashboard">Home Page Details</Nav.Link>
-            <Nav.Link href="/dashboard/DashIcare">Icare</Nav.Link>
-            <Nav.Link href="/dashboard/DashEvent">Event</Nav.Link>
-            <Nav.Link href="/dashboard/DashAbout">About Us Post</Nav.Link>
+            <Nav.Link disabled className="navDashLinkTitle">PRODUCT</Nav.Link>
+            <Nav.Link className="navDashLink" href="/dashboard/DashAbout">List Product</Nav.Link>
+            <Nav.Link disabled className="navDashLinkTitle">SETTINGS</Nav.Link>
+            <Nav.Link className="navDashLink" href="/dashboard/DashAbout">Profile</Nav.Link>
+            <Nav.Link className="navDashLink" href="/dashboard/DashAbout">Homepage</Nav.Link>
+            <Nav.Link className="navDashLink" href="/dashboard/DashAbout">About</Nav.Link>
+            <Nav.Link disabled className="navDashLinkTitle">ADMINIStRATOR</Nav.Link>
+            <Nav.Link className="navDashLink" href="/dashboard/DashAbout">Change Password</Nav.Link>
+            <Nav.Link onClick={() => logoutHandle()} className="navDashLink">Logout</Nav.Link>
+            {/* <Nav.Link href="/dashboard/DashAbout">About Us Post</Nav.Link>
             <Nav.Link href="/dashboard/DashProfile">Profile Web</Nav.Link>
             <Nav.Link href="/dashboard/DashFooter">Footer Details</Nav.Link>
-            <Nav.Link href="/dashboard/DashAdmin">Change Password Admin</Nav.Link>
-            <Nav.Link onClick={() => logoutHandle()}>Logout</Nav.Link>
+            <Nav.Link href="/dashboard/DashAdmin">Change Password Admin</Nav.Link> */}
+            {/* <Nav.Link onClick={() => logoutHandle()}>Logout</Nav.Link> */}
             </Nav>
         </Navbar.Collapse>
         </Navbar>

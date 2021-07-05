@@ -45,8 +45,8 @@ export const loginAction = (data, history, setStatus) => (dispatch) => {
         .post(process.env.REACT_APP_URL_AUTH+"/login", data)
         .then(result => {
             if(result.data.token !== undefined) {
-                localStorage.phanenToken = result.data.token
-                localStorage.phanenPayload = JSON.stringify(result.data.user);
+                localStorage[process.env.REACT_APP_TOKEN] = result.data.token
+                localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data.user);
                 dispatch(loginSuccess(result.data.token))
                 
                 history.push('/dashboard');
@@ -72,7 +72,7 @@ export const logoutAction = () => (dispatch) => {
 
     return axios.get(process.env.REACT_APP_URL_AUTH+"/logout",{
                 headers: {
-                    Authorization: localStorage.ifgfToken
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
                 }
             })
             .then(result => {
@@ -112,7 +112,7 @@ export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (disp
     return axios
             .put(process.env.REACT_APP_URL_AUTH, data,{
                 headers: {
-                    Authorization: localStorage.ifgfToken
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
                 }
             })
             .then(result => {
@@ -120,7 +120,7 @@ export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (disp
                 if(result.data.error){
                     dispatch(authFailed());
                 } else{
-                    localStorage.ifgfPayload = JSON.stringify(result.data);
+                    localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data);
                     setFormEdit({
                         ...formEdit,
                         password : "",
