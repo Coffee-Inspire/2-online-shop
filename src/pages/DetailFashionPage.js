@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom"
 // import {imgNotFoundPotrait} from '../assets/images/imgNotFoundPotrait.jpg'
 import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 import Counter from '../components/molecules/Counter';
+import SizeSelection from '../components/molecules/SizeSelection';
 
 function DetailFashionPage(props) {
     
@@ -14,17 +15,16 @@ function DetailFashionPage(props) {
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
     const [triggerSuccess, setTriggerSuccess] = useState(false)
-
+    const [size, setSize] = useState("-")
     const [quantity, setQuantity] = useState(1)
     const [price, setPrice] = useState(0)
-
     const [items, setItems] = useState([])
-
     const [itemData, setItemData] = useState(
     {
         itemID : "",
         itemImage : "",
         itemName: "" ,
+        itemSize: "",
         itemPrice: "" ,
         itemQuantity: quantity,
         price : ""
@@ -36,6 +36,7 @@ function DetailFashionPage(props) {
         itemData.itemID = viewProduct.id
         itemData.itemImage = viewProduct.image
         itemData.itemName = viewProduct.name
+        itemData.itemName = size
         itemData.itemPrice = viewProduct.price
         itemData.itemQuantity = quantity
         itemData.price = quantity * viewProduct.price
@@ -67,7 +68,17 @@ function DetailFashionPage(props) {
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
                             <h3 className="text-secondary mb-4">Rp. {viewProduct.price}</h3>  
-                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5"> {viewProduct.description}</p>  
+                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5"> {viewProduct.description}</p> 
+                            {viewProduct.size && 
+                            <>
+                                <SizeSelection size={viewProduct.size} setSize={setSize}/>
+                                <Row>
+                                    <Col>
+                                        <Button variant="none" className="myClickStyleNone text-primary my-2 p-0">View Size Chart</Button>
+                                    </Col>
+                                </Row>
+                            </>
+                            }
                             <Counter quantity={quantity} setQuantity={setQuantity}/>
                             <Col className="p-0 align-self-center align-self-lg-start" xs={10} lg={6}>
                                 <Button variant="dark" className="d-flex flex-row mt-4 py-3 rounded-5 w-100" onClick={addToCart}>
@@ -93,6 +104,8 @@ function DetailFashionPage(props) {
                     
                 </Row>
             }
+
+            
            
         </Container>
     )
