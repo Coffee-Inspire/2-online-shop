@@ -7,6 +7,13 @@ function HighlightNewProduct(props) {
                 alt="New_Product"
                 src={props.image}
                 className="myHighlightProductImage"
+                onClick={()=>{
+                    if(props.cosmetic){
+                        window.location=`/cosmetic/${props.id}`
+                    } else if (props.fashion){
+                        window.location=`/fashion/${props.id}`
+                    }
+                }}
             />
         </div>
     )
