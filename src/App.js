@@ -21,7 +21,8 @@ import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const isLogin = useSelector(state => state.auth.isLogged)
-  const [number, setNumber] = useState(JSON.parse(localStorage.getItem("items")).length)
+  // const [number, setNumber] = useState(JSON.parse(localStorage.getItem("items")).length)
+  const [number, setNumber] = useState(1);
 
   return (
     <Router>
