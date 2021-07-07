@@ -45,7 +45,7 @@ function CartModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {/* {data.length>0 ? data.map((item,index)=>(
+                {data.length>0 ? data.map((item,index)=>(
                         <CartItemList 
                             key={index}
                             id={item.itemID}
@@ -60,10 +60,10 @@ function CartModal(props) {
                     
                 ))
                     : <h1 className="fw-light">No Item</h1>
-                } */}
+                }
             </Modal.Body>
             <Modal.Footer className="border-0 d-flex flex-column">
-                {/* {data.length>0 && 
+                {data.length>0 && 
                     <Row className="w-100">
                         <Col>
                             <h5 className="fw-bold">Total Price</h5>
@@ -72,16 +72,16 @@ function CartModal(props) {
                             <h5 className="text-secondary">Rp. {totalPrice}</h5>
                         </Col>
                     </Row>
-                } */}
+                }
                 <Row className="w-100">
                     <Col> 
                         <Button variant="danger" className="w-100" onClick={props.onHide}>Close</Button>
                     </Col>
-                    {/* {data.length>0 && 
+                    {data.length>0 && 
                         <Col>
                             <Button variant="dark" className="w-100" onClick={props.onHide}>Next</Button>
                         </Col>
-                    } */}
+                    }
                 </Row>
             </Modal.Footer>
         </Modal>
