@@ -6,7 +6,6 @@ import CartItemList from '../molecules/CartItemList';
 function CartModal(props) {
 
     const [data, setData] = useState(JSON.parse(localStorage.getItem("items")))
-    console.log(data)
     let initialTotalPrice = 0
     if (data) initialTotalPrice = data.reduce(function(a,b){return a + b.price},0 )
     const [totalPrice, setTotalPrice] = useState(initialTotalPrice)
