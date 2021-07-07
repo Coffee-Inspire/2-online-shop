@@ -18,7 +18,6 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
 
     .navbarDashboard {
         position: sticky !important;
-        // width : auto !important;
     }
 
     .bodyDashboard {
@@ -73,7 +72,7 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
 
 .navbarDashboard {
     position: absolute;
-    // width : 88px;
+    box-shadow: 5px 70px 1rem 0px rgba(0,0,0, .15);
 }
 
 .bodyDashboard {
@@ -88,6 +87,10 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
     padding-left: 2rem !important;
     font-weight: bold;
     color: rgba(0,0,0, .80) !important;
+}
+
+.myHr {
+    border-top: 2px solid #e5e5e5;
 }
 
 // .bi {
