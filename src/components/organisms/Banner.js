@@ -11,7 +11,7 @@ function Banner(props) {
                 src={props.image}
                 className="p-0 myImageBanner"
             />
-            {!props.plain && <BannerButton text={"shop now"}/>}
+            {!props.plain && <BannerButton text={"shop now"} url={props.url}/>}
         </Row>
     )
 }

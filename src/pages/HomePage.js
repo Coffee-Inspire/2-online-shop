@@ -22,7 +22,7 @@ function HomePage() {
     return (
         <Container fluid>
             <CenterTitle text={dataPromotion.promoTitle} />
-            <Banner image={dataPromotion.promoImage} />
+            <Banner image={dataPromotion.promoImage} url={dataPromotion.promoUrl} />
             <NewProductSection image={imageBanner} />
         </Container>
     )
