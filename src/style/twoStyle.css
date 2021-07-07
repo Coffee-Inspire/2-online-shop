@@ -65,6 +65,8 @@
 
 .navbarDashboard {
   position: absolute;
+  -webkit-box-shadow: 5px 70px 1rem 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 5px 70px 1rem 0px rgba(0, 0, 0, 0.15);
 }
 
 .bodyDashboard {
@@ -79,5 +81,9 @@
   padding-left: 2rem !important;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.myHr {
+  border-top: 2px solid #e5e5e5;
 }
 /*# sourceMappingURL=twoStyle.css.map */
