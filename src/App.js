@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './style/oneStyle.css';
 import './style/twoStyle.css';
-import {useState} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {useSelector } from 'react-redux';
 
@@ -21,8 +21,6 @@ import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const isLogin = useSelector(state => state.auth.isLogged)
-  // const [number, setNumber] = useState(JSON.parse(localStorage.getItem("items")).length)
-  const [number, setNumber] = useState(1);
 
   return (
     <Router>
@@ -33,7 +31,7 @@ function App() {
         <Route path="/dashboard">
         </Route>
         <Route path="/">
-          <Navigation number={number} setNumber={setNumber} />
+          <Navigation/>
         </Route>
       </Switch>
 
@@ -55,13 +53,13 @@ function App() {
           <CatalogCosmeticPage/>
         </Route>
         <Route path="/cosmetic/:id">
-          <DetailCosmeticsPage number={number} setNumber={setNumber}/>
+          <DetailCosmeticsPage/>
         </Route>
         <Route exact path="/fashion">
           <CatalogFashionPage/>
         </Route>
         <Route path="/fashion/:id">
-          <DetailFashionPage number={number} setNumber={setNumber}/>
+          <DetailFashionPage/>
         </Route>
       </Switch>
 

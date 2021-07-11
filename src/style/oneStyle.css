@@ -20,6 +20,9 @@
 	.myHighlightProductFrame {
 		height: 400px !important;
 	}
+	.myCountrySelectionForm {
+		width: 300px !important;
+	}
 }
 
 .myNavbar {
@@ -54,6 +57,12 @@
 .myImageBanner:hover {
 	filter: brightness(60%);
 	transition: 0.3s;
+}
+
+.myImageBannerPlain {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .myBannerButton {
@@ -175,4 +184,11 @@
 .myClickStyleNone:focus {
 	outline: none;
 	box-shadow: none;
+}
+
+.myCountrySelectionForm {
+	font-size: 15px;
+	width: 450px;
+	height: 200px;
+	overflow: scroll;
 }

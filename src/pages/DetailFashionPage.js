@@ -5,6 +5,8 @@ import {useParams} from "react-router-dom"
 
 // import {imgNotFoundPotrait} from '../assets/images/imgNotFoundPotrait.jpg'
 import {getProductFashionAction} from '../redux/actions/productFashion.actions';
+import {addCartAction} from '../redux/actions/cart.actions';
+
 import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
 
@@ -14,35 +16,21 @@ function DetailFashionPage(props) {
     const dispatch = useDispatch()
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
-    const [triggerSuccess, setTriggerSuccess] = useState(false)
+    const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [size, setSize] = useState("-")
     const [quantity, setQuantity] = useState(1)
-    const [price, setPrice] = useState(0)
-    const [items, setItems] = useState([])
-    const [itemData, setItemData] = useState(
-    {
-        itemID : "",
-        itemImage : "",
-        itemName: "" ,
-        itemSize: "",
-        itemPrice: "" ,
-        itemQuantity: quantity,
-        price : ""
-    })
 
     function addToCart (){
-        let localItemData = JSON.parse(localStorage.getItem("items")) 
-        if (localItemData) items.push(...localItemData)
-        itemData.itemID = viewProduct.id
-        itemData.itemImage = viewProduct.image
-        itemData.itemName = viewProduct.name
-        itemData.itemName = size
-        itemData.itemPrice = viewProduct.price
-        itemData.itemQuantity = quantity
-        itemData.price = quantity * viewProduct.price
-        items.push(itemData)
-        localStorage.setItem("items" , JSON.stringify(items))
-        props.setNumber(props.number + 1)
+        let itemData = {
+            itemID : viewProduct.id,
+            itemImage : viewProduct.image,
+            itemName: viewProduct.name,
+            itemSize: size,
+            itemPrice: viewProduct.price,
+            itemQuantity: quantity ,
+            price : quantity * viewProduct.price
+        }
+        dispatch(addCartAction(itemData))
         setTriggerSuccess(true)
     }
     
@@ -104,9 +92,7 @@ function DetailFashionPage(props) {
                     
                 </Row>
             }
-
-            
-           
+ 
         </Container>
     )
 }

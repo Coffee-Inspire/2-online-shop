@@ -1,9 +1,13 @@
-import {React , useState} from 'react'
+import {React , useState, useEffect} from 'react'
 import {Dropdown , Row , Col} from 'react-bootstrap'
 
 function SizeSelection(props) {
 
     const [selected, setSelected] = useState(props.size[0])
+
+    useEffect(() => {
+        props.setSize(selected);
+    }, [props.setSize])
 
     return (
         <Row className="d-flex flex-row justify-content-center justify-content-lg-start">
