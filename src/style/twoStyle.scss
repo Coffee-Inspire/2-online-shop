@@ -18,10 +18,15 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
 
     .navbarDashboard {
         position: sticky !important;
+        margin-left: 0 !important;
     }
 
     .bodyDashboard {
         margin-left: auto !important;
+    }
+
+    .closebtn {
+        display: none !important;
     }
 }
 
@@ -58,25 +63,33 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
     zoom: 50%;
 }
 
-.navbar-animation{
-	margin-left: -210px;
-	opacity: 0;
-	overflow: visible;
-	transition: all 0.5s ease;
+.closebtn {
+    font-size: 36px;
+    display: block;
 }
 
-.navbar-collapse.show {
-	opacity: 1;
-	margin-left: 0px;
-}
+// .navbar-animation{
+// 	margin-left: -210px;
+// 	opacity: 0;
+// 	overflow: visible;
+// 	transition: all 0.5s ease;
+// }
+
+// .navbar-collapse.show {
+// 	opacity: 1;
+// 	margin-left: 0px;
+// }
 
 .navbarDashboard {
     position: absolute;
     box-shadow: 5px 70px 1rem 0px rgba(0,0,0, .15);
+    margin-left: -300px;
+    transition: all 0.5s ease;
 }
 
-.bodyDashboard {
-    margin-left: 88px;
+.navbarDashboard.show {
+    margin-left: 0px;
+    z-index: 1;
 }
 
 .navDashLinkTitle {
@@ -91,6 +104,11 @@ $gray-color : rgba(51, 51, 51, 0.5) !important;
 
 .myHr {
     border-top: 2px solid #e5e5e5;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.9) !important;
+    border-color: rgba(255,255,255,.9) !important;
 }
 
 // .bi {

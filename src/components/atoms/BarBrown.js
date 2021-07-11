@@ -1,8 +1,17 @@
 import React from 'react'
+import { Container, Navbar } from 'react-bootstrap';
 
-function BarBrown() {
+function BarBrown(props) {
     return (
-        <div className="barBrown">
+        <div className="">
+            <Navbar variant="dark" className="barBrown" expand="lg">
+            <Container>
+                <Navbar.Toggle onClick={() => {
+                    props.reff.current.click();
+                    props.setStatus(!props.status);
+                    }} aria-controls="basic-navbar-nav" />
+            </Container>
+            </Navbar>
         </div>
     )
 }

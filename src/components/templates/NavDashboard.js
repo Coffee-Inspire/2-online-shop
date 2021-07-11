@@ -6,7 +6,7 @@ import { logoutAction } from '../../redux/actions/auth.actions';
 
 import emblem from '../../assets/logos/phanen-shop-emblem.png'
 
-function NavDashboard() {
+function NavDashboard(props) {
     const dispatch = useDispatch();
 
     const logoutHandle = () => {
@@ -15,8 +15,11 @@ function NavDashboard() {
 
     return (
         <Navbar sticky="top" bg="light" variant="light" expand="lg" className="px-3 px-lg-4 vh-100 align-items-end d-flex flex-column flex-nowrap">
-        {/* <Navbar.Brand href="#home" disabled>IFGF</Navbar.Brand> */}
-        <Navbar.Toggle aria-controls="any" className="mt-3"/>
+        <div onClick={()=> {
+            props.reff.current.click();
+            props.setStatus(!props.status);
+            }} className="closebtn">&times;</div>
+        <Navbar.Toggle ref={props.reff} aria-controls="any" className="mt-3 d-none"/>
         <Navbar.Collapse id="" className="flex-column mt-3 navbar-animation">
             <Navbar.Brand href="" className="cursorDefault"><img alt="" src={emblem} className="dashNavEmblem"></img></Navbar.Brand>
             <hr className="text-white w-100"></hr>

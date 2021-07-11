@@ -9,9 +9,13 @@
   .navbarDashboard {
     position: -webkit-sticky !important;
     position: sticky !important;
+    margin-left: 0 !important;
   }
   .bodyDashboard {
     margin-left: auto !important;
+  }
+  .closebtn {
+    display: none !important;
   }
 }
 
@@ -50,27 +54,23 @@
   zoom: 50%;
 }
 
-.navbar-animation {
-  margin-left: -210px;
-  opacity: 0;
-  overflow: visible;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-.navbar-collapse.show {
-  opacity: 1;
-  margin-left: 0px;
+.closebtn {
+  font-size: 36px;
+  display: block;
 }
 
 .navbarDashboard {
   position: absolute;
   -webkit-box-shadow: 5px 70px 1rem 0px rgba(0, 0, 0, 0.15);
           box-shadow: 5px 70px 1rem 0px rgba(0, 0, 0, 0.15);
+  margin-left: -300px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-.bodyDashboard {
-  margin-left: 88px;
+.navbarDashboard.show {
+  margin-left: 0px;
+  z-index: 1;
 }
 
 .navDashLinkTitle {
@@ -85,5 +85,10 @@
 
 .myHr {
   border-top: 2px solid #e5e5e5;
+}
+
+.navbar-dark .navbar-toggler {
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
 }
 /*# sourceMappingURL=twoStyle.css.map */
