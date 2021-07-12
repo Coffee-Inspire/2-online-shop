@@ -15,9 +15,47 @@ function DeliveryModal(props) {
         orderFor : "indonesia",
     })
 
-    // console.log(deliveryForm)
-    // console.log(props.data)
-    // console.log(props.totalPrice)
+    function capitalize(str){
+        let arr = str.split(" ")
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
+        }
+        let capitalized = arr.join(" ")
+        return capitalized
+    }
+
+    function sendWA(){
+
+        let customerData = 
+            'Name : ' +capitalize(deliveryForm.name) +'%0a'+
+            'Phone Number : ' +deliveryForm.number +'%0a'+
+            'Country : ' +deliveryForm.country +'%0a'+
+            'Address : ' +deliveryForm.address +'%0a%0a'
+
+        let orderList = props.data.map((item,index)=> item.itemSize 
+            ?
+                `ITEM ${index+1}` +'%0a'+
+                'Item Name : ' +item.itemName +'%0a' +
+                'Size : ' +item.itemSize.toUpperCase() +'%0a'+
+                'Quantity : ' +item.itemQuantity +'%0a'+
+                'Price(pcs) : Rp ' +item.itemPrice +'%0a%0a'
+            :
+                `ITEM ${index+1}` +'%0a'+
+                'Item Name : ' +item.itemName +'%0a' +
+                'Quantity : ' +item.itemQuantity +'%0a'+
+                'Price(pcs) : Rp ' +item.itemPrice +'%0a%0a'
+        )
+
+        let message = 
+            'Hello, I would like to order an item '+
+            '%0a%0a*Customer Data (Order for Indonesia)*%0a' +
+            customerData +
+            '*Order List*%0a' +
+            orderList.join("") +
+            'Total Price : Rp ' +props.totalPrice
+
+        window.open('https://api.whatsapp.com/send?phone=+' +'6282283569169' +'&text=' +message )
+    }
  
     let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
 
@@ -115,7 +153,7 @@ function DeliveryModal(props) {
                         <Button variant="secondary" className="w-100" onClick={props.onHide}>Back</Button>
                     </Col>
                     <Col>
-                        <Button variant="dark" className="w-100" onClick={()=>{}}>Next</Button>
+                        <Button variant="dark" className="w-100" onClick={()=>{sendWA()}}>Next</Button>
                     </Col>
                 </Row>
             </Modal.Footer>
