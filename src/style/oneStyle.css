@@ -145,10 +145,6 @@
 	box-shadow: 5px 5px 8px #888888;
 }
 
-.myCardImageFrame {
-	width: 100%;
-}
-
 .myCardImage {
 	width: 100%;
 	height: 100%;
@@ -168,11 +164,9 @@
 	width: 500px;
 }
 
-.myProductDetailImage {
-	width: 100%;
-}
-
-.myCartItemImageFrame {
+.myProductDetailImage,
+.myCartItemImageFrame,
+.myCardImageFrame {
 	width: 100%;
 }
 
@@ -191,4 +185,14 @@
 	width: 450px;
 	height: 200px;
 	overflow: scroll;
+}
+
+.myCartCounter {
+	color: white;
+	font-size: 12px;
+	background-color: rgb(209, 178, 109);
+	padding: 5px 11px 5px 11px;
+	border-radius: 50px;
+	position: absolute;
+	top: 0;
 }

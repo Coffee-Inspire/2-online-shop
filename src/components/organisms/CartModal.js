@@ -75,6 +75,8 @@ function CartModal(props) {
                 </Row>
             </Modal.Footer>
             <DeliveryModal
+                data={data.dataLocal}
+                totalPrice={data.totalPrice}
                 show={deliveryModalShow}
                 onHide={() => setDeliveryModalShow(false)}
             />

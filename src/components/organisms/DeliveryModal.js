@@ -5,14 +5,26 @@ import axios from 'axios'
 
 function DeliveryModal(props) {
 
-    const [orderIndonesia, setOrderIndonesia] = useState(true)
-    const [selectCountry, setSelectCountry] = useState("")
     const [country, setCountry] = useState([])
+    const [countryInput, setCountryInput] = useState("")
+    const [deliveryForm, setDeliveryForm] = useState({
+        name : "",
+        number : "",
+        country : "",
+        address : "",
+        orderFor : "indonesia",
+    })
+
+    // console.log(deliveryForm)
+    // console.log(props.data)
+    // console.log(props.totalPrice)
+ 
+    let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
 
     useEffect(() => {
         axios.get(`https://restcountries.eu/rest/v2/all`)
         .then((result)=>setCountry(result.data))
-    })
+    },[setCountry])
 
     return (
         <Modal
@@ -35,22 +47,31 @@ function DeliveryModal(props) {
                     <Form>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Full Name</Form.Label>
-                            <Form.Control/>
+                            <Form.Control value={deliveryForm.name} onChange={(e)=>{setDeliveryForm({...deliveryForm , name : e.target.value})}}/>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Phone Number</Form.Label>
-                            <Form.Control/>
+                            <Form.Control value={deliveryForm.number} onChange={(e)=>{setDeliveryForm({...deliveryForm , number : e.target.value})}}/>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Country</Form.Label>
                             <Dropdown>
                                 <Dropdown.Toggle variant="none" className="myClickStyleNone border border-2 d-flex flex-row align-items-center  w-100 " id="dropdown-basic">
-                                    <Form.Control className="myClickStyleNone m-0 border-0"/>
+                                    <Form.Control className="myClickStyleNone m-0 border-0" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)} />
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu  scrollable={true} wrap  className="myClickStyleNone myCountrySelectionForm">
-                                    {country.map((item,index)=>(
-                                        <Dropdown.Item key={index}>{item.name}</Dropdown.Item>
+                                <Dropdown.Menu  scrollable="true" className="myClickStyleNone myCountrySelectionForm">
+                                    {countryFiltered.map((item,index)=>(
+                                        <Dropdown.Item 
+                                            key={index} 
+                                            onClick={(e)=>{
+                                                setDeliveryForm({...deliveryForm , country : item.name});
+                                                setCountryInput(item.name)
+
+                                            }}
+                                        >
+                                            {item.name}
+                                        </Dropdown.Item>
                                     ))}
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -58,7 +79,7 @@ function DeliveryModal(props) {
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Address Details</Form.Label>
-                            <Form.Control as="textarea"/>
+                            <Form.Control as="textarea" value={deliveryForm.address} onChange={(e)=>{setDeliveryForm({...deliveryForm , address : e.target.value})}}/>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <fieldset>
@@ -67,18 +88,20 @@ function DeliveryModal(props) {
                                     className="fst-italic"
                                     type="radio"
                                     label="Order for Indonesia"
+                                    value="indonesia"
                                     name="order"
                                     id="formHorizontalRadios1"
-                                    onClick={()=>setOrderIndonesia(true)}
+                                    onClick={(e)=>{setDeliveryForm({...deliveryForm , orderFor : e.target.value})}}
                                     defaultChecked 
                                 />
                                 <Form.Check
                                     className="fst-italic"
                                     type="radio"
                                     label="Order for Taiwan"
+                                    value="taiwan"
                                     name="order"
                                     id="formHorizontalRadios2"
-                                    onClick={()=>setOrderIndonesia(false)}
+                                    onClick={(e)=>{setDeliveryForm({...deliveryForm , orderFor : e.target.value})}}
                                 />
                             </fieldset>
                         </Col>
