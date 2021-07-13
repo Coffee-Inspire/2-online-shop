@@ -90,7 +90,7 @@ export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (d
     e.preventDefault();
     dispatch(authRequest());
 
-    let data = {};
+    let data = {...formEdit};
 
     // if(formEdit.password === ""){
     //     data = {
@@ -105,9 +105,9 @@ export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (d
     //     }
     // }
 
-    // if(data.email === currentEmail){
-    //     delete data.email;
-    // }
+    if(data.username === currentUsername){
+        delete data.username;
+    }
 
     return axios
             .put(process.env.REACT_APP_URL_AUTH, data,{
@@ -123,9 +123,9 @@ export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (d
                     localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data);
                     setFormEdit({
                         ...formEdit,
+                        password_old : "",
                         password : "",
                         password_confirmation : "",
-                        password_old : "",
                     })
                     dispatch(editSuccess());
                 }
