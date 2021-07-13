@@ -8,8 +8,6 @@ function DeliveryModal(props) {
 
     const dispatch = useDispatch()
     const [profile, setProfile] = useState({})
-    console.log(profile.templateMsgInd)
-    console.log(profile.templateMsgTwn)
     const [country, setCountry] = useState([])
     const [countryInput, setCountryInput] = useState("")
     const [deliveryForm, setDeliveryForm] = useState({
