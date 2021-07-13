@@ -86,28 +86,28 @@ export const logoutAction = () => (dispatch) => {
             })
 }
 
-export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (dispatch) => {
+export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (dispatch) => {
     e.preventDefault();
     dispatch(authRequest());
 
     let data = {};
 
-    if(formEdit.password === ""){
-        data = {
-            email : formEdit.email,
-            email_old : currentEmail,
-            password_old : formEdit.password_old
-        }
-    } else{
-        data = {
-            ...formEdit,
-            email_old : currentEmail
-        }
-    }
+    // if(formEdit.password === ""){
+    //     data = {
+    //         email : formEdit.email,
+    //         email_old : currentUsername,
+    //         password_old : formEdit.password_old
+    //     }
+    // } else{
+    //     data = {
+    //         ...formEdit,
+    //         username_old : currentUsername
+    //     }
+    // }
 
-    if(data.email === currentEmail){
-        delete data.email;
-    }
+    // if(data.email === currentEmail){
+    //     delete data.email;
+    // }
 
     return axios
             .put(process.env.REACT_APP_URL_AUTH, data,{

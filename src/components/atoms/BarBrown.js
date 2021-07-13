@@ -3,7 +3,7 @@ import { Container, Navbar } from 'react-bootstrap';
 
 function BarBrown(props) {
     return (
-        <div className="">
+        <div className="p-0">
             <Navbar variant="dark" className="barBrown" expand="lg">
             <Container>
                 <Navbar.Toggle onClick={() => {

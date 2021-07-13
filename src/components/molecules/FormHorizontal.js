@@ -4,7 +4,7 @@ import { Row, Col, Form } from 'react-bootstrap';
 function FormHorizontal(props) {
     return (
         <Row className="mb-3">
-            <Form.Label column lg={2}>{props.label} </Form.Label>
+            <Form.Label className="text-md-end text-nowrap" column lg={2}>{props.label} </Form.Label>
             <Col>
                 <Form.Control 
                     required
