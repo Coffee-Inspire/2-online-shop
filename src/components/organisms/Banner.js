@@ -9,7 +9,7 @@ function Banner(props) {
             <img 
                 alt=""
                 src={props.image}
-                className="p-0 myImageBanner"
+                className={props.plain ? "p-0 myImageBannerPlain" : "p-0 myImageBanner" }
                 onClick={()=>window.location=`${props.url}`}
             />
             {!props.plain && <BannerButton text={"shop now"} url={props.url}/>}

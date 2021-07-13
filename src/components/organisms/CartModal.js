@@ -1,31 +1,21 @@
-import {React , useState } from 'react'
+import {React , useState , useEffect } from 'react'
+import { useDispatch , useSelector } from 'react-redux';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
 
+import {getCartAction} from '../../redux/actions/cart.actions';
+
 import CartItemList from '../molecules/CartItemList';
+import DeliveryModal from './DeliveryModal';
 
 function CartModal(props) {
 
-    const [data, setData] = useState(JSON.parse(localStorage.getItem("items")))
-    let initialTotalPrice = 0
-    if (data) initialTotalPrice = data.reduce(function(a,b){return a + b.price},0 )
-    const [totalPrice, setTotalPrice] = useState(initialTotalPrice)
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.cart)
+    const [deliveryModalShow, setDeliveryModalShow] = useState(false)
 
-    function editQuantity (id , newQuantity){
-        let indexTarget = data.findIndex((item)=>item.itemID === id)
-        data[indexTarget].itemQuantity = newQuantity
-        data[indexTarget].price = data[indexTarget].itemPrice * newQuantity
-        localStorage.setItem("items" , JSON.stringify(data))
-        setTotalPrice(data.reduce( function (a,b) { return a + b.price },0 ))         
-    }
-
-    function deleteItem (id){
-        let dataTemp = data.filter((item)=> item.itemID !== id)
-        localStorage.setItem("items" , JSON.stringify(dataTemp))
-        setTotalPrice(dataTemp.reduce( function (a,b) { return a + b.price },0 )) 
-        setData(dataTemp)
-        props.setNumber(props.number-1)
-
-    }
+    useEffect(() => {
+        dispatch(getCartAction())
+    }, [dispatch])
 
     return (
         <Modal
@@ -45,45 +35,51 @@ function CartModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {/* {data.length>0 ? data.map((item,index)=>(
+                {data.dataLocal.length>0 ? data.dataLocal.map((item,index)=>(
                         <CartItemList 
                             key={index}
+                            itemIndex={index}
                             id={item.itemID}
                             image={item.itemImage}
                             name={item.itemName}
+                            size={item.itemSize}
                             itemPrice={item.itemPrice}
                             quantity={item.itemQuantity}
                             price={item.price}
-                            editQuantity={editQuantity}
-                            deleteItem={deleteItem}
                         />
                     
                 ))
-                    : <h1 className="fw-light">No Item</h1>
-                } */}
+                    : <h1 className="fw-light my-5 text-center">Your Cart is Empty</h1>
+                }
             </Modal.Body>
             <Modal.Footer className="border-0 d-flex flex-column">
-                {/* {data.length>0 && 
+                {data.dataLocal.length>0 && 
                     <Row className="w-100">
                         <Col>
                             <h5 className="fw-bold">Total Price</h5>
                         </Col>
                         <Col className="text-end">
-                            <h5 className="text-secondary">Rp. {totalPrice}</h5>
+                            <h5 className="text-secondary">Rp. {data.totalPrice}</h5>
                         </Col>
                     </Row>
-                } */}
+                }
                 <Row className="w-100">
                     <Col> 
                         <Button variant="danger" className="w-100" onClick={props.onHide}>Close</Button>
                     </Col>
-                    {/* {data.length>0 && 
+                    {data.dataLocal.length>0 && 
                         <Col>
-                            <Button variant="dark" className="w-100" onClick={props.onHide}>Next</Button>
+                            <Button variant="dark" className="w-100" onClick={()=>setDeliveryModalShow(true)}>Next</Button>
                         </Col>
-                    } */}
+                    }
                 </Row>
             </Modal.Footer>
+            <DeliveryModal
+                data={data.dataLocal}
+                totalPrice={data.totalPrice}
+                show={deliveryModalShow}
+                onHide={() => setDeliveryModalShow(false)}
+            />
         </Modal>
     )
 }
