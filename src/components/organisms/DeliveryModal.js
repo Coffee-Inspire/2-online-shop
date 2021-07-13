@@ -1,19 +1,25 @@
 import {React , useState , useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import {Modal, Form, Button, Row, Col, Dropdown } from 'react-bootstrap';
 
-import axios from 'axios'
+import {getProfileAction , getCountryListAction} from '../../redux/actions/profile.actions';
 
 function DeliveryModal(props) {
 
+    const dispatch = useDispatch()
+    const [profile, setProfile] = useState({})
+    console.log(profile.templateMsgInd)
+    console.log(profile.templateMsgTwn)
     const [country, setCountry] = useState([])
     const [countryInput, setCountryInput] = useState("")
     const [deliveryForm, setDeliveryForm] = useState({
         name : "",
         number : "",
         country : "",
-        address : "",
-        orderFor : "indonesia",
+        address : ""
     })
+    const [template, setTemplate] = useState("")
+    const [orderStatus, setOrderStatus] = useState("")
 
     function capitalize(str){
         let arr = str.split(" ")
@@ -47,12 +53,18 @@ function DeliveryModal(props) {
         )
 
         let message = 
-            'Hello, I would like to order an item '+
-            '%0a%0a*Customer Data (Order for Indonesia)*%0a' +
+            template +
+            '%0a%0a*Customer Data* (Order for '+orderStatus+' )'+'%0a'+
             customerData +
             '*Order List*%0a' +
             orderList.join("") +
             'Total Price : Rp ' +props.totalPrice
+
+        // if (orderStatus === "Indonesia"){
+        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +message )
+        // } else if (orderStatus === "Taiwan"){
+        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +message )
+        // }
 
         window.open('https://api.whatsapp.com/send?phone=+' +'6282283569169' +'&text=' +message )
     }
@@ -60,9 +72,9 @@ function DeliveryModal(props) {
     let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
 
     useEffect(() => {
-        axios.get(`https://restcountries.eu/rest/v2/all`)
-        .then((result)=>setCountry(result.data))
-    },[setCountry])
+        dispatch(getCountryListAction(setCountry))
+        dispatch(getProfileAction(setProfile))
+    },[dispatch])
 
     return (
         <Modal
@@ -129,7 +141,7 @@ function DeliveryModal(props) {
                                     value="indonesia"
                                     name="order"
                                     id="formHorizontalRadios1"
-                                    onClick={(e)=>{setDeliveryForm({...deliveryForm , orderFor : e.target.value})}}
+                                    onClick={(e)=>{setTemplate(profile.templateMsgInd);setOrderStatus("Indonesia")}}
                                     defaultChecked 
                                 />
                                 <Form.Check
@@ -139,7 +151,7 @@ function DeliveryModal(props) {
                                     value="taiwan"
                                     name="order"
                                     id="formHorizontalRadios2"
-                                    onClick={(e)=>{setDeliveryForm({...deliveryForm , orderFor : e.target.value})}}
+                                    onClick={(e)=>{setTemplate(profile.templateMsgTwn);setOrderStatus("Taiwan")}}
                                 />
                             </fieldset>
                         </Col>
