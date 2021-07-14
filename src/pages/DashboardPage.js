@@ -13,7 +13,7 @@ function DashboardPage() {
 
     return (
         <Container fluid className="p-0 d-flex flex-row">
-            <div className={navDash ? "navbarDashboard navbarDashboardShadow show" : "navbarDashboard navbarDashboardShadow"}>
+            <div className={navDash ? "navbarDashboard navbarDashboardShadow z-index-3 show" : "navbarDashboard navbarDashboardShadow z-index-3"}>
                 <NavDashboard reff={navBtn} status={navDash} setStatus={setNavDash}/>
             </div>
             <div className="w-100 bodyDashboard">

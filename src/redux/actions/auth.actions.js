@@ -86,27 +86,27 @@ export const logoutAction = () => (dispatch) => {
             })
 }
 
-export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (dispatch) => {
+export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (dispatch) => {
     e.preventDefault();
     dispatch(authRequest());
 
-    let data = {};
+    let data = {...formEdit};
 
-    if(formEdit.password === ""){
-        data = {
-            email : formEdit.email,
-            email_old : currentEmail,
-            password_old : formEdit.password_old
-        }
-    } else{
-        data = {
-            ...formEdit,
-            email_old : currentEmail
-        }
-    }
+    // if(formEdit.password === ""){
+    //     data = {
+    //         email : formEdit.email,
+    //         email_old : currentUsername,
+    //         password_old : formEdit.password_old
+    //     }
+    // } else{
+    //     data = {
+    //         ...formEdit,
+    //         username_old : currentUsername
+    //     }
+    // }
 
-    if(data.email === currentEmail){
-        delete data.email;
+    if(data.username === currentUsername){
+        delete data.username;
     }
 
     return axios
@@ -123,9 +123,9 @@ export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (disp
                     localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data);
                     setFormEdit({
                         ...formEdit,
+                        password_old : "",
                         password : "",
                         password_confirmation : "",
-                        password_old : "",
                     })
                     dispatch(editSuccess());
                 }
