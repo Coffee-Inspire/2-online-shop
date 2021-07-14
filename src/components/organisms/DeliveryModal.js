@@ -16,9 +16,7 @@ function DeliveryModal(props) {
         country : "",
         address : ""
     })
-    const [template, setTemplate] = useState("")
-    const [orderStatus, setOrderStatus] = useState("")
-
+    const [orderStatus, setOrderStatus] = useState("Indonesia")
     function capitalize(str){
         let arr = str.split(" ")
         for (var i = 0; i < arr.length; i++) {
@@ -48,23 +46,29 @@ function DeliveryModal(props) {
                 'Item Name : ' +item.itemName +'%0a' +
                 'Quantity : ' +item.itemQuantity +'%0a'+
                 'Price(pcs) : Rp ' +item.itemPrice +'%0a%0a'
-        )
-
+                )
+                
+        let template = ""
         let message = 
-            template +
             '%0a%0a*Customer Data* (Order for '+orderStatus+' )'+'%0a'+
             customerData +
             '*Order List*%0a' +
             orderList.join("") +
             'Total Price : Rp ' +props.totalPrice
 
+        if (orderStatus === "Indonesia"){
+            template = `${profile.templateMsgInd}${message}`             
+        } else if (orderStatus === "Taiwan"){
+            template = `${profile.templateMsgTwn}${message}`  
+        }
+
         // if (orderStatus === "Indonesia"){
-        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +message )
+        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +template )
         // } else if (orderStatus === "Taiwan"){
-        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +message )
+        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +template )
         // }
 
-        window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${message}` )
+        window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
     }
  
     let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
@@ -139,7 +143,7 @@ function DeliveryModal(props) {
                                     value="indonesia"
                                     name="order"
                                     id="formHorizontalRadios1"
-                                    onClick={(e)=>{setTemplate(profile.templateMsgInd);setOrderStatus("Indonesia")}}
+                                    onClick={(e)=>{setOrderStatus("Indonesia")}}
                                     defaultChecked 
                                 />
                                 <Form.Check
@@ -149,7 +153,7 @@ function DeliveryModal(props) {
                                     value="taiwan"
                                     name="order"
                                     id="formHorizontalRadios2"
-                                    onClick={(e)=>{setTemplate(profile.templateMsgTwn);setOrderStatus("Taiwan")}}
+                                    onClick={(e)=>{setOrderStatus("Taiwan")}}
                                 />
                             </fieldset>
                         </Col>

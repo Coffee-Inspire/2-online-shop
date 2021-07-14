@@ -1,4 +1,4 @@
-import { REQUEST, FAILED, SUCCESS } from '../actions/profile.actions'
+import { REQUEST, FAILED, SUCCESS } from '../actions/home.actions'
 
 const initialState = {
     data : [],
