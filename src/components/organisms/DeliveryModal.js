@@ -17,7 +17,6 @@ function DeliveryModal(props) {
         country : "",
         address : ""
     })
-    console.log(deliveryForm)
     const [orderStatus, setOrderStatus] = useState("Indonesia")
 
     function switchToCart(){
