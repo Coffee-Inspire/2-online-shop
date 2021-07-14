@@ -1,12 +1,13 @@
 import {React , useState , useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import {Modal, Form, Button, Row, Col, Dropdown } from 'react-bootstrap';
+import {Modal, Form, Button, Row, Col, Dropdown, FormGroup } from 'react-bootstrap';
 
 import {getProfileAction , getCountryListAction} from '../../redux/actions/profile.actions';
 
 function DeliveryModal(props) {
 
     const dispatch = useDispatch()
+    const [validated, setValidated] = useState(false);
     const [profile, setProfile] = useState({})
     const [country, setCountry] = useState([])
     const [countryInput, setCountryInput] = useState("")
@@ -16,7 +17,15 @@ function DeliveryModal(props) {
         country : "",
         address : ""
     })
+    console.log(deliveryForm)
     const [orderStatus, setOrderStatus] = useState("Indonesia")
+
+    function switchToCart(){
+        props.triggercartmodal()
+        props.onHide()
+    }
+
+
     function capitalize(str){
         let arr = str.split(" ")
         for (var i = 0; i < arr.length; i++) {
@@ -26,49 +35,62 @@ function DeliveryModal(props) {
         return capitalized
     }
 
-    function sendWA(){
+    function sendWA(e){
 
-        let customerData = 
-            'Name : ' +capitalize(deliveryForm.name) +'%0a'+
-            'Phone Number : ' +deliveryForm.number +'%0a'+
-            'Country : ' +deliveryForm.country +'%0a'+
-            'Address : ' +deliveryForm.address +'%0a%0a'
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            setValidated(true);
+            e.preventDefault();
+            e.stopPropagation();
+        } else {
+            e.preventDefault()
+            let customerData =  `%0aName : ${capitalize(deliveryForm.name)}
+            %0aPhone Number : ${deliveryForm.number}
+            %0aCountry : ${deliveryForm.country}
+            %0aAddress : ${deliveryForm.address}`
 
-        let orderList = props.data.map((item,index)=> item.itemSize 
-            ?
-                `ITEM ${index+1}` +'%0a'+
-                'Item Name : ' +item.itemName +'%0a' +
-                'Size : ' +item.itemSize.toUpperCase() +'%0a'+
-                'Quantity : ' +item.itemQuantity +'%0a'+
-                'Price(pcs) : Rp ' +item.itemPrice +'%0a%0a'
-            :
-                `ITEM ${index+1}` +'%0a'+
-                'Item Name : ' +item.itemName +'%0a' +
-                'Quantity : ' +item.itemQuantity +'%0a'+
-                'Price(pcs) : Rp ' +item.itemPrice +'%0a%0a'
-                )
-                
-        let template = ""
-        let message = 
-            '%0a%0a*Customer Data* (Order for '+orderStatus+' )'+'%0a'+
-            customerData +
-            '*Order List*%0a' +
-            orderList.join("") +
-            'Total Price : Rp ' +props.totalPrice
+            let orderList = props.orderdata.map((item,index)=> item.itemSize 
+                ?
+                    `
+                    %0aITEM ${index+1}
+                    %0aItem Name : ${item.itemName}
+                    %0aSize : ${item.itemSize.toUpperCase()}
+                    %0aQuantity : ${item.itemQuantity}
+                    %0aPrice(pcs) : Rp ${item.itemPrice}%0a
+                    `
+                :
 
-        if (orderStatus === "Indonesia"){
-            template = `${profile.templateMsgInd}${message}`             
-        } else if (orderStatus === "Taiwan"){
-            template = `${profile.templateMsgTwn}${message}`  
+                    `
+                    %0aITEM ${index+1}
+                    %0aItem Name : ${item.itemName}
+                    %0aQuantity : ${item.itemQuantity}
+                    %0aPrice(pcs) : Rp ${item.itemPrice}%0a
+                    `
+                    )
+                    
+            let template = ""
+            let message = `
+                %0a%0a*Customer Data (Order for ${orderStatus})*
+                ${customerData}
+                %0a%0a*Order List*
+                %0a${orderList.join("")}
+                %0a*Total Price : Rp ${props.totalprice}*%0a
+                `
+
+            if (orderStatus === "Indonesia"){
+                template = `${profile.templateMsgInd}${message}`             
+            } else if (orderStatus === "Taiwan"){
+                template = `${profile.templateMsgTwn}${message}`  
+            }
+
+            // if (orderStatus === "Indonesia"){
+            //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +template )
+            // } else if (orderStatus === "Taiwan"){
+            //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +template )
+            // }
+
+            window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
         }
-
-        // if (orderStatus === "Indonesia"){
-        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +template )
-        // } else if (orderStatus === "Taiwan"){
-        //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +template )
-        // }
-
-        window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
     }
  
     let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
@@ -96,22 +118,50 @@ function DeliveryModal(props) {
             </Modal.Header>
             <Modal.Body>
                 <Row>
-                    <Form>
+                    <Form noValidate validated={validated} onSubmit={(e)=>sendWA(e)}>
                         <Col className="mt-2" xs={12} lg={8}>
+                        <FormGroup controlId="validationCustomUsername">
                             <Form.Label className="fst-italic">Receipt Full Name</Form.Label>
-                            <Form.Control required value={deliveryForm.name} onChange={(e)=>{setDeliveryForm({...deliveryForm , name : e.target.value})}}/>
+                            <Form.Control 
+                                required 
+                                type="text" 
+                                value={deliveryForm.name} 
+                                onChange={(e)=>{setDeliveryForm({...deliveryForm , name : e.target.value})}}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please insert your name.
+                            </Form.Control.Feedback>
+                        </FormGroup>
+
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Phone Number</Form.Label>
-                            <Form.Control value={deliveryForm.number} onChange={(e)=>{setDeliveryForm({...deliveryForm , number : e.target.value})}}/>
+                            <Form.Control 
+                                required 
+                                type="number"
+                                value={deliveryForm.number} 
+                                onChange={(e)=>{setDeliveryForm({...deliveryForm , number : e.target.value})}}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please fill your valid phone number.
+                            </Form.Control.Feedback>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Country</Form.Label>
                             <Dropdown>
                                 <Dropdown.Toggle variant="none" className="myClickStyleNone border border-2 d-flex flex-row align-items-center  w-100 " id="dropdown-basic">
-                                    <Form.Control className="myClickStyleNone m-0 border-0" value={countryInput} onChange={(e)=>setCountryInput(e.target.value)} />
+                                    <Form.Control 
+                                        required 
+                                        type="text"
+                                        className="myClickStyleNone m-0 border-0" 
+                                        value={countryInput} 
+                                        onChange={(e)=>{
+                                            setDeliveryForm({...deliveryForm , country : e.target.value});
+                                            setCountryInput(e.target.value)
+                                        }} 
+                                    />
+                                   
                                 </Dropdown.Toggle>
-
                                 <Dropdown.Menu  scrollable="true" className="myClickStyleNone myCountrySelectionForm">
                                     {countryFiltered.map((item,index)=>(
                                         <Dropdown.Item 
@@ -119,7 +169,6 @@ function DeliveryModal(props) {
                                             onClick={(e)=>{
                                                 setDeliveryForm({...deliveryForm , country : item.name});
                                                 setCountryInput(item.name)
-
                                             }}
                                         >
                                             {item.name}
@@ -127,11 +176,19 @@ function DeliveryModal(props) {
                                     ))}
                                 </Dropdown.Menu>
                             </Dropdown>
-                            
+                            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Address Details</Form.Label>
-                            <Form.Control as="textarea" value={deliveryForm.address} onChange={(e)=>{setDeliveryForm({...deliveryForm , address : e.target.value})}}/>
+                            <Form.Control 
+                                required
+                                as="textarea" 
+                                value={deliveryForm.address} 
+                                onChange={(e)=>{setDeliveryForm({...deliveryForm , address : e.target.value})}}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                               Please fill your complete address.
+                            </Form.Control.Feedback>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <fieldset>
@@ -157,20 +214,19 @@ function DeliveryModal(props) {
                                 />
                             </fieldset>
                         </Col>
+                        <Col className="p-0 d-flex flex-row justify-content-center mt-4">
+                            <Col> 
+                                <Button variant="secondary" className="w-100" onClick={switchToCart}>Back</Button>
+                            </Col>
+                            <Col>
+                                <Button type="submit" variant="dark" className="w-100">Next</Button>
+                            </Col>
+                        </Col>
                     </Form>
 
                 </Row>
             </Modal.Body>
-            <Modal.Footer className="border-0 d-flex flex-column">
-                <Row className="w-100">
-                    <Col> 
-                        <Button variant="secondary" className="w-100" onClick={props.onHide}>Back</Button>
-                    </Col>
-                    <Col>
-                        <Button variant="dark" className="w-100" type="submit" onClick={()=>{sendWA()}}>Next</Button>
-                    </Col>
-                </Row>
-            </Modal.Footer>
+
         </Modal>
     )
 }

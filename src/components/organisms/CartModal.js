@@ -1,17 +1,22 @@
-import {React , useState , useEffect } from 'react'
+import {React , useEffect } from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
 
 import {getCartAction} from '../../redux/actions/cart.actions';
 
 import CartItemList from '../molecules/CartItemList';
-import DeliveryModal from './DeliveryModal';
 
 function CartModal(props) {
 
     const dispatch = useDispatch()
     const data = useSelector(state => state.cart)
-    const [deliveryModalShow, setDeliveryModalShow] = useState(false)
+
+    function switchToDelivery(){
+        props.setorder(data.dataLocal)
+        props.settotalprice(data.totalPrice)
+        props.triggerdeliverymodal()
+        props.onHide()
+    }
 
     useEffect(() => {
         dispatch(getCartAction())
@@ -69,17 +74,11 @@ function CartModal(props) {
                     </Col>
                     {data.dataLocal.length>0 && 
                         <Col>
-                            <Button variant="dark" className="w-100" onClick={()=>setDeliveryModalShow(true)}>Next</Button>
+                            <Button variant="dark" className="w-100" onClick={()=>switchToDelivery()}>Next</Button>
                         </Col>
                     }
                 </Row>
             </Modal.Footer>
-            <DeliveryModal
-                data={data.dataLocal}
-                totalPrice={data.totalPrice}
-                show={deliveryModalShow}
-                onHide={() => setDeliveryModalShow(false)}
-            />
         </Modal>
     )
 }
