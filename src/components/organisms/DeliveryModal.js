@@ -64,7 +64,7 @@ function DeliveryModal(props) {
         //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +message )
         // }
 
-        window.open('https://api.whatsapp.com/send?phone=+' +'6282283569169' +'&text=' +message )
+        window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${message}` )
     }
  
     let countryFiltered = country.filter((item) => item.name.toUpperCase().includes(countryInput.toUpperCase()))
@@ -95,7 +95,7 @@ function DeliveryModal(props) {
                     <Form>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Full Name</Form.Label>
-                            <Form.Control value={deliveryForm.name} onChange={(e)=>{setDeliveryForm({...deliveryForm , name : e.target.value})}}/>
+                            <Form.Control required value={deliveryForm.name} onChange={(e)=>{setDeliveryForm({...deliveryForm , name : e.target.value})}}/>
                         </Col>
                         <Col className="mt-2" xs={12} lg={8}>
                             <Form.Label className="fst-italic">Receipt Phone Number</Form.Label>
@@ -163,7 +163,7 @@ function DeliveryModal(props) {
                         <Button variant="secondary" className="w-100" onClick={props.onHide}>Back</Button>
                     </Col>
                     <Col>
-                        <Button variant="dark" className="w-100" onClick={()=>{sendWA()}}>Next</Button>
+                        <Button variant="dark" className="w-100" type="submit" onClick={()=>{sendWA()}}>Next</Button>
                     </Col>
                 </Row>
             </Modal.Footer>

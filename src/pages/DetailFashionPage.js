@@ -9,6 +9,7 @@ import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
+import SizeChart from '../components/molecules/SizeChart';
 
 function DetailFashionPage(props) {
     
@@ -19,6 +20,8 @@ function DetailFashionPage(props) {
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [size, setSize] = useState("-")
     const [quantity, setQuantity] = useState(1)
+    
+    const [sizeChart, setSizeChart] = useState(false)
 
     function addToCart (){
         let itemData = {
@@ -62,7 +65,13 @@ function DetailFashionPage(props) {
                                 <SizeSelection size={viewProduct.size} setSize={setSize}/>
                                 <Row>
                                     <Col>
-                                        <Button variant="none" className="myClickStyleNone text-primary my-2 p-0">View Size Chart</Button>
+                                        <SizeChart
+                                            show={sizeChart}
+                                            onHide={() => setSizeChart(false)}
+                                        />
+                                        <Button variant="none" className="myClickStyleNone text-primary my-2 p-0" onClick={()=>setSizeChart(true)}>
+                                            View Size Chart
+                                        </Button>
                                     </Col>
                                 </Row>
                             </>
