@@ -76,3 +76,8 @@ export const deleteItemAction = (targetIndex) => (dispatch) => {
     dispatch(getCartAction()) 
     dispatch(getCounterAction())
 };
+
+export const clearCartAction = () => (dispatch) => { 
+    localStorage.removeItem("items")
+    window.location.reload()
+};

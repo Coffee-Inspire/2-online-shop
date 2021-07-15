@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import {Modal, Form, Button, Row, Col, Dropdown, FormGroup } from 'react-bootstrap';
 
 import {getProfileAction , getCountryListAction} from '../../redux/actions/profile.actions';
+import {clearCartAction} from '../../redux/actions/cart.actions';
 
 function DeliveryModal(props) {
 
@@ -89,6 +90,7 @@ function DeliveryModal(props) {
             // }
 
             window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
+            dispatch(clearCartAction())
         }
     }
  
@@ -137,7 +139,7 @@ function DeliveryModal(props) {
                             <Form.Label className="fst-italic">Receipt Phone Number</Form.Label>
                             <Form.Control 
                                 required 
-                                type="number"
+                                type="text"
                                 value={deliveryForm.number} 
                                 onChange={(e)=>{setDeliveryForm({...deliveryForm , number : e.target.value})}}
                             />
