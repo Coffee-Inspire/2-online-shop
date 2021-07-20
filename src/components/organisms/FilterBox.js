@@ -16,8 +16,8 @@ function FilterBox(props) {
     return (
         <Row className="px-4">
             <div className="myFilterBoxInline px-0 pt-4 pb-2">
-                <Col className={props.triggerFilter ? "p-0 mb-4 text-end" : "myFilterCloseCol"} onClick={()=>props.setTriggerFilter(false)} xs={12}>
-                    <Button variant="none" className="myClickStyleNone" >
+                <Col className="d-block d-lg-none p-0 mb-4 text-end" xs={12}>
+                    <Button variant="none" className="myClickStyleNone"  onClick={()=>props.setTriggerFilter(false)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" className="bi bi-x-lg" viewBox="0 0 16 16">
                             <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                         </svg>
@@ -165,7 +165,7 @@ function FilterBox(props) {
                         Product Name (A-Z)
                     </Button>
                 </Col>
-                <Col className={props.triggerFilter ? "p-0 mt-4 text-start" : "myFilterCloseCol"} onClick={()=>props.setTriggerFilter(false)} xs={12}>
+                <Col className="d-block d-lg-none p-0 mt-4 text-start" onClick={()=>props.setTriggerFilter(false)} xs={12}>
                     <Button variant="secondary" className="w-100" >
                         Apply
                     </Button>

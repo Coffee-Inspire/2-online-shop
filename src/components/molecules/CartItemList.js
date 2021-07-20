@@ -1,23 +1,17 @@
-import {React , useState} from 'react'
+import {React , useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
-import {editQuantityAction , deleteItemAction} from '../../redux/actions/cart.actions';
+import {deleteItemAction} from '../../redux/actions/cart.actions';
 
 function CartItemList(props) {
     const dispatch = useDispatch()
-    const [newQuantity, setNewQuantity] = useState(props.quantity)
     
-    function operation(operator){
-        if(operator==="+"){
-            setNewQuantity(newQuantity+1)
-            dispatch(editQuantityAction(props.itemIndex , newQuantity+1))
-        } else if(operator==="-"){
-            if(newQuantity > 1) {
-                setNewQuantity(newQuantity - 1)
-                dispatch(editQuantityAction(props.itemIndex , newQuantity-1))
-            } 
-        }
+    function convertIDR(s){
+        let	reverse = s.toString().split('').reverse().join(''),
+        converted 	= reverse.match(/\d{1,3}/g);
+        converted	= converted.join('.').split('').reverse().join('');
+        return converted
     }
 
     return (
@@ -34,7 +28,7 @@ function CartItemList(props) {
             <Col className="" xs={6} lg={6}>
                 <h3 className="text-capitalize fw-bold">{props.name}</h3>
                 {props.size && <p>Size : <span className="text-uppercase fw-bold">{props.size}</span></p>}  
-                <p className="text-secondary">Rp. {props.itemPrice}</p>
+                <p className="text-secondary">Rp. {convertIDR(props.itemPrice)}</p>
             </Col>
             <Col className="p-0" xs={12} lg={4}>
                 <Col className="text-end" xs={12} lg={12}>
@@ -42,7 +36,7 @@ function CartItemList(props) {
                         variant="none" 
                         className="myClickStyleNone" 
                         onClick={()=>{
-                            dispatch(deleteItemAction(props.itemIndex,props.setTotalPrice))
+                            dispatch(deleteItemAction(props.itemIndex))
                         }}
                     > 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
@@ -54,9 +48,9 @@ function CartItemList(props) {
                 <Col className="p-0" xs={12} lg={12}>
                     <Form className="d-flex flex-row border border-secondary rounded-3">
                         <div className="text-center d-flex px-4 px-lg-2 border-right border-secondary"><span className="fw-bold align-self-center">Quantity</span></div>
-                        <Button variant="none" className="rounded-0 fw-bold myClickStyleNone px-3 px-lg-2" onClick={()=>operation("-")}>-</Button>
-                        <Form.Control className="bg-white border-0 rounded-0 p-4 text-center fw-bold" placeholder="1" value={newQuantity} type="number" disabled/>
-                        <Button variant="none" className="rounded-0 fw-bold myClickStyleNone px-3 px-lg-2" onClick={()=>operation("+")}>+</Button>
+                        <Button variant="none" className="rounded-0 fw-bold myClickStyleNone px-3 px-lg-2" onClick={()=>props.operation("-" , props.quantity , props.itemIndex)}>-</Button>
+                        <Form.Control className="bg-white border-0 rounded-0 p-4 text-center fw-bold" placeholder="1" value={props.quantity} type="number" disabled/>
+                        <Button variant="none" className="rounded-0 fw-bold myClickStyleNone px-3 px-lg-2" onClick={()=>props.operation("+" , props.quantity , props.itemIndex) }>+</Button>
                     </Form>
                 </Col>
             </Col>

@@ -2,7 +2,7 @@ import {React , useEffect } from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
 
-import {getCartAction} from '../../redux/actions/cart.actions';
+import {getCartAction , editQuantityAction} from '../../redux/actions/cart.actions';
 
 import CartItemList from '../molecules/CartItemList';
 
@@ -10,6 +10,23 @@ function CartModal(props) {
 
     const dispatch = useDispatch()
     const data = useSelector(state => state.cart)
+
+    function convertIDR(s){
+        let	reverse = s.toString().split('').reverse().join(''),
+        converted 	= reverse.match(/\d{1,3}/g);
+        converted	= converted.join('.').split('').reverse().join('');
+        return converted
+    }
+
+    function operation(operator , quantity , itemIndex){
+        if(operator==="+"){
+            dispatch(editQuantityAction(itemIndex , quantity+1))
+        } else if(operator==="-"){
+            if(quantity > 1) {
+                dispatch(editQuantityAction(itemIndex , quantity-1))
+            } 
+        }
+    }
 
     function switchToDelivery(){
         props.setorder(data.dataLocal)
@@ -43,6 +60,7 @@ function CartModal(props) {
                 {data.dataLocal.length>0 ? data.dataLocal.map((item,index)=>(
                         <CartItemList 
                             key={index}
+                            operation={operation}
                             itemIndex={index}
                             id={item.itemID}
                             image={item.itemImage}
@@ -64,7 +82,7 @@ function CartModal(props) {
                             <h5 className="fw-bold">Total Price</h5>
                         </Col>
                         <Col className="text-end">
-                            <h5 className="text-secondary">Rp. {data.totalPrice}</h5>
+                            <h5 className="text-secondary">Rp. {convertIDR(data.totalPrice)}</h5>
                         </Col>
                     </Row>
                 }

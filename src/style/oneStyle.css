@@ -46,24 +46,26 @@
 		z-index: 9;
 		top: 0;
 		left: 0;
-		width: 0px;
+		margin-left: -991px;
+		width: 80%;
 		height: 100%;
 		padding: 0;
 		background-color: rgb(70, 70, 70);
 		overflow-x: hidden;
-		transition: 0.3s;
+		transition: 0.5s;
 	}
 	.myFilterResponsiveOn {
 		position: fixed;
 		z-index: 9;
 		top: 0;
 		left: 0;
-		width: 350px;
+		margin-left: 0;
+		width: 80%;
 		height: 100%;
 		padding: 0;
 		background-color: rgb(70, 70, 70);
 		overflow-x: auto;
-		transition: 0.3s;
+		transition: 0.5s;
 	}
 	.myOverlayOff {
 		height: 100%;
@@ -189,14 +191,7 @@
 	margin: 80px 30px 80px 30px;
 }
 
-.asd {
-	display: none;
-}
-
-.myFilterCloseCol {
-	display: none;
-}
-
+.myFilterCloseCol,
 .myFilterButtonCol {
 	display: none;
 }
