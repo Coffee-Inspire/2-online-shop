@@ -10,12 +10,13 @@ import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 import Banner from '../components/organisms/Banner'
 import CenterTitle from '../components/atoms/CenterTitle'
 import NewProductSection from '../components/templates/NewProductSection'
+import SkeletonHomepage from '../skeletons/SkeletonHomepage';
 
 function HomePage() {
 
     const dispatch = useDispatch()
     // Storing Promotion Data
-    const [dataPromotion, setDataPromotion] = useState({});
+    const [dataPromotion, setDataPromotion] = useState(null);
     // Storing Product Data
     const [dataCosmetic, setDataCosmetic] = useState([]);
     const [dataFashion, setDataFashion] = useState([]);
@@ -28,13 +29,17 @@ function HomePage() {
 
     return (
         <Container fluid>
-            <CenterTitle text={dataPromotion.promoTitle} />
-            <Banner image={dataPromotion.promoImage} url={dataPromotion.promoUrl} />
-            <NewProductSection
-                imageNotFound={imageNotFound} 
-                cosmetic={dataCosmetic ? dataCosmetic : <h1>SKELETON</h1>}
-                fashion={dataFashion ? dataFashion : <h1>SKELETON</h1>}
-            />
+            {dataPromotion && <>
+                    <CenterTitle text={dataPromotion.promoTitle} />
+                    <Banner image={dataPromotion.promoImage} url={dataPromotion.promoUrl} />
+                    <NewProductSection
+                        imageNotFound={imageNotFound} 
+                        cosmetic={dataCosmetic ? dataCosmetic : <h1>SKELETON</h1>}
+                        fashion={dataFashion ? dataFashion : <h1>SKELETON</h1>}
+                    />
+                </>
+            }
+            {!dataPromotion && <SkeletonHomepage/>}
         </Container>
     )
 }
