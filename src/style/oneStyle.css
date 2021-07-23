@@ -23,6 +23,73 @@
 	.myCountrySelectionForm {
 		width: 300px !important;
 	}
+	.myProductsAreaMargin {
+		margin-top: 30px !important;
+	}
+	.myFilterButtonCol {
+		display: block !important;
+	}
+	.myFilterBox {
+		background-color: rgb(70, 70, 70) !important;
+		color: #fff;
+	}
+
+	.myFilterBox Button {
+		color: #fff;
+	}
+
+	.myFilterBoxInline {
+		border-bottom: 1px solid #fff !important;
+	}
+	.myFilterResponsive {
+		position: fixed;
+		z-index: 9;
+		top: 0;
+		left: 0;
+		margin-left: -991px;
+		width: 80%;
+		height: 100%;
+		padding: 0;
+		background-color: rgb(70, 70, 70);
+		overflow-x: hidden;
+		transition: 0.5s;
+	}
+	.myFilterResponsiveOn {
+		position: fixed;
+		z-index: 9;
+		top: 0;
+		left: 0;
+		margin-left: 0;
+		width: 80%;
+		height: 100%;
+		padding: 0;
+		background-color: rgb(70, 70, 70);
+		overflow-x: auto;
+		transition: 0.5s;
+	}
+	.myOverlayOff {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		overflow-x: hidden;
+		transition: 0.3s;
+	}
+
+	.myOverlayOn {
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		overflow-x: hidden;
+		transition: 0.3s;
+	}
 }
 
 .myNavbar {
@@ -78,7 +145,7 @@
 }
 
 .myHighlightProductFrame {
-	width: 98%;
+	width: 850px;
 	height: 800px;
 }
 
@@ -124,6 +191,11 @@
 	margin: 80px 30px 80px 30px;
 }
 
+.myFilterCloseCol,
+.myFilterButtonCol {
+	display: none;
+}
+
 .myFilterBox {
 	background-color: #ebebeb;
 }
@@ -136,7 +208,7 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 400px);
 	justify-content: center;
-	grid-gap: 20px 60px;
+	grid-gap: 0px 60px;
 }
 
 .myCardFrame {

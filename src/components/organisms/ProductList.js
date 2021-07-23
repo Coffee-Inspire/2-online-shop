@@ -3,6 +3,13 @@ import {Row , Col} from 'react-bootstrap'
 
 function ProductList(props) {
 
+    function convertIDR(s){
+        let	reverse = s.toString().split('').reverse().join(''),
+        converted 	= reverse.match(/\d{1,3}/g);
+        converted	= converted.join('.').split('').reverse().join('');
+        return converted
+    }
+
     return (
         <Row className="d-flex justify-content-center d-lg-grid myProductListRow">
             {props.data && props.data.map((item,index)=>(
@@ -22,7 +29,7 @@ function ProductList(props) {
                     </div>
                     <div className="my-3 pl-3">
                         <h5 className="fw-bold text-uppercase">{item.name}</h5>
-                        <h5>Rp. {item.price},-</h5>
+                        <h5>Rp {convertIDR(item.price)}</h5>
                     </div>
                     
                 </Col>

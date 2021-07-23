@@ -9,6 +9,7 @@ import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
+import SizeChart from '../components/molecules/SizeChart';
 
 function DetailFashionPage(props) {
     
@@ -19,6 +20,15 @@ function DetailFashionPage(props) {
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [size, setSize] = useState("-")
     const [quantity, setQuantity] = useState(1)
+    
+    const [sizeChart, setSizeChart] = useState(false)
+
+    function convertIDR(s){
+        let	reverse = s.toString().split('').reverse().join(''),
+        converted 	= reverse.match(/\d{1,3}/g);
+        converted	= converted.join('.').split('').reverse().join('');
+        return converted
+    }
 
     function addToCart (){
         let itemData = {
@@ -55,14 +65,20 @@ function DetailFashionPage(props) {
                     <Col className="pl-lg-5" xs={12} lg={6}>
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
-                            <h3 className="text-secondary mb-4">Rp. {viewProduct.price}</h3>  
+                            <h3 className="text-secondary mb-4">Rp{convertIDR(viewProduct.price)}</h3>  
                             <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5"> {viewProduct.description}</p> 
                             {viewProduct.size && 
                             <>
                                 <SizeSelection size={viewProduct.size} setSize={setSize}/>
                                 <Row>
                                     <Col>
-                                        <Button variant="none" className="myClickStyleNone text-primary my-2 p-0">View Size Chart</Button>
+                                        <SizeChart
+                                            show={sizeChart}
+                                            onHide={() => setSizeChart(false)}
+                                        />
+                                        <Button variant="none" className="myClickStyleNone text-primary my-2 p-0" onClick={()=>setSizeChart(true)}>
+                                            View Size Chart
+                                        </Button>
                                     </Col>
                                 </Row>
                             </>

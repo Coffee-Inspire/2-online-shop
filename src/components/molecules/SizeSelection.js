@@ -1,13 +1,13 @@
 import {React , useState, useEffect} from 'react'
 import {Dropdown , Row , Col} from 'react-bootstrap'
 
-function SizeSelection(props) {
+function SizeSelection({size , setSize}) {
 
-    const [selected, setSelected] = useState(props.size[0])
+    const [selected, setSelected] = useState(size[0])
 
     useEffect(() => {
-        props.setSize(selected);
-    }, [props.setSize])
+        setSize(selected);
+    }, [setSize , selected])
 
     return (
         <Row className="d-flex flex-row justify-content-center justify-content-lg-start">
@@ -20,9 +20,9 @@ function SizeSelection(props) {
                         </Dropdown.Toggle>
                     
                         <Dropdown.Menu>
-                            {props.size && props.size.map((item,index)=>(
+                            {size && size.map((item,index)=>(
                                  <Dropdown.Item key={index} onClick={()=>{
-                                        props.setSize(item);
+                                        setSize(item);
                                         setSelected(item);
                                     }}
                                  >
