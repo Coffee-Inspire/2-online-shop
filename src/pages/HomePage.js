@@ -22,14 +22,17 @@ function HomePage() {
     const [dataFashion, setDataFashion] = useState([]);
 
     useEffect(() => {
-        dispatch(getHomeAction(setDataPromotion))
-        dispatch(getProductCosmeticAction(setDataCosmetic))
-        dispatch(getProductFashionAction(setDataFashion))
+        setTimeout(() => {
+            dispatch(getHomeAction(setDataPromotion))
+            dispatch(getProductCosmeticAction(setDataCosmetic))
+            dispatch(getProductFashionAction(setDataFashion))
+            
+        }, 5000);
     }, [dispatch])
 
     return (
         <Container fluid>
-            {dataPromotion && <>
+            {dataPromotion ? <>
                     <CenterTitle text={dataPromotion.promoTitle} />
                     <Banner image={dataPromotion.promoImage} url={dataPromotion.promoUrl} />
                     <NewProductSection
@@ -38,8 +41,8 @@ function HomePage() {
                         fashion={dataFashion ? dataFashion : <h1>SKELETON</h1>}
                     />
                 </>
+                :   <SkeletonHomepage/>
             }
-            {!dataPromotion && <SkeletonHomepage/>}
         </Container>
     )
 }

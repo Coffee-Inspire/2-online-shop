@@ -1,12 +1,12 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton';
 
-function SkeletonBase({type}) {
+function SkeletonBase(props) {
 
-    let classes = `${type}`
+    let classes = props.type
 
     return (
-        <Skeleton className={`skeleton ${classes}`}/>        
+        <Skeleton count={props.count && props.count} className={`skeleton ${classes}`}/>        
     )
 }
 
