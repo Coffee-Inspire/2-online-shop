@@ -22,12 +22,9 @@ function HomePage() {
     const [dataFashion, setDataFashion] = useState([]);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(getHomeAction(setDataPromotion))
-            dispatch(getProductCosmeticAction(setDataCosmetic))
-            dispatch(getProductFashionAction(setDataFashion))
-            
-        }, 5000);
+        dispatch(getHomeAction(setDataPromotion))
+        dispatch(getProductCosmeticAction(setDataCosmetic))
+        dispatch(getProductFashionAction(setDataFashion))
     }, [dispatch])
 
     return (

@@ -24,7 +24,6 @@ function SkeletonAboutPage() {
                 </Col>
             </Row>
         </div>
-
     )
 }
 

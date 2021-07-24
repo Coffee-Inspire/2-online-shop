@@ -13,9 +13,7 @@ function AboutUsPage() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(getAboutAction(setData))
-        }, 3000);
+        dispatch(getAboutAction(setData))
     }, [dispatch])
 
     return (
