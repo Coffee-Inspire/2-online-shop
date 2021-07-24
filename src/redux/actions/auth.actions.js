@@ -92,19 +92,6 @@ export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (d
 
     let data = {...formEdit};
 
-    // if(formEdit.password === ""){
-    //     data = {
-    //         email : formEdit.email,
-    //         email_old : currentUsername,
-    //         password_old : formEdit.password_old
-    //     }
-    // } else{
-    //     data = {
-    //         ...formEdit,
-    //         username_old : currentUsername
-    //     }
-    // }
-
     if(data.username === currentUsername){
         delete data.username;
     }
@@ -117,7 +104,7 @@ export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (d
             })
             .then(result => {
                 // console.log(result);
-                if(result.data.error){
+                if(result.data.error || result.data.status === "Token is Expired"){
                     dispatch(authFailed());
                 } else{
                     localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data);

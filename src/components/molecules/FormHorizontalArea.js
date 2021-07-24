@@ -1,12 +1,14 @@
 import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap';
 
-function FormHorizontal(props) {
+function FormHorizontalArea(props) {
     return (
         <Row className="mb-3">
             <Form.Label className="text-md-end text-nowrap" column lg={2}>{props.label} </Form.Label>
             <Col>
                 <Form.Control 
+                    as="textarea"
+                    style={{ height: '110px' }}
                     required
                     type={props.type} 
                     placeholder={props.placeholder}
@@ -29,4 +31,4 @@ function FormHorizontal(props) {
     )
 }
 
-export default FormHorizontal
+export default FormHorizontalArea
