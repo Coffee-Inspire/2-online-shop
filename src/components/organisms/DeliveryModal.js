@@ -59,7 +59,6 @@ function DeliveryModal(props) {
                     %0aPrice(pcs) : Rp ${item.itemPrice}%0a
                     `
                 :
-
                     `
                     %0aITEM ${index+1}
                     %0aItem Name : ${item.itemName}
@@ -111,10 +110,11 @@ function DeliveryModal(props) {
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-cart-fill" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </svg>
-                    <span className="ml-3">My Cart</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                    <span className="ml-3">Checkout Form</span>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -217,7 +217,7 @@ function DeliveryModal(props) {
                         </Col>
                         <Col className="p-0 d-flex flex-row justify-content-center mt-4">
                             <Col> 
-                                <Button variant="secondary" className="w-100" onClick={switchToCart}>Back</Button>
+                                <Button variant="secondary" className="w-100" onClick={switchToCart}>Back to Cart</Button>
                             </Col>
                             <Col>
                                 <Button type="submit" variant="dark" className="w-100">Next</Button>

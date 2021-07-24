@@ -6,6 +6,7 @@ import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 
 import Ribbon from '../components/molecules/Ribbon'
 import ProductsArea from '../components/templates/ProductsArea'
+import SkeletonCatalogPage from '../skeletons/SkeletonCatalogPage';
 
 function CatalogFashionPage(props) {
 
@@ -58,16 +59,19 @@ function CatalogFashionPage(props) {
     return (
         <Container fluid>
             <Ribbon text={"fashion"}/>
-            <ProductsArea
-                fashion={true} 
-                dataProduct={dataProductNew} 
-                setItemDetailCosmetic={props.setItemDetailCosmetic}
-                setSearchText={setSearchText}
-                setSearchCategory={setSearchCategory}
-                setTriggerSortLowestPrice={setTriggerSortLowestPrice}
-                setTriggerSortHighestPrice={setTriggerSortHighestPrice}
-                setTriggerSortProductName={setTriggerSortProductName}
-            />
+            {dataProduct.length>0 ? 
+                <ProductsArea
+                    fashion={true} 
+                    dataProduct={dataProductNew} 
+                    setItemDetailCosmetic={props.setItemDetailCosmetic}
+                    setSearchText={setSearchText}
+                    setSearchCategory={setSearchCategory}
+                    setTriggerSortLowestPrice={setTriggerSortLowestPrice}
+                    setTriggerSortHighestPrice={setTriggerSortHighestPrice}
+                    setTriggerSortProductName={setTriggerSortProductName}
+                />
+                : <SkeletonCatalogPage/>
+            }
         </Container>
     )
 }

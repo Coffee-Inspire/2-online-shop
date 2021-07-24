@@ -92,7 +92,7 @@ function CartModal(props) {
                     </Col>
                     {data.dataLocal.length>0 && 
                         <Col>
-                            <Button variant="dark" className="w-100" onClick={()=>switchToDelivery()}>Next</Button>
+                            <Button variant="dark" className="w-100" onClick={()=>switchToDelivery()}>Checkout</Button>
                         </Col>
                     }
                 </Row>

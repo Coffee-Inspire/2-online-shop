@@ -1,7 +1,7 @@
 @media (max-width: 414px) {
-	/* .title {
-		width: 70% !important;
-	} */
+	.skeleton-card {
+		height: 520px !important;
+	}
 }
 
 /* Base */
@@ -11,12 +11,7 @@
 	margin-bottom: 5px;
 }
 
-/* Wrapper */
-
-.skeleton-container {
-}
-
-/* Inherit */
+/* Mock */
 
 .title {
 	height: 50px;
@@ -32,6 +27,16 @@
 	height: 100%;
 }
 
+/* Inherit */
+
 .skeleton-banner {
 	height: 100vh;
+}
+
+.skeleton-card {
+	height: 600px;
+}
+
+.skeleton-card-bg {
+	background-color: rgb(224, 224, 224);
 }
