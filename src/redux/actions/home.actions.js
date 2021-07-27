@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import imageBanner from '../../assets/images/image-example-2.jpg'
 
 export const REQUEST = "REQUEST";
@@ -33,4 +33,6 @@ export const failed = (err) => {
 
 export const getHomeAction = (setFormEdit) => (dispatch) => {
     setFormEdit(DUMMY_HOMEPAGE_PROMOTION)
+    // return axios(process.env.REACT_APP_URL_HOMEPAGE)
+    // .then((res)=>setFormEdit(res))
 };

@@ -14,7 +14,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 100,
         size : ["s","m"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `top`
+        category : `top`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     },
     {
         id : "22",
@@ -24,7 +27,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 50,
         size : ["s","m","l"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `merchandise`
+        category : `merchandise`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     },
     {
         id : "23",
@@ -34,7 +40,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 30,
         size : ["s","m","l","xl"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `package`
+        category : `package`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     },
     {
         id : "24",
@@ -44,7 +53,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 10,
         size : ["s","m","l","xl","xxl"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `top`
+        category : `top`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     },
     {
         id : "25",
@@ -54,7 +66,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 50,
         size : ["s","m","l","xl"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `bottom`
+        category : `bottom`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     },
     {
         id : "26",
@@ -64,7 +79,10 @@ let DUMMY_PRODUCT_FASHION = [
         quantity : 60,
         size : ["m"],
         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-        category : `headwear`
+        category : `headwear`,
+        info : `1. Harap ukur sesuai detail size yang sudah diberikan
+                2. Tinggi badan model: 172 cm
+                3. On model menggunakan size L`
     }
 ];
 
@@ -90,4 +108,6 @@ export const failed = (err) => {
 
 export const getProductFashionAction = (setFormEdit) => (dispatch) => {
     setFormEdit(DUMMY_PRODUCT_FASHION)
+    // return axios(process.env.REACT_APP_URL_PFASHION)
+    // .then((res)=>setFormEdit(res))
 };

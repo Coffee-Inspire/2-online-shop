@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import imageBanner from '../../assets/images/image-example-3.png'
 
 export const REQUEST = "REQUEST";
@@ -37,4 +37,6 @@ export const failed = (err) => {
 
 export const getAboutAction = (setFormEdit) => (dispatch) => {
     setFormEdit(DUMMY_ABOUTUS)
+    //  return axios(process.env.REACT_APP_URL_ABOUTUS)
+    // .then((res)=>setFormEdit(res))
 };

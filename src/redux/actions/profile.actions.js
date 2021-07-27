@@ -37,6 +37,8 @@ export const failed = (err) => {
 
 export const getProfileAction = (setFormEdit) => (dispatch) => {
     setFormEdit(DUMMY_PROFILE)
+    // return axios(process.env.REACT_APP_URL_PROFILE)
+    // .then((res)=>setFormEdit(res))
 };
 
 export const getCountryListAction = (setCountry) => (dispatch) => {

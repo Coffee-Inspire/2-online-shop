@@ -103,6 +103,10 @@ function DetailFashionPage(props) {
                                     </svg>
                                     <span> Item successfully added</span>
                                 </div>
+                                <div className="pt-3">
+                                    <h5>Important</h5>
+                                    <p className="mt-3 text-start">{viewProduct.info}</p>
+                                </div>
                             </Col>
                         </Col>
                     </Col>
