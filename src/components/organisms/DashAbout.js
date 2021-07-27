@@ -6,6 +6,7 @@ import TitleDashboard from '../atoms/TitleDashboard';
 import TitleBodyDashboard from '../atoms/TitleBodyDashboard';
 import FormHorizontal from '../molecules/FormHorizontal';
 import FormHorizontalArea from '../molecules/FormHorizontalArea';
+import FormHorizontalImage from '../molecules/FormHorizontalImage';
 
 function DashAbout() {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function DashAbout() {
                 <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                     <TitleBodyDashboard text="About Us" />
                     <hr className="myHr" />
-                    <Form className="" onSubmit={(e)=>{}}>
+                    <Form className="ml-3" onSubmit={(e)=>{}}>
                         <FormHorizontal 
                             label="Title" 
                             type="text" 
@@ -47,7 +48,12 @@ function DashAbout() {
                             value={form.description}
                             onChange={(e) => valueChange(e)}
                         />
-                        
+                        <FormHorizontalImage 
+                            label="Cover Image"
+                            status=""
+                            image=""
+                            hash={Date.now()}
+                        />
                         
                         <div className="d-flex flex-md-row flex-column justify-content-md-end">
                             {/* <Button variant="danger" type="submit" className="me-md-3 mb-3 mb-md-0" >Cancel</Button> */}

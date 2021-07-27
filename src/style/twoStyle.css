@@ -68,6 +68,40 @@
           box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
 }
 
+.imageUploadOverlay {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8) !important;
+}
+
+.imageUploadOverlay:hover {
+  opacity: 1 !important;
+}
+
+.btnWhiteTrans {
+  background-color: transparent;
+  border-color: #FFF !important;
+}
+
+.btnWhiteTrans:hover {
+  background-color: #FFF !important;
+  border-color: #FFF !important;
+  color: rgba(51, 51, 51, 0.8) !important;
+}
+
+.btnWhiteTrans:active {
+  background-color: #FFF !important;
+  border-color: #FFF !important;
+}
+
+.btnWhiteTrans:focus, .btnBrown:active + .btnBrown:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
+          box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
+}
+
 .dashNavEmblem {
   -o-object-fit: cover;
      object-fit: cover;
@@ -113,5 +147,31 @@
 .navbar-dark .navbar-toggler {
   color: rgba(255, 255, 255, 0.9) !important;
   border-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.border-image {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+
+.border-svg {
+  height: 100%;
+  width: 100%;
+}
+
+.border-image-dashed {
+  stroke-dasharray: 9.7519, 8.237;
+  fill: transparent;
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 2;
+}
+
+.border-image-inside {
+  height: 100%;
+  width: auto;
+  color: green;
+  font-weight: bold;
+  text-align: center;
 }
 /*# sourceMappingURL=twoStyle.css.map */
