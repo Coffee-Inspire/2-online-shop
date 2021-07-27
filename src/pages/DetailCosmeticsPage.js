@@ -8,6 +8,7 @@ import {getProductCosmeticAction} from '../redux/actions/productCosmetic.actions
 import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
+import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
 
 function DetailCosmeticsPage(props) {
     
@@ -46,7 +47,7 @@ function DetailCosmeticsPage(props) {
     return (
         <Container fluid className="myProductDetailContainer">
 
-            {viewProduct && 
+            {viewProduct ? 
                 <Row className="">
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
@@ -86,6 +87,7 @@ function DetailCosmeticsPage(props) {
                     </Col>
                     
                 </Row>
+                : <SkeletonDetailPage/>
             }
            
         </Container>

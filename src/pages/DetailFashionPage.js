@@ -10,6 +10,7 @@ import {addCartAction} from '../redux/actions/cart.actions';
 import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
 import SizeChart from '../components/molecules/SizeChart';
+import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
 
 function DetailFashionPage(props) {
     
@@ -45,14 +46,14 @@ function DetailFashionPage(props) {
     }
     
     useEffect(() => {
-        dispatch(getProductFashionAction(setAllDataProduct))
+       dispatch(getProductFashionAction(setAllDataProduct))
     }, [dispatch])
 
     return (
         <Container fluid className="myProductDetailContainer">
 
-            {viewProduct && 
-                <Row className="">
+            {viewProduct ? 
+                <Row>
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
                             <img 
@@ -107,6 +108,7 @@ function DetailFashionPage(props) {
                     </Col>
                     
                 </Row>
+                : <SkeletonDetailPage/>
             }
  
         </Container>
