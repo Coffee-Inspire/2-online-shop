@@ -26,7 +26,44 @@ function FormHorizontalImage(props) {
                 </Form.File>
                 <div className="border-image position-relative">
                     <Image className="hoverImage" src={`${props.image}?${props.hash}`} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFound}} fluid />
-                    <div onDragOver={(e)=>e.preventDefault()} onDragEnter={(e)=>e.preventDefault()} onDrop={(e) => {console.log("something drop"); e.preventDefault() }} className="position-absolute imageUploadOverlay d-flex justify-content-center align-items-center align-content-center">
+                    <div id="dragFile" onDragOver={(e)=>{e.preventDefault();}} 
+                        onDragEnter={(e)=>{
+                            e.preventDefault();
+                            // console.log(e.target.id);
+                            // console.log(e.target);
+                            if(e.target.id === "dragFile"){
+                                e.target.style.opacity = "1";
+                            }
+                            // console.log("enter add class");
+                        }}
+                        onDragLeave={(e)=>{
+                            e.preventDefault();
+                            // console.log("current ", e.currentTarget)
+                            // console.log("target ", e.target)
+                            // console.log("current Target child ", e.currentTarget.firstChild)
+                            // if(e.target !== e.currentTarget.childNodes){
+
+                            //     e.target.style.opacity = "";
+                            // }
+                            console.log(e.target);
+                            if(e.target.id === "dragFile"){
+                                e.target.style.opacity = "";
+                            }
+                            // e.target.style.opacity = "";
+                            // console.log("remove class, coba ganti if target == child")
+                            // pake ID coba nanti
+                        }}
+                        // onDrop={(e) => {
+                        //     e.preventDefault();
+                        //     e.dataTransfer.dropEffect = "Drop your image here!"
+                        //     console.log(e);
+                        //     // e.target.click();
+                        //     console.log("something drop");
+                        // }} 
+                        className="position-absolute imageUploadOverlay d-flex justify-content-center align-items-center align-content-center">
+                        {/* <Button onClick={() => uploadBtn.current.click()} className="btnWhiteTrans px-4 py-2" >Change Image</Button> */}
+                    </div>
+                    <div className="btnUploadImage d-flex align-content-center align-items-center justify-content-center">
                         <Button onClick={() => uploadBtn.current.click()} className="btnWhiteTrans px-4 py-2" >Change Image</Button>
                     </div>
                 </div>
