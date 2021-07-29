@@ -3,7 +3,7 @@ import {Container, Row , Col, Button} from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import {useParams} from "react-router-dom"
 
-// import {imgNotFoundPotrait} from '../assets/images/imgNotFoundPotrait.jpg'
+import imgNotFoundPotrait from '../assets/images/imgNotFoundPotrait.jpg'
 import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 import {addCartAction} from '../redux/actions/cart.actions';
 
@@ -58,7 +58,7 @@ function DetailFashionPage(props) {
                         <div className="myProductDetailFrame">
                             <img 
                                 alt="product_image"
-                                src={viewProduct.image}
+                                src={viewProduct.image ? viewProduct.image : imgNotFoundPotrait}
                                 className="myProductDetailImage"
                             />
                         </div>

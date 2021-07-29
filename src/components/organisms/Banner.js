@@ -8,7 +8,7 @@ function Banner(props) {
         <Row className={props.plain ? "myBannerMargin myImageBannerFrame" : "position-relative myImageBannerFrame"}>
             <img 
                 alt=""
-                src={props.image}
+                src={props.image ? props.image : props.imageNotFound}
                 className={props.plain ? "p-0 myImageBannerPlain" : "p-0 myImageBanner" }
                 onClick={()=>window.location=`${props.url}`}
             />

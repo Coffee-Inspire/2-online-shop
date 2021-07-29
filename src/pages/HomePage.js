@@ -31,7 +31,11 @@ function HomePage() {
         <Container fluid>
             {dataPromotion ? <>
                     <CenterTitle text={dataPromotion.promoTitle} />
-                    <Banner image={dataPromotion.promoImage} url={dataPromotion.promoUrl} />
+                    <Banner
+                        imageNotFound={imageNotFound} 
+                        image={dataPromotion.promoImage} 
+                        url={dataPromotion.promoUrl} 
+                    />
                     <NewProductSection
                         imageNotFound={imageNotFound} 
                         cosmetic={dataCosmetic ? dataCosmetic : <h1>SKELETON</h1>}

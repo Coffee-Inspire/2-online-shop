@@ -1,6 +1,7 @@
 import {React , useState} from 'react'
 import { Row , Col , Button } from 'react-bootstrap'
 
+import imgNotFoundPotrait from '../../assets/images/imgNotFoundPotrait.jpg' 
 import FilterBox from '../organisms/FilterBox'
 import ProductList from '../organisms/ProductList'
 
@@ -34,7 +35,7 @@ function ProductsArea(props) {
                 <div className={triggerFilter ? "myOverlayOn" : "myOverlayOff"}></div>
             </Col>
             <Col xs={12} lg={9}>
-                <ProductList fashion={props.fashion && props.fashion} data={props.dataProduct}/>
+                <ProductList fashion={props.fashion && props.fashion} data={props.dataProduct} imgNotFoundPotrait={imgNotFoundPotrait}/>
             </Col>
         </Row>
     )

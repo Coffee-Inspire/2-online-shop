@@ -1,6 +1,7 @@
 import {React , useEffect } from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
+import imgNotFoundPotrait from '../../assets/images/imgNotFoundPotrait.jpg'
 
 import {getCartAction , editQuantityAction} from '../../redux/actions/cart.actions';
 
@@ -60,6 +61,7 @@ function CartModal(props) {
                 {data.dataLocal.length>0 ? data.dataLocal.map((item,index)=>(
                         <CartItemList 
                             key={index}
+                            imgNotFoundPotrait={imgNotFoundPotrait}
                             operation={operation}
                             itemIndex={index}
                             id={item.itemID}
