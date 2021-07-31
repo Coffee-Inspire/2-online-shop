@@ -5,8 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 import BarBrown from '../components/atoms/BarBrown';
 import NavDashboard from '../components/templates/NavDashboard';
 
+import DashHome from '../components/organisms/DashHome';
 import DashAbout from '../components/organisms/DashAbout';
 import DashChangePass from '../components/organisms/DashChangePass';
+import DashProfile from '../components/organisms/DashProfile';
 
 function DashboardPage() {
     const navBtn = useRef(null);
@@ -20,8 +22,14 @@ function DashboardPage() {
             <div className="w-100 bodyDashboard">
                 <BarBrown reff={navBtn} status={navDash} setStatus={setNavDash}/>
                 <Switch>
+                    <Route path="/dashboard/dashhome/">
+                        <DashHome />
+                    </Route>
                     <Route path="/dashboard/dashabout/">
                         <DashAbout />
+                    </Route>
+                    <Route path="/dashboard/dashprofile/">
+                        <DashProfile />
                     </Route>
                     <Route path="/dashboard/changepass/">
                         <DashChangePass />

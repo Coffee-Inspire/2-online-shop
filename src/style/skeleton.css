@@ -33,6 +33,10 @@
 	height: 100vh;
 }
 
+.skeleton-emblem {
+	height: 60px;
+}
+
 .skeleton-card {
 	height: 600px;
 }
