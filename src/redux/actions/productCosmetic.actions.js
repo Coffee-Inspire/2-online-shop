@@ -84,4 +84,6 @@ export const failed = (err) => {
 
 export const getProductCosmeticAction = (setFormEdit) => (dispatch) => {
     setFormEdit(DUMMY_PRODUCT_COSMETIC)
+    // return axios(process.env.REACT_APP_URL_PCOSMETIC)
+    // .then((res)=>setFormEdit(res))
 };

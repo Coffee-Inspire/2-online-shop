@@ -14,6 +14,7 @@ import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
 import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
 import CatalogFashionPage from './pages/CatalogFashionPage';
 import DetailFashionPage from './pages/DetailFashionPage';
+import PageNotFound from './pages/PageNotFound';
 
 // Admin
 import AdminPage from './pages/AdminPage';
@@ -60,6 +61,9 @@ function App() {
         </Route>
         <Route path="/fashion/:id">
           <DetailFashionPage/>
+        </Route>
+        <Route>
+          <PageNotFound/>
         </Route>
       </Switch>
 

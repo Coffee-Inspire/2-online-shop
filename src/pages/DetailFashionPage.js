@@ -3,13 +3,14 @@ import {Container, Row , Col, Button} from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import {useParams} from "react-router-dom"
 
-// import {imgNotFoundPotrait} from '../assets/images/imgNotFoundPotrait.jpg'
+import imgNotFoundPotrait from '../assets/images/imgNotFoundPotrait.jpg'
 import {getProductFashionAction} from '../redux/actions/productFashion.actions';
 import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
 import SizeChart from '../components/molecules/SizeChart';
+import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
 
 function DetailFashionPage(props) {
     
@@ -45,19 +46,19 @@ function DetailFashionPage(props) {
     }
     
     useEffect(() => {
-        dispatch(getProductFashionAction(setAllDataProduct))
+       dispatch(getProductFashionAction(setAllDataProduct))
     }, [dispatch])
 
     return (
         <Container fluid className="myProductDetailContainer">
 
-            {viewProduct && 
-                <Row className="">
+            {viewProduct ? 
+                <Row>
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
                             <img 
                                 alt="product_image"
-                                src={viewProduct.image}
+                                src={viewProduct.image ? viewProduct.image : imgNotFoundPotrait}
                                 className="myProductDetailImage"
                             />
                         </div>
@@ -66,7 +67,7 @@ function DetailFashionPage(props) {
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
                             <h3 className="text-secondary mb-4">Rp{convertIDR(viewProduct.price)}</h3>  
-                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5"> {viewProduct.description}</p> 
+                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p> 
                             {viewProduct.size && 
                             <>
                                 <SizeSelection size={viewProduct.size} setSize={setSize}/>
@@ -103,10 +104,15 @@ function DetailFashionPage(props) {
                                     <span> Item successfully added</span>
                                 </div>
                             </Col>
+                            <Col className="px-0 pt-3" xs={10} lg={10}>
+                                <h5>Important</h5>
+                                <p className="mt-3 text-start" style={{whiteSpace: "pre-line"}}>{viewProduct.info}</p>
+                            </Col>
                         </Col>
                     </Col>
                     
                 </Row>
+                : <SkeletonDetailPage/>
             }
  
         </Container>

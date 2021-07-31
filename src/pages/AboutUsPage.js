@@ -2,6 +2,7 @@ import {React, useEffect, useState} from 'react'
 import { Container , Row , Col } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import {getAboutAction} from '../redux/actions/about.actions';
+import imageNotFound from '../assets/images/imgNotFound.jpg'
 
 import CenterTitle from '../components/atoms/CenterTitle'
 import Banner from '../components/organisms/Banner'
@@ -19,7 +20,7 @@ function AboutUsPage() {
     return (
         <Container fluid>
             {data ? <>
-                <Banner image={data.image} plain={true}/>
+                <Banner imageNotFound={imageNotFound} image={data.image} plain={true}/>
                 <CenterTitle text={data.title}/>
                 <Row className="myAboutUsRowMargin text-center d-flex justify-content-center">
                     <Col xs={11} lg={10} >

@@ -20,7 +20,7 @@ function CartItemList(props) {
                 <div className="myCartItemImageFrame">
                     <img
                         alt="item"
-                        src={props.image}
+                        src={props.image ? props.image : props.imgNotFoundPotrait}
                         className="myCartItemImage"
                     />
                 </div>
