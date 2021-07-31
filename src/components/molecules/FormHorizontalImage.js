@@ -7,7 +7,7 @@ function FormHorizontalImage(props) {
     const uploadBtn = useRef(null);
     const uploadDrag = useRef(null);
 
-    const [imagePreview, setImagePreview] = useState(props.image);
+    const [imagePreview, setImagePreview] = useState("");
     const [status, setStatus] = useState("");
 
     const checkFile = (image, dataDragDrop = "false") =>{
