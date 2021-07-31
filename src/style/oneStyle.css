@@ -2,6 +2,9 @@
 /* Written By Suryanto */
 
 @media (max-width: 414px) {
+	.myImageBannerFrame {
+		height: 270px !important;
+	}
 	.myCardFrame {
 		width: 350px !important;
 	}
