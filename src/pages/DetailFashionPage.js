@@ -67,7 +67,7 @@ function DetailFashionPage(props) {
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
                             <h3 className="text-secondary mb-4">Rp{convertIDR(viewProduct.price)}</h3>  
-                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5"> {viewProduct.description}</p> 
+                            <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p> 
                             {viewProduct.size && 
                             <>
                                 <SizeSelection size={viewProduct.size} setSize={setSize}/>
@@ -103,10 +103,10 @@ function DetailFashionPage(props) {
                                     </svg>
                                     <span> Item successfully added</span>
                                 </div>
-                                <div className="pt-3">
-                                    <h5>Important</h5>
-                                    <p className="mt-3 text-start">{viewProduct.info}</p>
-                                </div>
+                            </Col>
+                            <Col className="px-0 pt-3" xs={10} lg={10}>
+                                <h5>Important</h5>
+                                <p className="mt-3 text-start" style={{whiteSpace: "pre-line"}}>{viewProduct.info}</p>
                             </Col>
                         </Col>
                     </Col>
