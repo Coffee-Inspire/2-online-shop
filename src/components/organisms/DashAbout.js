@@ -12,18 +12,18 @@ function DashAbout() {
     const dispatch = useDispatch();
     const aboutData = useSelector(state => state.auth);
 
-    const [form, setForm] = useState({
-        title: "z",
-        description: "z",
-        image: ""
-    });
+    // const [form, setForm] = useState({
+    //     title: "",
+    //     description: "",
+    //     image: ""
+    // });
 
-    const valueChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name] : e.target.value
-        })
-    };
+    // const valueChange = (e) => {
+    //     setForm({
+    //         ...form,
+    //         [e.target.name] : e.target.value
+    //     })
+    // };
 
     return (
         <Row className="m-0">
@@ -38,7 +38,7 @@ function DashAbout() {
                         onSubmit={(e)=>{
                             e.preventDefault(); 
                             console.log(e.target);
-                            console.log(e.target.image);
+                            console.log(e.target.image.files.length);
                             console.log(e.target.image.files[0]);
                         }}
                     >
@@ -47,21 +47,19 @@ function DashAbout() {
                             type="text" 
                             placeholder="Input Text" 
                             name="title" 
-                            value={form.title}
-                            onChange={(e) => valueChange(e)}
+
                         />
                         <FormHorizontalArea 
                             label="Short Paragraph" 
                             type="text" 
                             placeholder="Input text" 
                             name="description"
-                            value={form.description}
-                            onChange={(e) => valueChange(e)}
+
                         />
                         <FormHorizontalImage 
                             label="Cover Image"
-                            status={""}
-                            image={""}
+                            progressBar={""}
+                            setProgressBar={""}
 
                         />
                         
