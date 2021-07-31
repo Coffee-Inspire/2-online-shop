@@ -61,7 +61,7 @@ function FormHorizontalImage(props) {
                 <Form.Control.Feedback type="invalid">Must be image .jpg or .png!</Form.Control.Feedback>
                 </Form.File> */}
                 <div className="border-image position-relative">
-                    <Image className="hoverImage" src={imagePreview} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFound}} fluid />
+                    <Image className="hoverImage " src={imagePreview} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFound}} fluid />
                     <div ref={uploadDrag} 
                         onDragOver={(e)=>{
                             e.preventDefault();

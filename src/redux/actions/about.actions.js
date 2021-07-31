@@ -1,9 +1,12 @@
 import axios from 'axios';
 import imageBanner from '../../assets/images/image-example-3.png'
+import { uploadImageAction } from '../actions/upload.actions';
 
+export const INITIAL = "INITIAL";
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
-export const SUCCESS = "SUCCESS";
+export const GET_SUCCESS = "GET_SUCCESS";
+export const EDIT_SUCCESS = "EDIT_SUCCESS";
 
 let DUMMY_ABOUTUS = {
     title : `About Us` ,
@@ -15,16 +18,15 @@ let DUMMY_ABOUTUS = {
     image : imageBanner 
 };
 
-export const request = () => {
+export const initial = () => {
     return {
-        type: REQUEST,
+        type: INITIAL,
     };
 };
 
-export const success = (data) => {
+export const request = () => {
     return {
-        type: SUCCESS,
-        data: data
+        type: REQUEST,
     };
 };
 
@@ -35,8 +37,80 @@ export const failed = (err) => {
     };
 };
 
-export const getAboutAction = (setFormEdit) => (dispatch) => {
-    setFormEdit(DUMMY_ABOUTUS)
-    //  return axios(process.env.REACT_APP_URL_ABOUTUS)
-    // .then((res)=>setFormEdit(res))
+export const get_success = (data) => {
+    return {
+        type: GET_SUCCESS,
+        data: data
+    };
 };
+
+export const edit_success = (data) => {
+    return {
+        type: EDIT_SUCCESS,
+        data: data
+    };
+};
+
+export const getAboutAction = (setData) => (dispatch) => {
+    // setData(DUMMY_ABOUTUS);
+
+    dispatch(initial());
+    
+    return axios
+        .get(process.env.REACT_APP_URL_ABOUTUS)
+        .then(result => {
+            if(result.data.length !== 0){
+                setData(result.data);
+            }
+            dispatch(get_success(result.data));
+        })
+        .catch(err => {
+            // console.log(err);
+            dispatch(failed(err));
+        });
+};
+
+export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
+    // dispatch(request());
+
+    // console.log("ini title ", title);
+    // console.log("ini desc ", description);
+    // console.log("ini image ", image);
+
+    let post = (form, imagePath) => {
+        let data = {
+            ...form,
+            [imagePath !== "" && "image"] : imagePath,
+        }
+        console.log(data);
+
+        // BUAT POST HARUS ISI SEMUA DATA (IMAGE)
+
+        return axios
+            .post(process.env.REACT_APP_URL_ABOUTUS, data,{
+                headers: {
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
+                }
+            })
+            .then(result => {
+
+            })
+
+    }
+
+    if(image){
+        let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
+        uploadImage.then(result => {
+            // console.log(result);
+            post(form, result).then(result => {
+                console.log("yasudah")
+            })
+            .catch()
+        })
+    } else{
+        post(form, "")
+    }
+
+    // return axios
+    //     .post(process.env.REACT_APP_URL_ABOUTUS)
+}

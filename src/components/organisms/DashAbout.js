@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,22 +8,32 @@ import FormHorizontal from '../molecules/FormHorizontal';
 import FormHorizontalArea from '../molecules/FormHorizontalArea';
 import FormHorizontalImage from '../molecules/FormHorizontalImage';
 
+import { getAboutAction, postAboutAction } from '../../redux/actions/about.actions';
+
 function DashAbout() {
     const dispatch = useDispatch();
-    const aboutData = useSelector(state => state.auth);
+    const aboutData = useSelector(state => state.about);
 
-    // const [form, setForm] = useState({
-    //     title: "",
-    //     description: "",
-    //     image: ""
-    // });
+    const [form, setForm] = useState({
+        title: "",
+        description: "",
+    });
 
-    // const valueChange = (e) => {
-    //     setForm({
-    //         ...form,
-    //         [e.target.name] : e.target.value
-    //     })
-    // };
+    const valueChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name] : e.target.value
+        })
+    };
+
+    const [progressBar, setProgressBar] = useState(0);
+
+    useEffect(() => {
+        dispatch(getAboutAction(setForm));
+    }, [dispatch])
+
+    // console.log(form);
+    console.log(aboutData);
 
     return (
         <Row className="m-0">
@@ -36,17 +46,27 @@ function DashAbout() {
                     <hr className="myHr" />
                     <Form className="ml-3" 
                         onSubmit={(e)=>{
-                            e.preventDefault(); 
-                            console.log(e.target);
-                            console.log(e.target.image.files.length);
-                            console.log(e.target.image.files[0]);
+                            e.preventDefault();
+                            // console.log(Date.now() + e.target.image.files[0].name);
+                            if(aboutData.data.length !== 0){
+                                // edit
+                            }else{
+                                console.log("post time");
+                                dispatch(postAboutAction(form, e.target.image.files[0], setProgressBar));
+
+                            }
+                            // console.log(e.target);
+                            // console.log(e.target.image.files.length);
+                            // console.log(e.target.image.files[0]);
                         }}
                     >
                         <FormHorizontal 
                             label="Title" 
                             type="text" 
                             placeholder="Input Text" 
-                            name="title" 
+                            name="title"
+                            value={form.title}
+                            onChange={valueChange}
 
                         />
                         <FormHorizontalArea 
@@ -54,6 +74,8 @@ function DashAbout() {
                             type="text" 
                             placeholder="Input text" 
                             name="description"
+                            value={form.description}
+                            onChange={valueChange}
 
                         />
                         <FormHorizontalImage 

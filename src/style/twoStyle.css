@@ -17,6 +17,9 @@
   .closebtn {
     display: none !important;
   }
+  .border-image {
+    height: 300px !important;
+  }
 }
 
 .cursorDefault {
@@ -151,8 +154,9 @@
 }
 
 .border-image {
+  overflow: hidden;
   position: relative;
-  height: auto;
+  height: 200px;
   width: 100%;
 }
 
@@ -174,5 +178,12 @@
   color: green;
   font-weight: bold;
   text-align: center;
+}
+
+.hoverImage {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 /*# sourceMappingURL=twoStyle.css.map */
