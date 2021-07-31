@@ -13,6 +13,9 @@ function DashAbout() {
     const aboutData = useSelector(state => state.auth);
 
     const [form, setForm] = useState({
+        title: "z",
+        description: "z",
+        image: ""
     });
 
     const valueChange = (e) => {
@@ -31,7 +34,14 @@ function DashAbout() {
                 <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                     <TitleBodyDashboard text="About Us" />
                     <hr className="myHr" />
-                    <Form className="ml-3" onSubmit={(e)=>{}}>
+                    <Form className="ml-3" 
+                        onSubmit={(e)=>{
+                            e.preventDefault(); 
+                            console.log(e.target);
+                            console.log(e.target.image);
+                            console.log(e.target.image.files[0]);
+                        }}
+                    >
                         <FormHorizontal 
                             label="Title" 
                             type="text" 
@@ -50,9 +60,9 @@ function DashAbout() {
                         />
                         <FormHorizontalImage 
                             label="Cover Image"
-                            status=""
-                            image=""
-                            hash={Date.now()}
+                            status={""}
+                            image={""}
+
                         />
                         
                         <div className="d-flex flex-md-row flex-column justify-content-md-end">
