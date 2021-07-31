@@ -9,6 +9,7 @@ import DashHome from '../components/organisms/DashHome';
 import DashAbout from '../components/organisms/DashAbout';
 import DashChangePass from '../components/organisms/DashChangePass';
 import DashProfile from '../components/organisms/DashProfile';
+// import PageNotFound from './PageNotFound';
 
 function DashboardPage() {
     const navBtn = useRef(null);
@@ -34,6 +35,9 @@ function DashboardPage() {
                     <Route path="/dashboard/changepass/">
                         <DashChangePass />
                     </Route>
+                    {/* <Route>
+                        <PageNotFound/>
+                    </Route> */}
                 </Switch>
             </div>
         </Container>
