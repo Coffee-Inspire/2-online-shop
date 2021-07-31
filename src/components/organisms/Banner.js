@@ -11,7 +11,7 @@ function Banner(props) {
                 src={props.image ? props.image : props.imageNotFound}
                 className={props.plain ? "p-0 myImageBannerPlain" : "p-0 myImageBanner" }
                 
-                onClick={!props.plain && (()=>window.location=`${props.url}`)}
+                onClick={props.plain ? null : (()=>window.location=`${props.url}`)}
             />
             {!props.plain && <BannerButton text={"shop now"} url={props.url}/>}
         </Row>
