@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react'
 import {Container,Row,Col} from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { getProfileAction } from '../../redux/actions/profile.actions';
 
 import emblem from '../../assets/logos/phanen-shop-emblem.png'
@@ -8,6 +8,7 @@ import emblem from '../../assets/logos/phanen-shop-emblem.png'
 function Footer() {
 
     const dispatch = useDispatch()
+    const status = useSelector(state => state.profile)
     const [data, setData] = useState({});
 
     useEffect(() => {
@@ -82,6 +83,8 @@ function Footer() {
                         <h5>@2021 by Le Debute</h5>
                     </Col>
             </Row>
+
+            {status.isInitial && <></>}
     
         </Container>
     )

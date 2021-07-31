@@ -7,6 +7,7 @@ import NavDashboard from '../components/templates/NavDashboard';
 
 import DashAbout from '../components/organisms/DashAbout';
 import DashChangePass from '../components/organisms/DashChangePass';
+import DashProfile from '../components/organisms/DashProfile';
 
 function DashboardPage() {
     const navBtn = useRef(null);
@@ -22,6 +23,9 @@ function DashboardPage() {
                 <Switch>
                     <Route path="/dashboard/dashabout/">
                         <DashAbout />
+                    </Route>
+                    <Route path="/dashboard/dashprofile/">
+                        <DashProfile />
                     </Route>
                     <Route path="/dashboard/changepass/">
                         <DashChangePass />
