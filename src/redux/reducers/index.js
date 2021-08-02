@@ -8,6 +8,7 @@ import productCosmetic from './productCosmetic.reducers';
 import productFashion from './productFashion.reducers';
 import cart from './cart.reducers';
 
+import upload from './upload.reducers';
 
 const rootReducer = combineReducers({
     auth, 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     productCosmetic,
     productFashion,
     cart,
-    profile
+    profile,
+    upload
 })
 
 export default rootReducer

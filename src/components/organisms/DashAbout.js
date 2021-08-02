@@ -17,6 +17,7 @@ function DashAbout() {
     const [form, setForm] = useState({
         title: "",
         description: "",
+        image: "",
     });
 
     const valueChange = (e) => {
@@ -49,11 +50,11 @@ function DashAbout() {
                             e.preventDefault();
                             // console.log(Date.now() + e.target.image.files[0].name);
                             if(aboutData.data.length !== 0){
-                                // edit
+                                // Edit
+                                
                             }else{
-                                console.log("post time");
+                                // Post
                                 dispatch(postAboutAction(form, e.target.image.files[0], setProgressBar));
-
                             }
                             // console.log(e.target);
                             // console.log(e.target.image.files.length);
@@ -80,9 +81,9 @@ function DashAbout() {
                         />
                         <FormHorizontalImage 
                             label="Cover Image"
-                            progressBar={""}
-                            setProgressBar={""}
-
+                            progressBar={progressBar}
+                            setProgressBar={setProgressBar}
+                            value={form.image}
                         />
                         
                         <div className="d-flex flex-md-row flex-column justify-content-md-end">
@@ -92,13 +93,13 @@ function DashAbout() {
                             </Button>
                         </div>
                         {aboutData.editSuccess &&
-                            <div className="mt-3 text-success">
-                                Edit Success !
+                            <div className="mt-3 text-success text-end">
+                                Save success !
                             </div>
                         }
                         {aboutData.error && 
-                            <div className="mt-3 text-danger">
-                                Error Edit Failed !
+                            <div className="mt-3 text-danger text-end">
+                                Save failed !
                             </div>
                         }
                     </Form>

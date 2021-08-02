@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react'
-import { Row, Col, Form, Image, Button } from 'react-bootstrap';
+import { Row, Col, Form, Image, Button, ProgressBar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 import imageNotFound from '../../assets/images/imgNotFound.jpg'
 
 function FormHorizontalImage(props) {
+    const uploadImage = useSelector(state => state.upload);
     const uploadBtn = useRef(null);
     const uploadDrag = useRef(null);
 
-    const [imagePreview, setImagePreview] = useState("");
+    const [imagePreview, setImagePreview] = useState(props.value);
     const [status, setStatus] = useState("");
 
     const checkFile = (image, dataDragDrop = "false") =>{
@@ -38,7 +40,7 @@ function FormHorizontalImage(props) {
         <Row className="mb-3">
             <Form.Label className="text-md-end text-nowrap" column lg={3}>{props.label} </Form.Label>
             <Col>
-                <Form.Control 
+                {/* <Form.Control 
                     ref={uploadBtn} 
                     
                     type="file" 
@@ -47,7 +49,7 @@ function FormHorizontalImage(props) {
                     disabled={props.disabled}
                     className="d-none"
                     accept="image/jpeg, image/png, image/bmp"
-                />
+                /> */}
                 {/* <Form.File className="d-none" id="formcheck-api-custom" custom>
                 <Form.File.Input ref={uploadBtn} 
                     disabled={props.disabled} 
@@ -86,13 +88,43 @@ function FormHorizontalImage(props) {
                             uploadDrag.current.style.opacity = "";
                             checkFile(e.dataTransfer.files[0], e.dataTransfer.files);
                         }} 
-                        className="position-absolute imageUploadOverlay d-flex justify-content-center align-items-center align-content-center">
-                        <Button onClick={() => uploadBtn.current.click()} className="btnWhiteTrans px-4 py-2" >Change Image</Button>
+                        className={(uploadImage.isLoading && "opacity-1") + " position-absolute imageUploadOverlay d-flex justify-content-center align-items-center align-content-center"}>
+                        {!uploadImage.isLoading ? 
+                            <Button onClick={() => uploadBtn.current.click()} className="btnWhiteTrans px-4 py-2" >Change Image</Button>
+                            :
+                            <ProgressBar animated striped variant="primary" className="w-75" now={props.progressBar} />
+                        }
                     </div>
+                    {props.value !== "" ?   
+                        <Form.Control 
+                            ref={uploadBtn} 
+                            
+                            type="file" 
+                            name="image"
+                            onChange={(e) => checkFile(e.target.files[0])}
+                            disabled={props.disabled}
+                            className="d-none"
+                            accept="image/jpeg, image/png, image/bmp"
+                        />
+                        :
+                        <Form.Control 
+                            ref={uploadBtn} 
+                            required
+                            type="file" 
+                            name="image"
+                            onChange={(e) => checkFile(e.target.files[0])}
+                            disabled={props.disabled}
+                            className="position-absolute bottom-0 opacity-0"
+                            accept="image/jpeg, image/png, image/bmp"
+                        />
+                    }
                 </div>
                 <Form.Control className={status+" d-none"}/>
-                <Form.Control.Feedback type="valid">Ready for upload!</Form.Control.Feedback>
-                <Form.Control.Feedback type="invalid">Must be image .jpg or .png!</Form.Control.Feedback>
+                {/* <Form.Control.Feedback type="valid">Ready for upload!</Form.Control.Feedback> */}
+                <Form.Control.Feedback type="invalid">Must be image .jpg, .png, .bmp!</Form.Control.Feedback>
+                {/* <div className="mt-3">
+                    <ProgressBar animated striped variant="primary" className="" now={props.progressBar} />
+                </div> */}
                 {/* JADI */}
                 {/* <div className="border-image">
                     <svg className="border-svg">

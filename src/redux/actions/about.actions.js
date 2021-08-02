@@ -8,15 +8,15 @@ export const FAILED = "FAILED";
 export const GET_SUCCESS = "GET_SUCCESS";
 export const EDIT_SUCCESS = "EDIT_SUCCESS";
 
-let DUMMY_ABOUTUS = {
-    title : `About Us` ,
-    description : `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
-                    type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
-                    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.` ,
-    image : imageBanner 
-};
+// let DUMMY_ABOUTUS = {
+//     title : `About Us` ,
+//     description : `Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+//                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
+//                     type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
+//                     typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing 
+//                     Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.` ,
+//     image : imageBanner 
+// };
 
 export const initial = () => {
     return {
@@ -71,7 +71,7 @@ export const getAboutAction = (setData) => (dispatch) => {
 };
 
 export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
-    // dispatch(request());
+    dispatch(request());
 
     // console.log("ini title ", title);
     // console.log("ini desc ", description);
@@ -82,9 +82,7 @@ export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
             ...form,
             [imagePath !== "" && "image"] : imagePath,
         }
-        console.log(data);
-
-        // BUAT POST HARUS ISI SEMUA DATA (IMAGE)
+        // console.log(data);
 
         return axios
             .post(process.env.REACT_APP_URL_ABOUTUS, data,{
@@ -93,8 +91,9 @@ export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
                 }
             })
             .then(result => {
-
+                console.log("berhasil ", result.data)
             })
+            .catch(err => dispatch(failed(err)))
 
     }
 
@@ -105,7 +104,7 @@ export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
             post(form, result).then(result => {
                 console.log("yasudah")
             })
-            .catch()
+            .catch(err => dispatch(failed(err)))
         })
     } else{
         post(form, "")
