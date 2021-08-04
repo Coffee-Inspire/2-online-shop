@@ -100,7 +100,7 @@ function FormHorizontalImage(props) {
                             ref={uploadBtn} 
                             
                             type="file" 
-                            name="image"
+                            name={props.name}
                             onChange={(e) => checkFile(e.target.files[0])}
                             disabled={props.disabled}
                             className="d-none"
@@ -111,7 +111,7 @@ function FormHorizontalImage(props) {
                             ref={uploadBtn} 
                             required
                             type="file" 
-                            name="image"
+                            name={props.name}
                             onChange={(e) => checkFile(e.target.files[0])}
                             disabled={props.disabled}
                             className="position-absolute bottom-0 opacity-0"

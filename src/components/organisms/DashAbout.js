@@ -35,7 +35,6 @@ function DashAbout() {
 
     // console.log("form ", form);
     // console.log("about data ", aboutData);
-    console.log(Object.keys(aboutData.data).length !== 0);
     
     return (
         <Row className="m-0">
@@ -52,7 +51,6 @@ function DashAbout() {
                     <Form className="ml-3" 
                         onSubmit={(e)=>{
                             e.preventDefault();
-                            // console.log(Date.now() + e.target.image.files[0].name);
                             if(Object.keys(aboutData.data).length !== 0){
                                 // Edit
                                 dispatch(editAboutAction(form, e.target.image.files[0], setProgressBar))
@@ -60,9 +58,6 @@ function DashAbout() {
                                 // Post
                                 dispatch(postAboutAction(form, e.target.image.files[0], setProgressBar, setForm));
                             }
-                            // console.log(e.target);
-                            // console.log(e.target.image.files.length);
-                            // console.log(e.target.image.files[0]);
                         }}
                     >
                         <FormHorizontal 
@@ -87,6 +82,7 @@ function DashAbout() {
                             label="Cover Image"
                             progressBar={progressBar}
                             setProgressBar={setProgressBar}
+                            name="image"
                             value={form.image}
                         />
                         

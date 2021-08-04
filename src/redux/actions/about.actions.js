@@ -53,7 +53,6 @@ export const save_success = (data) => {
 
 export const getAboutAction = (setData) => (dispatch) => {
     // setData(DUMMY_ABOUTUS);
-// DELETE CREATE AT UPDATE AT+========================================================================
     dispatch(initial());
     
     return axios
