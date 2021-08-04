@@ -8,7 +8,7 @@ import FormHorizontal from '../molecules/FormHorizontal';
 import FormHorizontalArea from '../molecules/FormHorizontalArea';
 import FormHorizontalImage from '../molecules/FormHorizontalImage';
 
-import { getAboutAction, postAboutAction } from '../../redux/actions/about.actions';
+import { getAboutAction, postAboutAction, editAboutAction } from '../../redux/actions/about.actions';
 
 function DashAbout() {
     const dispatch = useDispatch();
@@ -33,14 +33,18 @@ function DashAbout() {
         dispatch(getAboutAction(setForm));
     }, [dispatch])
 
-    // console.log(form);
-    console.log(aboutData);
-
+    // console.log("form ", form);
+    // console.log("about data ", aboutData);
+    console.log(Object.keys(aboutData.data).length !== 0);
+    
     return (
         <Row className="m-0">
             <div className="ps-3 shadow z-index-2 bg-white">
             <TitleDashboard text="Settings / About Us" />
             </div>
+            {aboutData.isInitial ?
+            <div></div>
+            :
             <Col xs={12} md={7} className="">
                 <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                     <TitleBodyDashboard text="About Us" />
@@ -49,12 +53,12 @@ function DashAbout() {
                         onSubmit={(e)=>{
                             e.preventDefault();
                             // console.log(Date.now() + e.target.image.files[0].name);
-                            if(aboutData.data.length !== 0){
+                            if(Object.keys(aboutData.data).length !== 0){
                                 // Edit
-                                
+                                dispatch(editAboutAction(form, e.target.image.files[0], setProgressBar))
                             }else{
                                 // Post
-                                dispatch(postAboutAction(form, e.target.image.files[0], setProgressBar));
+                                dispatch(postAboutAction(form, e.target.image.files[0], setProgressBar, setForm));
                             }
                             // console.log(e.target);
                             // console.log(e.target.image.files.length);
@@ -92,7 +96,7 @@ function DashAbout() {
                                 {(aboutData.isLoading) ? "Saving..." : "Save"}
                             </Button>
                         </div>
-                        {aboutData.editSuccess &&
+                        {aboutData.saveSuccess &&
                             <div className="mt-3 text-success text-end">
                                 Save success !
                             </div>
@@ -105,6 +109,7 @@ function DashAbout() {
                     </Form>
                 </div>
             </Col>
+            }
         </Row>
     )
 }

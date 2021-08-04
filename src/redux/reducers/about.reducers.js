@@ -1,10 +1,10 @@
-import { INITIAL, REQUEST, FAILED, GET_SUCCESS, EDIT_SUCCESS } from '../actions/about.actions'
+import { INITIAL, REQUEST, FAILED, GET_SUCCESS, SAVE_SUCCESS } from '../actions/about.actions'
 
 const initialState = {
-    data : [],
+    data : {},
     isInitial : false,
     isLoading : false,
-    editSuccess : false,
+    saveSuccess : false,
     error: false,
 };
 
@@ -15,12 +15,18 @@ const about = (state = initialState, action) => {
             return {
                 ...state,
                 isInitial: true,
+                isLoading: false,
+                saveSuccess : false,
+                error: false,
             };
 
         case REQUEST: 
             return {
                 ...state,
+                isInitial : false,
                 isLoading: true,
+                saveSuccess : false,
+                error: false,
             };
 
         case FAILED:
@@ -28,27 +34,27 @@ const about = (state = initialState, action) => {
                 ...state,
                 isInitial : false,
                 isLoading : false,
-                editSuccess : false,
+                saveSuccess : false,
                 error: true,
             };
 
         case GET_SUCCESS:
             return {
                 ...state,
-                data: action.data,
+                data: {...action.data},
                 isInitial : false,
                 isLoading : false,
-                editSuccess : false,
+                saveSuccess : false,
                 error: false,
             }
 
-        case EDIT_SUCCESS:
+        case SAVE_SUCCESS:
             return {
                 ...state,
-                data: action.data,
+                data: {...action.data},
                 isInitial : false,
                 isLoading : false,
-                editSuccess : true,
+                saveSuccess : true,
                 error: false,
             }
 

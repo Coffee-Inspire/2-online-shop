@@ -1,12 +1,12 @@
 import axios from 'axios';
-import imageBanner from '../../assets/images/image-example-3.png'
+// import imageBanner from '../../assets/images/image-example-3.png'
 import { uploadImageAction } from '../actions/upload.actions';
 
 export const INITIAL = "INITIAL";
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
 export const GET_SUCCESS = "GET_SUCCESS";
-export const EDIT_SUCCESS = "EDIT_SUCCESS";
+export const SAVE_SUCCESS = "SAVE_SUCCESS";
 
 // let DUMMY_ABOUTUS = {
 //     title : `About Us` ,
@@ -44,23 +44,23 @@ export const get_success = (data) => {
     };
 };
 
-export const edit_success = (data) => {
+export const save_success = (data) => {
     return {
-        type: EDIT_SUCCESS,
+        type: SAVE_SUCCESS,
         data: data
     };
 };
 
 export const getAboutAction = (setData) => (dispatch) => {
     // setData(DUMMY_ABOUTUS);
-
+// DELETE CREATE AT UPDATE AT+========================================================================
     dispatch(initial());
     
     return axios
         .get(process.env.REACT_APP_URL_ABOUTUS)
         .then(result => {
             if(result.data.length !== 0){
-                setData(result.data);
+                setData(...result.data);
             }
             dispatch(get_success(result.data));
         })
@@ -70,19 +70,16 @@ export const getAboutAction = (setData) => (dispatch) => {
         });
 };
 
-export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
+export const postAboutAction = (form, image, setProgressBar, setForm) => (dispatch) => {
     dispatch(request());
 
-    // console.log("ini title ", title);
-    // console.log("ini desc ", description);
-    // console.log("ini image ", image);
-
-    let post = (form, imagePath) => {
+    let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
+    uploadImage.then(result => {
+        
         let data = {
             ...form,
-            [imagePath !== "" && "image"] : imagePath,
+            [result !== "" && "image"] : result,
         }
-        // console.log(data);
 
         return axios
             .post(process.env.REACT_APP_URL_ABOUTUS, data,{
@@ -91,25 +88,45 @@ export const postAboutAction = (form, image, setProgressBar) => (dispatch) => {
                 }
             })
             .then(result => {
-                console.log("berhasil ", result.data)
+                setForm(result.data);
+                dispatch(save_success(result.data));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(failed(err));
+            })
+
+    })
+    .catch(err => dispatch(failed(err)))
+}
+
+export const editAboutAction = (form, image, setProgressBar) => (dispatch) => {
+    dispatch(request());
+
+    let edit = (form, imagePath) => {
+        let data = {
+            ...form,
+            [imagePath !== "" && "image"] : imagePath,
+        }
+
+        return axios
+            .put(process.env.REACT_APP_URL_ABOUTUS +'/'+ form.id, data,{
+                headers: {
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
+                }
+            })
+            .then(result => {
+                dispatch(save_success(result.data));
             })
             .catch(err => dispatch(failed(err)))
-
     }
 
     if(image){
         let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
         uploadImage.then(result => {
-            // console.log(result);
-            post(form, result).then(result => {
-                console.log("yasudah")
-            })
-            .catch(err => dispatch(failed(err)))
+            edit(form, result);
         })
     } else{
-        post(form, "")
+        edit(form, "");
     }
-
-    // return axios
-    //     .post(process.env.REACT_APP_URL_ABOUTUS)
 }

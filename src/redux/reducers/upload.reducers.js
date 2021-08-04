@@ -1,4 +1,4 @@
-import { REQUEST, FAILED, UPLOAD_SUCCESS } from '../actions/upload.actions';
+import { UPLOAD_REQUEST, UPLOAD_FAILED, UPLOAD_SUCCESS } from '../actions/upload.actions';
 
 const initialState = {
     isLoading : false,
@@ -9,14 +9,14 @@ const initialState = {
 const upload = (state = initialState, action) => {
     switch (action.type){
 
-        case REQUEST: 
+        case UPLOAD_REQUEST: 
             return {
                 ...state,
                 isLoading: true,
                 uploadSuccess : false,
             };
 
-        case FAILED:
+        case UPLOAD_FAILED:
             return {
                 ...state,
                 isLoading: false,

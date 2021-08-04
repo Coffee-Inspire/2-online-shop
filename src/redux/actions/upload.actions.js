@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-export const REQUEST = "REQUEST";
-export const FAILED = "FAILED";
+export const UPLOAD_REQUEST = "UPLOAD_REQUEST";
+export const UPLOAD_FAILED = "UPLOAD_FAILED";
 export const UPLOAD_SUCCESS = "UPLOAD_SUCCESS";
 
-export const request = () => {
+export const upload_request = () => {
     return {
-        type: REQUEST,
+        type: UPLOAD_REQUEST,
     };
 };
 
-export const failed = (err) => {
+export const upload_failed = (err) => {
     return {
-        type: FAILED,
+        type: UPLOAD_FAILED,
         err,
     };
 };
@@ -25,10 +25,12 @@ export const upload_success = (data) => {
 };
 
 export const uploadImageAction = (image, setProgressBar) => (dispatch) => {
-
+    console.log("masuk upload");
+    dispatch(upload_request());
+    
     let fd = new FormData();
     fd.append('image', image, Date.now()+ image.name);
-
+    
     return axios
         // .post(process.env.REACT_APP_URL_IMAGE, fd, {
         .post('http://localhost:3333', fd, {
@@ -42,10 +44,12 @@ export const uploadImageAction = (image, setProgressBar) => (dispatch) => {
         })
         .then(result => {
             dispatch(upload_success());
+            setProgressBar(0);
             return result.data.url;
         })
         .catch(err => {
-            dispatch(failed());
+            console.log("err image upload ",err);
+            dispatch(upload_failed());
             return err;
         })
 };
