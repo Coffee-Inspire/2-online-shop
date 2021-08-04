@@ -82,7 +82,6 @@ function DashAbout() {
                             label="Cover Image"
                             progressBar={progressBar}
                             setProgressBar={setProgressBar}
-                            name="image"
                             value={form.image}
                         />
                         
@@ -94,12 +93,12 @@ function DashAbout() {
                         </div>
                         {aboutData.saveSuccess &&
                             <div className="mt-3 text-success text-end">
-                                Save success !
+                                Save Success !
                             </div>
                         }
                         {aboutData.error && 
                             <div className="mt-3 text-danger text-end">
-                                Save failed !
+                                Save Failed !
                             </div>
                         }
                     </Form>

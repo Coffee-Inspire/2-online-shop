@@ -26,6 +26,10 @@
   cursor: default;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 .opacity-0 {
   opacity: 0 !important;
 }

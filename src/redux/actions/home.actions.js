@@ -73,7 +73,7 @@ export const postHomeAction = (form, image, setProgressBar, setForm) => (dispatc
         
         let data = {
             ...form,
-            [result !== "" && "image"] : result,
+            [result !== "" && "promoImage"] : result,
         }
 
         return axios

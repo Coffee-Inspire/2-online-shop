@@ -15,9 +15,9 @@ function DashHome() {
     const homeData = useSelector(state => state.home);
 
     const [form, setForm] = useState({
-        title: "",
-        description: "",
-        image: "",
+        promoTitle: "",
+        promoImage: "",
+        promoUrl: "",
     });
 
     const valueChange = (e) => {
@@ -58,25 +58,28 @@ function DashHome() {
                         label="Promo Title" 
                         type="text" 
                         placeholder="Input Text" 
-                        name="promoTitle" 
+                        name="promoTitle"
+                        value={form.promoTitle}
+                        onChange={valueChange} 
 
                     />
                     <FormHorizontalImage 
                         label="Promo Image"
                         progressBar={progressBar}
                         setProgressBar={setProgressBar}
-                        name="promoImage"
-                        value={form.image}
+                        value={form.promoImage}
 
                     />
                      <FormHorizontal 
                         label="URL" 
                         type="text" 
                         placeholder="Input Text" 
-                        name="promoUrl" 
+                        name="promoUrl"
+                        value={form.promoUrl}
+                        onChange={valueChange} 
 
                     />
-                    <ExampleText text={"Example : https//product.com/"}/>
+                    <ExampleText text={"Example : https://www.product.com/"}/>
                     
                     <div className="d-flex flex-md-row flex-column justify-content-md-end">
                         {/* <Button variant="danger" type="submit" className="me-md-3 mb-3 mb-md-0" >Cancel</Button> */}
@@ -84,14 +87,14 @@ function DashHome() {
                             {(homeData.isLoading) ? "Saving..." : "Save"}
                         </Button>
                     </div>
-                    {homeData.editSuccess &&
-                        <div className="mt-3 text-success">
-                            Edit Success !
+                    {homeData.saveSuccess &&
+                        <div className="mt-3 text-success text-end">
+                            Save Success !
                         </div>
                     }
                     {homeData.error && 
-                        <div className="mt-3 text-danger">
-                            Error Edit Failed !
+                        <div className="mt-3 text-danger text-end">
+                            Save Failed !
                         </div>
                     }
                 </Form>

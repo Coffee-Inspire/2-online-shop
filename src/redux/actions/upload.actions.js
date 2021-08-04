@@ -25,7 +25,6 @@ export const upload_success = (data) => {
 };
 
 export const uploadImageAction = (image, setProgressBar) => (dispatch) => {
-    console.log("masuk upload");
     dispatch(upload_request());
     
     let fd = new FormData();
