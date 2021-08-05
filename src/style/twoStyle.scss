@@ -23,6 +23,7 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     .navbarDashboard {
         position: sticky !important;
         margin-left: 0 !important;
+        z-index: 15 !important;
     }
 
     .bodyDashboard {
@@ -36,6 +37,18 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     .border-image {
         height: 300px !important;
     }
+
+    .position-lg-absolute{
+        position: absolute !important;
+    }
+
+    .btnUploadListProduct{
+        width: auto !important;
+    }
+}
+
+.btnUploadListProduct{
+    width: 100%;
 }
 
 .cursorDefault {
@@ -64,6 +77,10 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 
 .z-index-3 {
     z-index: 15;
+}
+
+.z-index-4 {
+    z-index: 20;
 }
 
 .bg-white {
@@ -158,11 +175,26 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 // 	margin-left: 0px;
 // }
 
+.bg-overlay {
+    background-color: $black-color;
+    // margin-left: -400px;
+    width: 0;
+    transition: all 0.3s;
+}
+
+.bg-overlay.show {
+    width: 100vw;
+    transition: all 0.3s;
+    // margin-left: 0px;
+}
+
 .navbarDashboard {
-    position: absolute;
-    box-shadow: 5px 70px 1rem 0px rgba(0,0,0, .15);
-    margin-left: -300px;
+    position: fixed;
+    // box-shadow: 5px 70px 1rem 0px rgba(0,0,0, .15);
+    box-shadow: 5px 0px 1rem 0px rgba(0,0,0, .15);
+    margin-left: -990px;
     transition: all 0.5s ease;
+    z-index: 21;
 }
 
 .navbarDashboard.show {
@@ -180,7 +212,8 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 }
 
 .myHr {
-    border-top: 2px solid #e5e5e5;
+    border-top: 1px solid $gray-color;
+    background-color: $gray-color;
 }
 
 .navbar-dark .navbar-toggler {

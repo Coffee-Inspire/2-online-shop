@@ -4,7 +4,7 @@ import { Container, Navbar } from 'react-bootstrap';
 function BarBrown(props) {
     return (
         <div className="p-0">
-            <Navbar variant="dark" className="barBrown" expand="lg">
+            <Navbar variant="dark" className="barBrown z-index-3" expand="lg">
             <Container>
                 <Navbar.Toggle onClick={() => {
                     props.reff.current.click();

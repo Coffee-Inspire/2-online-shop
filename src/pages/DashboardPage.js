@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import BarBrown from '../components/atoms/BarBrown';
 import NavDashboard from '../components/templates/NavDashboard';
 
+import DashListProduct from '../components/organisms/DashListProduct';
 import DashHome from '../components/organisms/DashHome';
 import DashAbout from '../components/organisms/DashAbout';
 import DashChangePass from '../components/organisms/DashChangePass';
@@ -17,20 +18,32 @@ function DashboardPage() {
 
     return (
         <Container fluid className="p-0 d-flex flex-row">
-            <div className={navDash ? "navbarDashboard navbarDashboardShadow z-index-3 show" : "navbarDashboard navbarDashboardShadow z-index-3"}>
+            <div className={navDash ? "navbarDashboard show" : "navbarDashboard"}>
                 <NavDashboard reff={navBtn} status={navDash} setStatus={setNavDash}/>
             </div>
+
+            <div 
+                onClick={()=> {
+                    navBtn.current.click();
+                    setNavDash(!navDash);
+                }} 
+                className={(navDash && "show") + " position-absolute top-0 bg-overlay vh-100 z-index-4"}>
+            </div>
+
             <div className="w-100 bodyDashboard">
                 <BarBrown reff={navBtn} status={navDash} setStatus={setNavDash}/>
                 <Switch>
-                    <Route path="/dashboard/dashhome/">
+                    <Route path="/dashboard/listproduct/">
+                        <DashListProduct />
+                    </Route>
+                    <Route path="/dashboard/profile/">
+                        <DashProfile />
+                    </Route>
+                    <Route path="/dashboard/home/">
                         <DashHome />
                     </Route>
-                    <Route path="/dashboard/dashabout/">
+                    <Route path="/dashboard/about/">
                         <DashAbout />
-                    </Route>
-                    <Route path="/dashboard/dashprofile/">
-                        <DashProfile />
                     </Route>
                     <Route path="/dashboard/changepass/">
                         <DashChangePass />
