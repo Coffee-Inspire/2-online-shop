@@ -1,33 +1,61 @@
-import { REQUEST, FAILED, SUCCESS } from '../actions/productFashion.actions'
+import { INITIAL, REQUEST, FAILED, GET_SUCCESS, SAVE_SUCCESS } from '../actions/productFashion.actions'
 
 const initialState = {
     data : [],
+    isInitial : false,
     isLoading : false,
+    saveSuccess : false,
     error: false,
 };
 
 const productFashion = (state = initialState, action) => {
     switch (action.type){
 
+        case INITIAL: 
+            return {
+                ...state,
+                isInitial: true,
+                isLoading: false,
+                saveSuccess : false,
+                error: false,
+            };
+
         case REQUEST: 
             return {
                 ...state,
+                isInitial : false,
                 isLoading: true,
-                editSuccess : false,
+                saveSuccess : false,
+                error: false,
             };
 
         case FAILED:
             return {
                 ...state,
+                isInitial : false,
+                isLoading : false,
+                saveSuccess : false,
                 error: true,
-                isLoading: false,
             };
 
-        case SUCCESS:
+        case GET_SUCCESS:
             return {
                 ...state,
-                data: action.data,
-                isLoading: false,
+                data: {...action.data},
+                isInitial : false,
+                isLoading : false,
+                saveSuccess : false,
+                error: false,
+            }
+
+        case SAVE_SUCCESS:
+            return {
+                ...state,
+                data: {...action.data},
+                isInitial : false,
+                isLoading : false,
+                saveSuccess : true,
+                error: false,
             }
 
         default:

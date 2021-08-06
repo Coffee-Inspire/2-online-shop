@@ -23,7 +23,7 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     .navbarDashboard {
         position: sticky !important;
         margin-left: 0 !important;
-        z-index: 15 !important;
+        z-index: 16 !important;
     }
 
     .bodyDashboard {
@@ -115,6 +115,10 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     box-shadow: 0 0 0 0.25rem $brown-shadow;
 }
 
+.shadow-brown {
+    box-shadow: 0 .4rem 0.5rem $brown-shadow;
+}
+
 .imageUploadOverlay {
     opacity: 0;
     position: absolute;
@@ -174,6 +178,10 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 // 	opacity: 1;
 // 	margin-left: 0px;
 // }
+
+.bg-overlayOnly{
+    background-color: $black-color;
+}
 
 .bg-overlay {
     background-color: $black-color;
@@ -254,4 +262,18 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.circleNotification {
+    background: #C4C4C4;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #5e5e5e;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 35px;
+    margin-right: 5px;
+    text-align: center;
+    width: 35px;
 }

@@ -10,7 +10,7 @@
     position: -webkit-sticky !important;
     position: sticky !important;
     margin-left: 0 !important;
-    z-index: 15 !important;
+    z-index: 16 !important;
   }
   .bodyDashboard {
     margin-left: auto !important;
@@ -98,6 +98,11 @@
           box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
 }
 
+.shadow-brown {
+  -webkit-box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
+          box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
+}
+
 .imageUploadOverlay {
   opacity: 0;
   position: absolute;
@@ -146,6 +151,10 @@
 .closebtn {
   font-size: 36px;
   display: block;
+}
+
+.bg-overlayOnly {
+  background-color: rgba(51, 51, 51, 0.8) !important;
 }
 
 .bg-overlay {
@@ -227,5 +236,19 @@
      object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+.circleNotification {
+  background: #C4C4C4;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #5e5e5e;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 35px;
+  margin-right: 5px;
+  text-align: center;
+  width: 35px;
 }
 /*# sourceMappingURL=twoStyle.css.map */

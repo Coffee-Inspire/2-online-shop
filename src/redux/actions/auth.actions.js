@@ -49,7 +49,7 @@ export const loginAction = (data, history, setStatus) => (dispatch) => {
                 localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data.user);
                 dispatch(loginSuccess(result.data.token))
                 
-                history.push('/dashboard');
+                history.push('/dashboard/listproduct');
             } else{
                 setStatus({
                     error : true,

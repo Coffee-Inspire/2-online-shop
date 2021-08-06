@@ -17,7 +17,7 @@ function DashboardPage() {
     const [navDash, setNavDash] = useState(false);
 
     return (
-        <Container fluid className="p-0 d-flex flex-row">
+        <Container fluid className="p-0 m-0 d-flex flex-row">
             <div className={navDash ? "navbarDashboard show" : "navbarDashboard"}>
                 <NavDashboard reff={navBtn} status={navDash} setStatus={setNavDash}/>
             </div>
