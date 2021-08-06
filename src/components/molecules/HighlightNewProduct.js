@@ -1,5 +1,7 @@
 import React from 'react'
 
+import imageNotFound from '../../assets/images/imgNotFound.jpg'
+
 function HighlightNewProduct(props) {
     return (
         <div className="myHighlightProductFrame">
@@ -14,6 +16,7 @@ function HighlightNewProduct(props) {
                         window.location=`/fashion/${props.id}`
                     }
                 }}
+                onError={(e)=>{e.target.src=imageNotFound}}
             />
         </div>
     )
