@@ -97,7 +97,7 @@ function DetailFashionPage(props) {
                                     <span> Item successfully added</span>
                                 </div>
                             </Col>
-                            <Col className="px-0 pt-3" xs={10} lg={10}>
+                            <Col className="px-0 pt-3 justify-content-center justify-content-lg-start" xs={12} lg={10}>
                                 <h5>Important</h5>
                                 <p className="mt-3 text-start" style={{whiteSpace: "pre-line"}}>{viewProduct.info}</p>
                             </Col>

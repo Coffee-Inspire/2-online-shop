@@ -21,6 +21,8 @@ function HomePage() {
     const [dataCosmetic, setDataCosmetic] = useState([]);
     const [dataFashion, setDataFashion] = useState([]);
 
+    console.log(dataPromotion)
+
     useEffect(() => {
         dispatch(getHomeAction(setDataPromotion))
         dispatch(getProductCosmeticAction(setDataCosmetic))
