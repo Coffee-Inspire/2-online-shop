@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react'
 import { Container , Row , Col } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import {getAboutAction} from '../redux/actions/about.actions';
 import imageNotFound from '../assets/images/imgNotFound.jpg'
 
@@ -11,6 +11,7 @@ import SkeletonAboutPage from '../skeletons/SkeletonAboutPage';
 function AboutUsPage() {
 
     const dispatch = useDispatch()
+    const status = useSelector(state => state.about)
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -31,7 +32,7 @@ function AboutUsPage() {
                 : <SkeletonAboutPage/>
             }
         </Container>
-       
+        
     )
 }
 
