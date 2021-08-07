@@ -38,30 +38,8 @@ function FormHorizontalImage(props) {
 
     return (
         <Row className="mb-3">
-            <Form.Label className="text-md-end text-nowrap" column lg={3}>{props.label} </Form.Label>
+            <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
             <Col>
-                {/* <Form.Control 
-                    ref={uploadBtn} 
-                    
-                    type="file" 
-                    name="image"
-                    onChange={(e) => checkFile(e.target.files[0])}
-                    disabled={props.disabled}
-                    className="d-none"
-                    accept="image/jpeg, image/png, image/bmp"
-                /> */}
-                {/* <Form.File className="d-none" id="formcheck-api-custom" custom>
-                <Form.File.Input ref={uploadBtn} 
-                    disabled={props.disabled} 
-                    onChange={(e) => checkFile(e.target.files[0])} 
-                    required 
-                    name="image" className={props.status + " form-control"} accept="image/jpeg, image/png, image/bmp"/>
-                <Form.File.Label data-browse="Browse">
-                    Choose File
-                </Form.File.Label>
-                <Form.Control.Feedback type="valid">Ready for upload!</Form.Control.Feedback>
-                <Form.Control.Feedback type="invalid">Must be image .jpg or .png!</Form.Control.Feedback>
-                </Form.File> */}
                 <div className="border-image position-relative">
                     <Image className="hoverImage " src={imagePreview} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFound}} fluid />
                     <div ref={uploadDrag} 

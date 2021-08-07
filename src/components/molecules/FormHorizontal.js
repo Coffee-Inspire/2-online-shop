@@ -2,9 +2,17 @@ import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap';
 
 function FormHorizontal(props) {
+    const keyboard = [
+        69,         //e
+        38,         //arrow up
+        40,         //arrow down
+        189,        //-
+        190,        //.
+    ];
+
     return (
         <Row className="mb-3">
-            <Form.Label className="text-md-end text-nowrap" column lg={3}>{props.label} </Form.Label>
+            <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
             <Col>
                 <Form.Control 
                     required
@@ -15,6 +23,13 @@ function FormHorizontal(props) {
                     value={props.value && props.value}
                     onChange={props.onChange && props.onChange}
                     disabled={props.disabled}
+                    onKeyDown={(e)=>{
+                        if(props.numberOnly){
+                            if(keyboard.includes(e.keyCode)){
+                                e.preventDefault();
+                            }
+                        }
+                    }}
                 />
                 {props.validator && 
                     props.validator.error &&

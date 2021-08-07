@@ -12,13 +12,16 @@ import DashChangePass from '../components/organisms/DashChangePass';
 import DashProfile from '../components/organisms/DashProfile';
 import PageNotFound from './PageNotFound';
 
+import DashAddCosmetic from '../components/organisms/DashAddCosmetic';
+import DashAddFashion from '../components/organisms/DashAddFashion';
+
 function DashboardPage() {
     const navBtn = useRef(null);
     const [navDash, setNavDash] = useState(false);
 
     return (
-        <Container fluid className="p-0 m-0 d-flex flex-row">
-            <div className={navDash ? "navbarDashboard show" : "navbarDashboard"}>
+        <Container fluid className="p-0 d-flex flex-row ">
+            <div className={(navDash && "show ") + " navbarDashboard"}>
                 <NavDashboard reff={navBtn} status={navDash} setStatus={setNavDash}/>
             </div>
 
@@ -31,8 +34,15 @@ function DashboardPage() {
             </div>
 
             <div className="w-100 bodyDashboard">
+            {/* <div className=""> */}
                 <BarBrown reff={navBtn} status={navDash} setStatus={setNavDash}/>
                 <Switch>
+                    <Route path="/dashboard/addcosmetic/">
+                        <DashAddCosmetic />
+                    </Route>
+                    <Route path="/dashboard/addfashion/">
+                        <DashAddFashion />
+                    </Route>
                     <Route path="/dashboard/listproduct/">
                         <DashListProduct />
                     </Route>

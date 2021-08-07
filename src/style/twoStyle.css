@@ -27,10 +27,18 @@
   .btnUploadListProduct {
     width: auto !important;
   }
+  .imageFormFrame {
+    height: 500px !important;
+  }
+  .btnTypeProduct {
+    width: auto !important;
+  }
 }
 
-.btnUploadListProduct {
-  width: 100%;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .cursorDefault {
@@ -250,5 +258,50 @@
   margin-right: 5px;
   text-align: center;
   width: 35px;
+}
+
+.btnUploadListProduct {
+  width: 100%;
+}
+
+.modal {
+  display: block;
+  height: 0%;
+  opacity: 0;
+  -webkit-transition: height .3 linear, -webkit-transform .3s ease-out;
+  transition: height .3 linear, -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out, height .3 linear;
+  transition: transform .3s ease-out, height .3 linear, -webkit-transform .3s ease-out;
+  -webkit-transform: translate(0, -50px);
+          transform: translate(0, -50px);
+}
+
+.modal.showMe {
+  height: 100% !important;
+  opacity: 1 !important;
+  -webkit-transform: none !important;
+          transform: none !important;
+}
+
+.imageFormFrame {
+  height: 380px;
+  max-width: 400px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 8px #888888;
+          box-shadow: 5px 5px 8px #888888;
+}
+
+.imageForm {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.btnTypeProduct {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 /*# sourceMappingURL=twoStyle.css.map */
