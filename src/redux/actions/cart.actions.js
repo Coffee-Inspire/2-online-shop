@@ -67,6 +67,7 @@ export const editQuantityAction = (targetIndex , newQuantity) => (dispatch) => {
     let data = JSON.parse(localStorage.getItem("items"))    
     data[targetIndex].itemQuantity = newQuantity
     data[targetIndex].priceInd = data[targetIndex].itemPriceInd * newQuantity
+    data[targetIndex].priceTwn = data[targetIndex].itemPriceTwn * newQuantity
     localStorage.setItem("items" , JSON.stringify(data))
     dispatch(sumPriceAction())    
 };
