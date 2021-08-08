@@ -3,7 +3,8 @@ import { REQUEST, FAILED, SUCCESS, FINISH } from '../actions/cart.actions'
 const initialState = {
     data : [],
     dataLocal : [],
-    totalPrice : 0,
+    totalPriceInd : 0,
+    totalPriceTwn : 0,
     isLoading : false,
     error: false
 };
@@ -36,7 +37,8 @@ const cart = (state = initialState, action) => {
             return {
                 ...state,
                 dataLocal: action.data,
-                totalPrice : action.totalPrice,
+                totalPriceInd : action.totalPriceInd,
+                totalPriceTwn : action.totalPriceTwn,
                 isLoading: false,
             }
 

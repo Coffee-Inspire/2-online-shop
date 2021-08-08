@@ -16,9 +16,9 @@ function DetailCosmeticsPage(props) {
     let {id} = useParams()
     const dispatch = useDispatch()
     const status = useSelector(state => state.productCosmetic)
-    
+
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
-    let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
+    let viewProduct = allDataProduct.find((item)=> item.id.toLocaleString() === id) /* Selecting target data for display */
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [quantity, setQuantity] = useState(1)
 
@@ -27,9 +27,11 @@ function DetailCosmeticsPage(props) {
             itemID : viewProduct.id,
             itemImage : viewProduct.image,
             itemName: viewProduct.name,
-            itemPrice: viewProduct.price,
+            itemPriceInd: viewProduct.priceInd,
+            itemPriceTwn: viewProduct.priceTwn,
             itemQuantity: quantity ,
-            price : quantity * viewProduct.price
+            priceInd : quantity * viewProduct.priceInd ,
+            priceTwn : quantity * viewProduct.priceTwn
         }
         dispatch(addCartAction(itemData))
         setTriggerSuccess(true)
@@ -51,13 +53,14 @@ function DetailCosmeticsPage(props) {
                                 alt="product_image"
                                 src={viewProduct.image ? viewProduct.image : imgNotFoundPotrait}
                                 className="myProductDetailImage"
+                                onError={(e)=>{e.target.src=imgNotFoundPotrait}}
                             />
                         </div>
                     </Col>
                     <Col className="pl-lg-5" xs={12} lg={6}>
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
-                            <h3 className="text-secondary">Rp{viewProduct.price.toLocaleString().replaceAll("," , ".")} </h3>  
+                            <h3 className="text-secondary">Rp{viewProduct.priceInd.toLocaleString().replaceAll("," , ".")} </h3>  
                             <p className="text-secondary fw-light mb-4">(NT$ {viewProduct.priceTwn})</p>
                             <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p>  
                             <Counter quantity={quantity} setQuantity={setQuantity}/>

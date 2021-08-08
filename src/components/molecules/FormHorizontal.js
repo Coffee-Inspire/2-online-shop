@@ -2,13 +2,6 @@ import React from 'react'
 import { Row, Col, Form } from 'react-bootstrap';
 
 function FormHorizontal(props) {
-    const keyboard = [
-        69,         //e
-        38,         //arrow up
-        40,         //arrow down
-        189,        //-
-        190,        //.
-    ];
 
     return (
         <Row className="mb-3">
@@ -25,7 +18,7 @@ function FormHorizontal(props) {
                     disabled={props.disabled}
                     onKeyDown={(e)=>{
                         if(props.numberOnly){
-                            if(keyboard.includes(e.keyCode)){
+                            if(e.keyCode < 48 || e.keyCode > 57){
                                 e.preventDefault();
                             }
                         }

@@ -22,13 +22,15 @@ function CartItemList(props) {
                         alt="item"
                         src={props.image ? props.image : props.imgNotFoundPotrait}
                         className="myCartItemImage"
+                        onError={(e)=>{e.target.src=props.imgNotFoundPotrait}}
                     />
                 </div>
             </Col>
-            <Col className="" xs={6} lg={6}>
+            <Col className="d-flex flex-column" xs={6} lg={6}>
                 <h3 className="text-capitalize fw-bold">{props.name}</h3>
                 {props.size && <p>Size : <span className="text-uppercase fw-bold">{props.size}</span></p>}  
-                <p className="text-secondary">Rp. {convertIDR(props.itemPrice)}</p>
+                <span className="text-secondary fs-5">Rp. {convertIDR(props.itemPriceInd)}</span>
+                <span className="text-secondary fw-light">(NT$ {props.itemPriceTwn})</span>
             </Col>
             <Col className="p-0" xs={12} lg={4}>
                 <Col className="text-end" xs={12} lg={12}>

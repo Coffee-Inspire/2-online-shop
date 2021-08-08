@@ -221,6 +221,13 @@ input[type="number"]::-webkit-outer-spin-button {
 	width: 100%;
 }
 
+.border-image2 {
+	overflow: hidden;
+	position: relative;
+	height: 400px;
+	width: 100%;
+}
+
 .border-svg {
 	height: 100%;
 	width: 100%;
@@ -239,6 +246,15 @@ input[type="number"]::-webkit-outer-spin-button {
 	color: green;
 	font-weight: bold;
 	text-align: center;
+}
+
+.imageFrame2 {
+	zoom: 0.5;
+	height: 500px;
+	max-width: 400px;
+	border-radius: 10px;
+	-webkit-box-shadow: 5px 5px 8px #888888;
+	box-shadow: 5px 5px 8px #888888;
 }
 
 .hoverImage {
@@ -266,7 +282,7 @@ input[type="number"]::-webkit-outer-spin-button {
 	width: 100%;
 }
 
-.modal {
+.modalMe {
 	display: block;
 	height: 0%;
 	opacity: 0;
@@ -279,7 +295,7 @@ input[type="number"]::-webkit-outer-spin-button {
 	transform: translate(0, -50px);
 }
 
-.modal.showMe {
+.modalMe.showMe {
 	height: 100% !important;
 	opacity: 1 !important;
 	-webkit-transform: none !important;
@@ -306,5 +322,19 @@ input[type="number"]::-webkit-outer-spin-button {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 	width: 100%;
+}
+
+.listProductFrame {
+	height: 92px;
+	width: 81px;
+	-webkit-box-shadow: rgba(51, 51, 51, 0.5) !important;
+	box-shadow: rgba(51, 51, 51, 0.5) !important;
+}
+
+.listProductImage {
+	width: 100%;
+	height: 100%;
+	-o-object-fit: cover;
+	object-fit: cover;
 }
 /*# sourceMappingURL=twoStyle.css.map */
