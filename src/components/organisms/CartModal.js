@@ -11,7 +11,6 @@ function CartModal(props) {
 
     const dispatch = useDispatch()
     const data = useSelector(state => state.cart)
-
     function convertIDR(s){
         let	reverse = s.toString().split('').reverse().join(''),
         converted 	= reverse.match(/\d{1,3}/g);
@@ -31,7 +30,8 @@ function CartModal(props) {
 
     function switchToDelivery(){
         props.setorder(data.dataLocal)
-        props.settotalprice(data.totalPrice)
+        props.setTotalPriceInd(data.totalPriceInd)
+        props.setTotalPriceTwn(data.totalPriceTwn)
         props.triggerdeliverymodal()
         props.onHide()
     }
@@ -68,9 +68,11 @@ function CartModal(props) {
                             image={item.itemImage}
                             name={item.itemName}
                             size={item.itemSize}
-                            itemPrice={item.itemPrice}
+                            itemPriceInd={item.itemPriceInd}
+                            itemPriceTwn={item.itemPriceTwn}
                             quantity={item.itemQuantity}
-                            price={item.price}
+                            priceInd={item.priceInd}
+                            priceTwn={item.priceTwn}
                         />
                     
                 ))
@@ -84,7 +86,10 @@ function CartModal(props) {
                             <h5 className="fw-bold">Total Price</h5>
                         </Col>
                         <Col className="text-end">
-                            <h5 className="text-secondary">Rp. {convertIDR(data.totalPrice)}</h5>
+                            <h5 className="text-secondary">Rp. {convertIDR(data.totalPriceInd)}</h5>
+                        </Col>
+                        <Col className="text-end" xs={12} lg={12}>
+                            <p className="text-secondary fw-light">(NT$ {data.totalPriceTwn})</p>
                         </Col>
                     </Row>
                 }

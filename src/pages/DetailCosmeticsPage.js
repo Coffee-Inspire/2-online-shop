@@ -1,6 +1,6 @@
 import {React , useState , useEffect} from 'react'
 import {Container, Row , Col, Button} from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import {useParams} from "react-router-dom"
 
 import imgNotFoundPotrait from '../assets/images/imgNotFoundPotrait.jpg'
@@ -9,14 +9,17 @@ import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
 import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
+import PageNotFound from './PageNotFound';
 
 function DetailCosmeticsPage(props) {
     
     let {id} = useParams()
     const dispatch = useDispatch()
-    
+    const status = useSelector(state => state.productCosmetic)
+    const [trigger, setTrigger] = useState(false)
+
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
-    let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
+    let viewProduct = allDataProduct.find((item)=> item.id.toLocaleString() === id) /* Selecting target data for display */   
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [quantity, setQuantity] = useState(1)
 
@@ -25,9 +28,11 @@ function DetailCosmeticsPage(props) {
             itemID : viewProduct.id,
             itemImage : viewProduct.image,
             itemName: viewProduct.name,
-            itemPrice: viewProduct.price,
+            itemPriceInd: viewProduct.priceInd,
+            itemPriceTwn: viewProduct.priceTwn,
             itemQuantity: quantity ,
-            price : quantity * viewProduct.price
+            priceInd : quantity * viewProduct.priceInd ,
+            priceTwn : quantity * viewProduct.priceTwn
         }
         dispatch(addCartAction(itemData))
         setTriggerSuccess(true)
@@ -40,21 +45,24 @@ function DetailCosmeticsPage(props) {
     return (
         <Container fluid className="myProductDetailContainer">
 
-            {viewProduct ? 
-                <Row className="">
+            {status.isInitial && <SkeletonDetailPage/>}
+            {!status.isInitial && viewProduct && 
+                <Row>
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
                             <img 
                                 alt="product_image"
                                 src={viewProduct.image ? viewProduct.image : imgNotFoundPotrait}
                                 className="myProductDetailImage"
+                                onError={(e)=>{e.target.src=imgNotFoundPotrait}}
                             />
                         </div>
                     </Col>
                     <Col className="pl-lg-5" xs={12} lg={6}>
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
-                            <h3 className="text-secondary mb-4">Rp{viewProduct.price.toLocaleString().replaceAll("," , ".")} </h3>  
+                            <h3 className="text-secondary">Rp{viewProduct.priceInd.toLocaleString().replaceAll("," , ".")} </h3>  
+                            <p className="text-secondary fw-light mb-4">(NT$ {viewProduct.priceTwn})</p>
                             <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p>  
                             <Counter quantity={quantity} setQuantity={setQuantity}/>
                             <Col className="p-0 align-self-center align-self-lg-start" xs={10} lg={6}>
@@ -80,8 +88,8 @@ function DetailCosmeticsPage(props) {
                     </Col>
                     
                 </Row>
-                : <SkeletonDetailPage/>
             }
+            {allDataProduct.length>0 && viewProduct === undefined && <PageNotFound/>}
            
         </Container>
     )

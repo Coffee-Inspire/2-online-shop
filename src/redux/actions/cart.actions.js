@@ -16,11 +16,12 @@ export const success = (data) => {
     };
 };
 
-export const finish = (data,totalPrice) => {
+export const finish = (data,totalPriceInd,totalPriceTwn) => {
     return {
         type: FINISH,
         data: data,
-        totalPrice: totalPrice
+        totalPriceInd: totalPriceInd ,
+        totalPriceTwn : totalPriceTwn
     };
 };
 
@@ -57,14 +58,16 @@ export const getCartAction = () => (dispatch) => {
 
 export const sumPriceAction = () => (dispatch) => {    
     let myCartItem = JSON.parse(localStorage.getItem("items")) 
-    let totalPrice =  myCartItem.reduce(function(a,b){return a + b.price},0)
-    dispatch(finish(myCartItem,totalPrice))
+    let totalPriceInd =  myCartItem.reduce(function(a,b){return a + b.priceInd},0)
+    let totalPriceTwn =  myCartItem.reduce(function(a,b){return a + b.priceTwn},0)
+    dispatch(finish(myCartItem,totalPriceInd,totalPriceTwn))
 };
 
 export const editQuantityAction = (targetIndex , newQuantity) => (dispatch) => { 
     let data = JSON.parse(localStorage.getItem("items"))    
     data[targetIndex].itemQuantity = newQuantity
-    data[targetIndex].price = data[targetIndex].itemPrice * newQuantity
+    data[targetIndex].priceInd = data[targetIndex].itemPriceInd * newQuantity
+    data[targetIndex].priceTwn = data[targetIndex].itemPriceTwn * newQuantity
     localStorage.setItem("items" , JSON.stringify(data))
     dispatch(sumPriceAction())    
 };

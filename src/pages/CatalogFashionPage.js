@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap'
 
 import {getProductFashionAction} from '../redux/actions/productFashion.actions';
@@ -11,6 +11,7 @@ import SkeletonCatalogPage from '../skeletons/SkeletonCatalogPage';
 function CatalogFashionPage(props) {
 
     const dispatch = useDispatch()
+    const status = useSelector(state => state.productFashion)
     const [dataProduct, setDataProduct] = useState([]);
 
     // Filter state
@@ -59,7 +60,8 @@ function CatalogFashionPage(props) {
     return (
         <Container fluid>
             <Ribbon text={"fashion"}/>
-            {dataProduct.length>0 ? 
+            {status.isInitial && <SkeletonCatalogPage/> }
+            {!status.isInitial && dataProduct.length>0 && 
                 <ProductsArea
                     fashion={true} 
                     dataProduct={dataProductNew} 
@@ -70,7 +72,6 @@ function CatalogFashionPage(props) {
                     setTriggerSortHighestPrice={setTriggerSortHighestPrice}
                     setTriggerSortProductName={setTriggerSortProductName}
                 />
-                : <SkeletonCatalogPage/>
             }
         </Container>
     )

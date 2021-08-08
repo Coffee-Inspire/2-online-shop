@@ -9,7 +9,7 @@ function ProductList(props) {
         converted	= converted.join('.').split('').reverse().join('');
         return converted
     }
-
+    
     return (
         <Row className="d-flex justify-content-center d-lg-grid myProductListRow">
             {props.data && props.data.map((item,index)=>(
@@ -25,11 +25,13 @@ function ProductList(props) {
                                 } else
                                 window.location=`/cosmetic/${item.id}`
                             }}
+                            onError={(e)=>{e.target.src=props.imgNotFoundPotrait}}
                         />
                     </div>
-                    <div className="my-3 pl-3">
-                        <h5 className="fw-bold text-uppercase">{item.name}</h5>
-                        <h5>Rp {convertIDR(item.price)}</h5>
+                    <div className="my-3 px-3">
+                        <h4 className="fw-bold text-uppercase">{item.name}</h4>
+                        <h5>Rp {convertIDR(item.priceInd)}</h5>
+                        <p className="text-secondary">(NT$ {item.priceTwn})</p>
                     </div>
                     
                 </Col>
