@@ -87,6 +87,9 @@ function CartModal(props) {
                         <Col className="text-end">
                             <h5 className="text-secondary">Rp. {convertIDR(data.totalPriceInd)}</h5>
                         </Col>
+                        <Col className="text-end" xs={12} lg={12}>
+                            <p className="text-secondary fw-light">(NT$ {data.totalPriceTwn})</p>
+                        </Col>
                     </Row>
                 }
                 <Row className="w-100">
