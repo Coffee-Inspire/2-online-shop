@@ -31,8 +31,8 @@ export const uploadImageAction = (image, setProgressBar) => (dispatch) => {
     fd.append('image', image, Date.now()+ image.name);
     
     return axios
-        // .post(process.env.REACT_APP_URL_IMAGE, fd, {
-        .post('http://localhost:3333', fd, {
+        .post(process.env.REACT_APP_URL_IMAGE, fd, {
+        // .post('http://localhost:3333', fd, {
             headers: {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*"
