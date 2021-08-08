@@ -1,9 +1,10 @@
-import { INITIAL, REQUEST, FAILED, GET_SUCCESS, SAVE_SUCCESS } from '../actions/productCosmetic.actions'
+import { INITIAL, REQUEST, FAILED, GET_SUCCESS, POST_SUCCESS, SAVE_SUCCESS } from '../actions/productCosmetic.actions'
 
 const initialState = {
     data : [],
     isInitial : false,
     isLoading : false,
+    postSuccess : false,
     saveSuccess : false,
     error: false,
 };
@@ -16,6 +17,7 @@ const productCosmetic = (state = initialState, action) => {
                 ...state,
                 isInitial: true,
                 isLoading: false,
+                postSuccess : false,
                 saveSuccess : false,
                 error: false,
             };
@@ -25,6 +27,7 @@ const productCosmetic = (state = initialState, action) => {
                 ...state,
                 isInitial : false,
                 isLoading: true,
+                postSuccess : false,
                 saveSuccess : false,
                 error: false,
             };
@@ -34,6 +37,7 @@ const productCosmetic = (state = initialState, action) => {
                 ...state,
                 isInitial : false,
                 isLoading : false,
+                postSuccess : false,
                 saveSuccess : false,
                 error: true,
             };
@@ -41,9 +45,21 @@ const productCosmetic = (state = initialState, action) => {
         case GET_SUCCESS:
             return {
                 ...state,
-                data: {...action.data},
+                data: [action.data],
                 isInitial : false,
                 isLoading : false,
+                postSuccess : false,
+                saveSuccess : false,
+                error: false,
+            }
+
+        case POST_SUCCESS:
+            return {
+                ...state,
+                data: [...state.data , action.data],
+                isInitial : false,
+                isLoading : false,
+                postSuccess : true,
                 saveSuccess : false,
                 error: false,
             }
@@ -54,6 +70,7 @@ const productCosmetic = (state = initialState, action) => {
                 data: {...action.data},
                 isInitial : false,
                 isLoading : false,
+                postSuccess : false,
                 saveSuccess : true,
                 error: false,
             }

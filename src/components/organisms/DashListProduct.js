@@ -26,6 +26,8 @@ function DashListProduct() {
         dispatch(getProductFashionAction(setFashionForm));
     }, [dispatch])
 
+
+
     return (
         <>
         <Row className="m-0">
@@ -44,7 +46,7 @@ function DashListProduct() {
             </Button>
             </Modal.Footer>
         </Modal> */}
-        <div onClick={(e)=>setShow(false)} className={(show && "show showMe ")  + " fade modal bg-overlayOnly"}>
+        <div onClick={(e)=>setShow(false)} className={(show && "show showMe ")  + " fade modal modalMe bg-overlayOnly"}>
         <div className="modal-dialog modal-lg modal-dialog-centered">
         <div onClick={e=>e.stopPropagation()} className="modal-content">
             <Modal.Header className="border-0 pb-0" >
@@ -77,23 +79,32 @@ function DashListProduct() {
             <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <TitleBodyDashboard text="Cosmetic" number={cosmeticForm.length} />
                 <hr className="myHr" />
-                {cosmeticForm.length === 0 ? 
-                <h1 className="fw-light text-center my-5">Your List is Empty</h1>
-                :
-                cosmeticForm.map((item, index) => {
 
-                })
-                }
+                <div className="d-flex justify-content-start">
+                    {cosmeticForm.length === 0 ? 
+                    <h1 className="fw-light text-center my-5">Your List is Empty</h1>
+                    :
+                    cosmeticForm.map((item, index) => {
+                        return <ListProduct key={index} item={item} />
+                    })
+                    }
+                </div>
+
             </div>
 
             <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <TitleBodyDashboard text="Fashion" number={fashionForm.length} />
                 <hr className="myHr" />
-                {fashionForm.length === 0 ? 
-                <h1 className="fw-light text-center my-5">Your List is Empty</h1>
-                :
-                <div>List product</div>
-                }
+
+                
+                    {fashionForm.length === 0 ? 
+                    <h1 className="fw-light text-center my-5">Your List is Empty</h1>
+                    :
+                    fashionForm.map((item, index) => {
+                        return <ListProduct key={index} item={item} />
+                    })
+                    }
+
             </div>
         </Col>
         </Row>
