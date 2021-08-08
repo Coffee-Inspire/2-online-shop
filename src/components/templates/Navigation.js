@@ -17,7 +17,8 @@ function Navigation() {
     const [deliveryModalShow, setDeliveryModalShow] = useState(false)
 
     const [orderData, setOrderData] = useState([])
-    const [totalPrice, setTotalPrice] = useState(0)
+    const [totalPriceInd, setTotalPriceInd] = useState(0)
+    const [totalPriceTwn, setTotalPriceTwn] = useState(0)
 
 
     useEffect(() => {
@@ -62,15 +63,18 @@ function Navigation() {
                 triggerdeliverymodal={() => setDeliveryModalShow(true)}
                 orderdata={orderData}
                 setorder={setOrderData}
-                totalprice={totalPrice}
-                settotalprice={setTotalPrice}
+                totalPriceInd={totalPriceInd}
+                setTotalPriceInd={setTotalPriceInd}
+                totalPriceTwn={totalPriceTwn}
+                setTotalPriceTwn={setTotalPriceTwn}
             />
             <DeliveryModal
                 show={deliveryModalShow}
                 onHide={() => setDeliveryModalShow(false)}
                 triggercartmodal={() => setCartModalShow(true)}
                 orderdata={orderData}
-                totalprice={totalPrice}
+                totalPriceInd={totalPriceInd}
+                totalPriceTwn={totalPriceTwn}
             />
         </>
     )

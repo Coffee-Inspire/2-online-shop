@@ -25,6 +25,13 @@ function DeliveryModal(props) {
         props.onHide()
     }
 
+    function convertIDR(s){
+        let	reverse = s.toString().split('').reverse().join(''),
+        converted 	= reverse.match(/\d{1,3}/g);
+        converted	= converted.join('.').split('').reverse().join('');
+        return converted
+    }
+
 
     function capitalize(str){
         let arr = str.split(" ")
@@ -56,14 +63,16 @@ function DeliveryModal(props) {
                     %0aItem Name : ${item.itemName}
                     %0aSize : ${item.itemSize.toUpperCase()}
                     %0aQuantity : ${item.itemQuantity}
-                    %0aPrice(pcs) : Rp ${item.itemPrice}%0a
+                    %0a(IDR)Price per Pcs: Rp ${convertIDR(item.itemPriceInd)}
+                    %0a(NTD)Price per Pcs: NT$ ${item.itemPriceTwn}%0a
                     `
                 :
                     `
                     %0aITEM ${index+1}
                     %0aItem Name : ${item.itemName}
                     %0aQuantity : ${item.itemQuantity}
-                    %0aPrice(pcs) : Rp ${item.itemPrice}%0a
+                    %0a(IDR)Price per Pcs: Rp ${convertIDR(item.itemPriceInd)}
+                    %0a(NTD)Price per Pcs: NT$ ${item.itemPriceTwn}%0a
                     `
                     )
                     
@@ -73,7 +82,7 @@ function DeliveryModal(props) {
                 ${customerData}
                 %0a%0a*Order List*
                 %0a${orderList.join("")}
-                %0a*Total Price : Rp ${props.totalprice}*%0a
+                %0a*Total Price : Rp ${convertIDR(props.totalPriceInd)}* (NT$ ${props.totalPriceTwn})%0a
                 `
 
             if (orderStatus === "Indonesia"){
