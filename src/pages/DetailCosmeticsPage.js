@@ -1,6 +1,6 @@
 import {React , useState , useEffect} from 'react'
 import {Container, Row , Col, Button} from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import {useParams} from "react-router-dom"
 
 import imgNotFoundPotrait from '../assets/images/imgNotFoundPotrait.jpg'
@@ -9,11 +9,13 @@ import {addCartAction} from '../redux/actions/cart.actions';
 
 import Counter from '../components/molecules/Counter';
 import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
+import PageNotFound from './PageNotFound';
 
 function DetailCosmeticsPage(props) {
     
     let {id} = useParams()
     const dispatch = useDispatch()
+    const status = useSelector(state => state.productCosmetic)
     
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
@@ -40,7 +42,8 @@ function DetailCosmeticsPage(props) {
     return (
         <Container fluid className="myProductDetailContainer">
 
-            {viewProduct ? 
+            {status.isInitial && <SkeletonDetailPage/>}
+            {!status.isInitial && viewProduct ? 
                 <Row className="">
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
@@ -80,7 +83,7 @@ function DetailCosmeticsPage(props) {
                     </Col>
                     
                 </Row>
-                : <SkeletonDetailPage/>
+                : <PageNotFound/>
             }
            
         </Container>

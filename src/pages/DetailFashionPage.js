@@ -1,6 +1,6 @@
 import {React , useState , useEffect} from 'react'
 import {Container, Row , Col, Button} from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import {useParams} from "react-router-dom"
 
 import imgNotFoundPotrait from '../assets/images/imgNotFoundPotrait.jpg'
@@ -11,11 +11,13 @@ import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
 import SizeChart from '../components/molecules/SizeChart';
 import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
+import PageNotFound from './PageNotFound';
 
 function DetailFashionPage(props) {
     
     let {id} = useParams()
     const dispatch = useDispatch()
+    const status = useSelector(state => state.productFashion)
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id === id) /* Selecting target data for display */
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
@@ -44,8 +46,8 @@ function DetailFashionPage(props) {
 
     return (
         <Container fluid className="myProductDetailContainer">
-
-            {viewProduct ? 
+            {status.isInitial && <SkeletonDetailPage/>}
+            {!status.isInitial && viewProduct ? 
                 <Row>
                     <Col className="d-flex flex-row justify-content-center justify-content-lg-end pe-lg-5" xs={12} lg={6}>
                         <div className="myProductDetailFrame">
@@ -105,7 +107,7 @@ function DetailFashionPage(props) {
                     </Col>
                     
                 </Row>
-                : <SkeletonDetailPage/>
+                : <PageNotFound/>
             }
  
         </Container>

@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap'
 import imageNotFound from '../assets/images/imgNotFound.jpg'
 
@@ -15,13 +15,12 @@ import SkeletonHomepage from '../skeletons/SkeletonHomepage';
 function HomePage() {
 
     const dispatch = useDispatch()
+    const status = useSelector(state => state.home)
     // Storing Promotion Data
     const [dataPromotion, setDataPromotion] = useState(null);
     // Storing Product Data
     const [dataCosmetic, setDataCosmetic] = useState([]);
     const [dataFashion, setDataFashion] = useState([]);
-
-    console.log(dataPromotion)
 
     useEffect(() => {
         dispatch(getHomeAction(setDataPromotion))
@@ -31,20 +30,20 @@ function HomePage() {
 
     return (
         <Container fluid>
-            {dataPromotion ? <>
-                    <CenterTitle text={dataPromotion.promoTitle} />
+            {status.isInitial && <SkeletonHomepage/>}
+            {!status.isInitial &&  <>
+                    <CenterTitle text={dataPromotion && dataPromotion.promoTitle} />
                     <Banner
                         imageNotFound={imageNotFound} 
-                        image={dataPromotion.promoImage} 
-                        url={dataPromotion.promoUrl} 
+                        image={dataPromotion && dataPromotion.promoImage} 
+                        url={dataPromotion && dataPromotion.promoUrl} 
                     />
                     <NewProductSection
                         imageNotFound={imageNotFound} 
-                        cosmetic={dataCosmetic ? dataCosmetic : <h1>SKELETON</h1>}
-                        fashion={dataFashion ? dataFashion : <h1>SKELETON</h1>}
+                        cosmetic={dataCosmetic && dataCosmetic}
+                        fashion={dataFashion && dataFashion}
                     />
                 </>
-                :   <SkeletonHomepage/>
             }
         </Container>
     )
