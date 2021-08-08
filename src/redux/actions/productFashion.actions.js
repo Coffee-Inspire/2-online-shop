@@ -6,6 +6,7 @@ export const INITIAL = "INITIAL";
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
 export const GET_SUCCESS = "GET_SUCCESS";
+export const POST_SUCCESS = "POST_SUCCESS";
 export const SAVE_SUCCESS = "SAVE_SUCCESS";
 
 // let DUMMY_PRODUCT_FASHION = [
@@ -115,6 +116,13 @@ export const get_success = (data) => {
     };
 };
 
+export const post_success = (data) => {
+    return {
+        type: POST_SUCCESS,
+        data: data
+    };
+};
+
 export const save_success = (data) => {
     return {
         type: SAVE_SUCCESS,
@@ -130,7 +138,7 @@ export const getProductFashionAction = (setData) => (dispatch) => {
         .get(process.env.REACT_APP_URL_PFASHION)
         .then(result => {
             if(result.data.length !== 0){
-                setData(...result.data);
+                setData([...result.data]);
             }
             dispatch(get_success(result.data));
         })
@@ -139,3 +147,89 @@ export const getProductFashionAction = (setData) => (dispatch) => {
             dispatch(failed(err));
         });
 };
+
+export const postProductFashionAction = (form, image, setProgressBar, setForm, setImagePreview, imagePreviewTop, imageInput) => (dispatch) => {
+    dispatch(request());
+
+    let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
+    uploadImage.then(result => {
+        
+        let data = {
+            ...form,
+            [result !== "" && "image"] : result,
+        }
+
+        return axios
+            .post(process.env.REACT_APP_URL_PFASHION, data,{
+                headers: {
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
+                }
+            })
+            .then(result => {
+                setImagePreview("");
+                imagePreviewTop.current.src="";
+                imageInput.value="";
+                setForm({
+                    name: "",
+                    image: "",
+                    priceInd: "",
+                    priceTwn: "",
+                    size: '[]',
+                    info: "",
+                    description: "",
+                    category: "",
+                });
+                dispatch(post_success(result.data));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(failed(err));
+            })
+
+    })
+    .catch(err => dispatch(failed(err)))
+}
+
+export const editProductFashionAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess) => (dispatch) => {
+    dispatch(request());
+
+    let edit = (form, imagePath) => {
+        let data = {
+            ...form,
+            [imagePath !== "" && "image"] : imagePath,
+        }
+
+        return axios
+            .put(process.env.REACT_APP_URL_PFASHION +'/'+ form.id, data,{
+                headers: {
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
+                }
+            })
+            .then(result => {
+                let newData = formList.map((item) => {
+                    if(item.id === result.data.id){
+                        return result.data;
+                    }
+                    else{
+                        return item;
+                    }
+                });
+                setFormList([...newData]);
+                setEditSuccess(true);
+                dispatch(save_success(result.data));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(failed(err));
+            })
+    }
+
+    if(image){
+        let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
+        uploadImage.then(result => {
+            edit(form, result);
+        })
+    } else{
+        edit(form, "");
+    }
+}

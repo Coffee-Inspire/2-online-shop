@@ -1,3 +1,9 @@
+@media (max-width: 356px) {
+  .tabCustom > nav > .nav-item {
+    width: 50%;
+  }
+}
+
 @media (min-width: 992px) {
   .navbar-animation {
     margin-left: 0px !important;
@@ -270,10 +276,11 @@ input[type=number]::-webkit-outer-spin-button {
   color: #5e5e5e;
   display: inline-block;
   font-weight: bold;
-  line-height: 35px;
+  line-height: 25px;
   margin-right: 5px;
   text-align: center;
-  width: 35px;
+  font-size: 0.7rem;
+  width: 25px;
 }
 
 .btnUploadListProduct {
@@ -322,8 +329,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .listProductFrame {
-  height: 92px;
-  width: 81px;
+  height: 140px;
+  width: 112px;
   -webkit-box-shadow: rgba(51, 51, 51, 0.5) !important;
           box-shadow: rgba(51, 51, 51, 0.5) !important;
 }
@@ -333,5 +340,13 @@ input[type=number]::-webkit-outer-spin-button {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.active > .myColor {
+  color: black !important;
+}
+
+.myColor {
+  color: #926933 !important;
 }
 /*# sourceMappingURL=twoStyle.css.map */

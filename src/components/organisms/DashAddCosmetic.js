@@ -13,9 +13,9 @@ import FormHorizontalImage from '../molecules/FormHorizontalImage';
 import FormHorizontalSelect from '../molecules/FormHorizontalSelect';
 import ExampleText from '../atoms/ExampleText';
 
-import { postProductCosmeticAction } from '../../redux/actions/productCosmetic.actions';
+import { postProductCosmeticAction, editProductCosmeticAction } from '../../redux/actions/productCosmetic.actions';
 
-function DashAddCosmetic() {
+function DashAddCosmetic(props) {
     const history = useHistory();
     const dispatch = useDispatch();
     const cosmeticData = useSelector(state => state.productCosmetic);
@@ -23,16 +23,10 @@ function DashAddCosmetic() {
     const imagePreviewTop = useRef(null);
     const imageInput = useRef(null);
 
-    const [form, setForm] = useState({
-        name: "",
-        image: "",
-        priceInd: "",
-        priceTwn: "",
-        description: "",
-        category: "",
-    });
+    const [form, setForm] = useState(initialData());
 
     const [imagePreview, setImagePreview] = useState("");
+    const [editSuccess, setEditSuccess] = useState(false);
 
     const valueChange = (e) => {
         setForm({
@@ -43,8 +37,46 @@ function DashAddCosmetic() {
 
     const [progressBar, setProgressBar] = useState(0);
 
+    function initialData(){
+        if(props.edit){
+            return props.data;
+        }else {
+            return {
+                name: "",
+                image: "",
+                priceInd: "",
+                priceTwn: "",
+                description: "",
+                category: "",
+            };
+        }
+    }
+
+    useEffect(() => {
+        if(props.edit){
+            // setForm(props.data);
+            setImagePreview(props.data.image);
+            imagePreviewTop.current.src = props.data.image;
+        }
+
+    }, [props]);
+
     return (
         <Row className="m-0">
+        {props.edit ? 
+            <div className="ps-3 shadow z-index-2 bg-white position-relative">
+            <TitleDashboard text="Product / List Product / Edit Cosmetic" />
+            <Col xs={12} md={12} lg={11} className="position-lg-absolute top-0 w-100 pb-4 pb-lg-0 p-lg-4 text-lg-end">
+                <Button onClick={()=>props.setEditStatus({
+                    active : false,
+                    type : "",
+                    data : {},
+                })} className="btnBrown btnUploadListProduct px-5 py-2 shadow-brown">
+                    Back to List Product
+                </Button>
+            </Col>
+        </div>
+        :
         <div className="ps-3 shadow z-index-2 bg-white position-relative">
             <TitleDashboard text="Product / List Product / Upload Cosmetic" />
             <Col xs={12} md={12} lg={11} className="position-lg-absolute top-0 w-100 pb-4 pb-lg-0 p-lg-4 text-lg-end">
@@ -53,18 +85,23 @@ function DashAddCosmetic() {
                 </Button>
             </Col>
         </div>
-
+        }
         <Form className="ml-3" 
             onSubmit={(e)=>{
                 e.preventDefault();
                 
-                // POST
-                dispatch(postProductCosmeticAction(form, e.target.image.files[0], setProgressBar, setForm, setImagePreview, imagePreviewTop, e.target.image));
-                
+                if(props.edit){
+                    // EDIT
+                    dispatch(editProductCosmeticAction(form, e.target.image.files[0], setProgressBar, props.cosmeticForm, props.setCosmeticForm, setEditSuccess));
+                }
+                else{
+                    // POST
+                    dispatch(postProductCosmeticAction(form, e.target.image.files[0], setProgressBar, setForm, setImagePreview, imagePreviewTop, e.target.image));
+                }
             }}
         >
 
-        <Col xs={12} md={11} className="">
+        <Col xs={12} md={11} className="mb-3">
             <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <TitleBodyDashboard text="Upload Photo Product" />
                 <hr className="myHr" />
@@ -83,7 +120,7 @@ function DashAddCosmetic() {
             </div>
         </Col>
 
-        <Col xs={12} md={11} className="">
+        <Col xs={12} md={11} className="mb-3">
             <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <Row className="p-lg-4 justify-content-around">
                 <Col xs={12} lg={4} className="d-none d-lg-block">
@@ -148,9 +185,15 @@ function DashAddCosmetic() {
                     />
 
                     <div className="d-flex flex-md-row flex-column justify-content-md-end">
-                        {/* <Button variant="danger" type="submit" className="me-md-3 mb-3 mb-md-0" disabled={(cosmeticData.isLoading)} >
-                            Cancel
-                        </Button> */}
+                        {props.edit && 
+                            <Button variant="danger" onClick={()=>props.setEditStatus({
+                                active : false,
+                                type : "",
+                                data : {},
+                            })} className="me-md-3 mb-3 mb-md-0" disabled={(cosmeticData.isLoading)} >
+                                Cancel
+                            </Button> 
+                        }
                         <Button type="submit" className="ms-md-3" disabled={(cosmeticData.isLoading)}>
                             {(cosmeticData.isLoading) ? "Saving..." : "Save"}
                         </Button>
@@ -158,6 +201,11 @@ function DashAddCosmetic() {
                     {cosmeticData.postSuccess &&
                         <div className="mt-3 text-success text-end">
                             Post Success !
+                        </div>
+                    }
+                    {(cosmeticData.saveSuccess && editSuccess) &&
+                        <div className="mt-3 text-success text-end">
+                            Edit Success !
                         </div>
                     }
                     {cosmeticData.error && 

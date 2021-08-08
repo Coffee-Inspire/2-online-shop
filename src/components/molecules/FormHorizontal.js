@@ -18,7 +18,7 @@ function FormHorizontal(props) {
                     disabled={props.disabled}
                     onKeyDown={(e)=>{
                         if(props.numberOnly){
-                            if(e.keyCode < 48 || e.keyCode > 57){
+                            if(e.keyCode !== 38 && e.keyCode !== 40 &&  e.keyCode !== 9 && e.keyCode !== 8 && !(e.keyCode >= 48 && e.keyCode <= 57)){
                                 e.preventDefault();
                             }
                         }
