@@ -27,9 +27,10 @@ function ProductList(props) {
                             }}
                         />
                     </div>
-                    <div className="my-3 pl-3">
-                        <h5 className="fw-bold text-uppercase">{item.name}</h5>
+                    <div className="my-3 px-3">
+                        <h4 className="fw-bold text-uppercase">{item.name}</h4>
                         <h5>Rp {convertIDR(item.price)}</h5>
+                        <p className="text-secondary">(NT$ {props.priceTwn})</p>
                     </div>
                     
                 </Col>

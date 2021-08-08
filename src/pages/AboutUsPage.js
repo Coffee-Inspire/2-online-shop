@@ -20,16 +20,16 @@ function AboutUsPage() {
 
     return (
         <Container fluid>
-            {data ? <>
-                <Banner imageNotFound={imageNotFound} image={data.image} plain={true}/>
-                <CenterTitle text={data.title}/>
-                <Row className="myAboutUsRowMargin text-center d-flex justify-content-center">
-                    <Col xs={11} lg={10} >
-                        <p>{data.description}</p>
-                    </Col>
-                </Row>
+            {status.isInitial && <SkeletonAboutPage/>}
+            {!status.isInitial && data !== null && <>
+                    <Banner imageNotFound={imageNotFound} image={data.image} plain={true}/>
+                    <CenterTitle text={data.title}/>
+                    <Row className="myAboutUsRowMargin text-center d-flex justify-content-center">
+                        <Col xs={11} lg={10} >
+                            <p>{data.description}</p>
+                        </Col>
+                    </Row>
                 </>
-                : <SkeletonAboutPage/>
             }
         </Container>
         

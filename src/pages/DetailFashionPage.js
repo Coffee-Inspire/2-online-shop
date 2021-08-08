@@ -61,7 +61,8 @@ function DetailFashionPage(props) {
                     <Col className="pl-lg-5" xs={12} lg={6}>
                         <Col className="d-flex flex-column text-center text-lg-start mt-4 mt-lg-0 " xs={12} lg={10}>
                             <h1 className="text-capitalize mb-3">{viewProduct.name}</h1>    
-                            <h3 className="text-secondary mb-4">Rp{viewProduct.price.toLocaleString().replaceAll("," , ".")} </h3>  
+                            <h3 className="text-secondary">Rp{viewProduct.price.toLocaleString().replaceAll("," , ".")} </h3>  
+                            <p className="text-secondary fw-light mb-4">(NT$ {viewProduct.priceTwn})</p>
                             <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p> 
                             {viewProduct.size && 
                             <>
