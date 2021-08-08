@@ -11,7 +11,7 @@ import Counter from '../components/molecules/Counter';
 import SizeSelection from '../components/molecules/SizeSelection';
 import SizeChart from '../components/molecules/SizeChart';
 import SkeletonDetailPage from '../skeletons/SkeletonDetailPage';
-// import PageNotFound from './PageNotFound';
+import PageNotFound from './PageNotFound';
 
 function DetailFashionPage(props) {
     
@@ -112,6 +112,7 @@ function DetailFashionPage(props) {
                     
                 </Row>
             }
+            {allDataProduct.length>0 && viewProduct === undefined && <PageNotFound/>}
  
         </Container>
     )
