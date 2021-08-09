@@ -5,90 +5,10 @@ import { uploadImageAction } from '../actions/upload.actions';
 export const INITIAL = "INITIAL";
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
-export const GET_SUCCESS = "GET_SUCCESS";
-export const POST_SUCCESS = "POST_SUCCESS";
-export const SAVE_SUCCESS = "SAVE_SUCCESS";
-
-// let DUMMY_PRODUCT_FASHION = [
-//     {
-//         id : "21",
-//         name : `hblack tees`,
-//         image : productImage,
-//         price : 200000,
-//         quantity : 100,
-//         size : ["s","m"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `top`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     },
-//     {
-//         id : "22",
-//         name : `luxury bag`,
-//         image : productImage,
-//         price : 100000,
-//         quantity : 50,
-//         size : ["s","m","l"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `merchandise`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     },
-//     {
-//         id : "23",
-//         name : `summer one piece set`,
-//         image : productImage,
-//         price : 300000,
-//         quantity : 30,
-//         size : ["s","m","l","xl"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `package`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     },
-//     {
-//         id : "24",
-//         name : `lethal jacket`,
-//         image : productImage,
-//         price : 700000,
-//         quantity : 10,
-//         size : ["s","m","l","xl","xxl"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `top`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     },
-//     {
-//         id : "25",
-//         name : `ebony vintage jeans`,
-//         image : productImage,
-//         price : 500000,
-//         quantity : 50,
-//         size : ["s","m","l","xl"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `bottom`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     },
-//     {
-//         id : "26",
-//         name : `cute sunglasses`,
-//         image : productImage,
-//         price : 400000,
-//         quantity : 60,
-//         size : ["m"],
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `headwear`,
-//         info : `1. Harap ukur sesuai detail size yang sudah diberikan
-//                 2. Tinggi badan model: 172 cm
-//                 3. On model menggunakan size L`
-//     }
-// ];
+export const GET_SUCCESS = "GET_SUCCESS_FASHION";
+export const POST_SUCCESS = "POST_SUCCESS_FASHION";
+export const SAVE_SUCCESS = "SAVE_SUCCESS_FASHION";
+export const DELETE_SUCCESS = "DELETE_SUCCESS_FASHION";
 
 export const initial = () => {
     return {
@@ -130,6 +50,13 @@ export const save_success = (data) => {
     };
 };
 
+export const delete_success = (id) => {
+    return {
+        type: DELETE_SUCCESS,
+        id: id
+    };
+};
+
 export const getProductFashionAction = (setData) => (dispatch) => {
     // setFormEdit(DUMMY_PRODUCT_FASHION);
     dispatch(initial());
@@ -148,7 +75,7 @@ export const getProductFashionAction = (setData) => (dispatch) => {
         });
 };
 
-export const postProductFashionAction = (form, image, setProgressBar, setForm, setImagePreview, imagePreviewTop, imageInput) => (dispatch) => {
+export const postProductFashionAction = (form, image, setProgressBar, setForm, setImagePreview, imagePreviewTop, imageInput, setShow) => (dispatch) => {
     dispatch(request());
 
     let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
@@ -179,10 +106,12 @@ export const postProductFashionAction = (form, image, setProgressBar, setForm, s
                     description: "",
                     category: "",
                 });
+                setShow(true);
                 dispatch(post_success(result.data));
             })
             .catch(err => {
                 console.log(err);
+                setShow(true);
                 dispatch(failed(err));
             })
 
@@ -190,7 +119,7 @@ export const postProductFashionAction = (form, image, setProgressBar, setForm, s
     .catch(err => dispatch(failed(err)))
 }
 
-export const editProductFashionAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess) => (dispatch) => {
+export const editProductFashionAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess, setShow) => (dispatch) => {
     dispatch(request());
 
     let edit = (form, imagePath) => {
@@ -216,10 +145,12 @@ export const editProductFashionAction = (form, image, setProgressBar, formList, 
                 });
                 setFormList([...newData]);
                 setEditSuccess(true);
+                setShow(true);
                 dispatch(save_success(result.data));
             })
             .catch(err => {
                 console.log(err);
+                setShow(true);
                 dispatch(failed(err));
             })
     }
@@ -229,7 +160,43 @@ export const editProductFashionAction = (form, image, setProgressBar, formList, 
         uploadImage.then(result => {
             edit(form, result);
         })
+        .catch(err => {
+            setShow(true);
+            dispatch(failed(err));
+        })
     } else{
         edit(form, "");
     }
+}
+
+export const deleteProductFashionAction = (id, formList, setFormList, setEditStatus, setShow, setShowMain) => (dispatch) => {
+    dispatch(request());
+
+    return axios
+        .delete(process.env.REACT_APP_URL_PFASHION +'/'+ id,{
+            headers: {
+                Authorization: localStorage[process.env.REACT_APP_TOKEN]
+            }
+        })
+        .then(result => {
+            let newData = formList;
+            newData.forEach((item, index) => {
+                if(item.id === id){
+                    newData.splice(index, 1);
+                }
+            })
+            setFormList([...newData]);
+            setShowMain(true);
+            setEditStatus({
+                active : false,
+                type : "",
+                data : {},
+            });
+            dispatch(delete_success(id));
+        })
+        .catch(err => {
+            console.log(err);
+            setShow(true);
+            dispatch(failed(err));
+        })
 }

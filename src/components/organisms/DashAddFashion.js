@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Row, Col, Form, Button, Image, Toast, Modal } from 'react-bootstrap';
+import ToastContainer from 'react-bootstrap/ToastContainer'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
@@ -14,7 +15,7 @@ import FormHorizontalImage from '../molecules/FormHorizontalImage';
 import FormHorizontalSelect from '../molecules/FormHorizontalSelect';
 import ExampleText from '../atoms/ExampleText';
 
-import { postProductFashionAction, editProductFashionAction } from '../../redux/actions/productFashion.actions';
+import { postProductFashionAction, editProductFashionAction, deleteProductFashionAction } from '../../redux/actions/productFashion.actions';
 
 function DashAddFashion(props) {
     const history = useHistory();
@@ -26,6 +27,8 @@ function DashAddFashion(props) {
 
     const [form, setForm] = useState(initialData());
 
+    const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [imagePreview, setImagePreview] = useState("");
     const [editSuccess, setEditSuccess] = useState(false);
 
@@ -85,15 +88,41 @@ function DashAddFashion(props) {
 
     return (
         <Row className="m-0">
+        {props.edit &&
+            <div onClick={(e)=>setShowModal(false)} className={(showModal && "show showMe ")  + " fade modal modalMe bg-overlayOnly"}>
+            <div className="modal-dialog modal modal-dialog-centered">
+            <div onClick={e=>e.stopPropagation()} className="modal-content">
+                <Modal.Header className="border-0 pb-0" >
+                <button onClick={()=>setShowModal(false)} type="button" className="close"><span aria-hidden="true">×</span><span className="sr-only">Close</span></button>
+                </Modal.Header>
+                <Modal.Body className="pb-3 ">
+                    <h4 className="text-center">Are you sure want to <span className="text-danger">DELETE</span> this product ?</h4>
+                </Modal.Body>
+                <Modal.Footer className="border-0 pb-4 mb-2 d-flex justify-content-around">
+                <Button variant="danger" className=" px-4 btnTypeProduct" onClick={()=>setShowModal(false)}>
+                    Cancel
+                </Button>
+                <Button variant="primary" className=" px-4 btnTypeProduct" onClick={()=>dispatch(deleteProductFashionAction(form.id, props.fashionForm, props.setFashionForm, props.setEditStatus, setShow, props.setShowToast))}>
+                    Yes
+                </Button>
+                </Modal.Footer>
+            </div>
+            </div>
+            </div>    
+        }
+
         {props.edit ? 
             <div className="ps-3 shadow z-index-2 bg-white position-relative">
             <TitleDashboard text="Product / List Product / Edit Cosmetic" />
-            <Col xs={12} md={12} lg={11} className="position-lg-absolute top-0 w-100 pb-4 pb-lg-0 p-lg-4 text-lg-end">
+            <Col xs={12} md={12} lg={11} className="top-0 w-100 pb-3 pt-0 text-center">
+                <Button onClick={() => setShowModal(true)} variant="danger btnUploadListProduct px-5 py-2 mt-0 my-2 mx-2 shadow" >
+                    Delete This Product
+                </Button>
                 <Button onClick={()=>props.setEditStatus({
                     active : false,
                     type : "",
                     data : {},
-                })} className="btnBrown btnUploadListProduct px-5 py-2 shadow-brown">
+                })} className="btnBrown btnUploadListProduct px-5 py-2 mt-0 my-2 mx-2 shadow-brown">
                     Back to List Product
                 </Button>
             </Col>
@@ -114,11 +143,11 @@ function DashAddFashion(props) {
                 
                 if(props.edit){
                     // EDIT
-                    dispatch(editProductFashionAction(form, e.target.image.files[0], setProgressBar, props.fashionForm, props.setFashionForm, setEditSuccess));
+                    dispatch(editProductFashionAction(form, e.target.image.files[0], setProgressBar, props.fashionForm, props.setFashionForm, setEditSuccess, setShow));
                 }
                 else{
                     // POST
-                    dispatch(postProductFashionAction(form, e.target.image.files[0], setProgressBar, setForm, setImagePreview, imagePreviewTop, e.target.image));
+                    dispatch(postProductFashionAction(form, e.target.image.files[0], setProgressBar, setForm, setImagePreview, imagePreviewTop, e.target.image, setShow));
                 }
             }}
         >
@@ -263,6 +292,22 @@ function DashAddFashion(props) {
         </Col>
 
         </Form>
+            <ToastContainer className="p-3 mt-3 z-index-4 position-fixed" position={"top-center"}>
+                <Toast onClose={() => setShow(false)} show={show} 
+                    delay={3000} autohide>
+                    <Toast.Header className={
+                        (fashionData.postSuccess && " bg-success ") +
+                        (fashionData.saveSuccess && editSuccess && " bg-success ") +
+                        (fashionData.error && " bg-danger ")  +" text-white"} >
+                    <strong className="me-auto">Success</strong>
+                    </Toast.Header>
+                    <Toast.Body>
+                        {fashionData.postSuccess && "Post Success!"}
+                        {(fashionData.saveSuccess && editSuccess) && "Edit Success!"}
+                        {fashionData.error && "Post / Save Failed!"}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </Row>
     )
 }
