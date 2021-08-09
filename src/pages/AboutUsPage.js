@@ -13,7 +13,6 @@ function AboutUsPage() {
     const dispatch = useDispatch()
     const status = useSelector(state => state.about)
     const [data, setData] = useState(null);
-
     useEffect(() => {
         dispatch(getAboutAction(setData))
     }, [dispatch])

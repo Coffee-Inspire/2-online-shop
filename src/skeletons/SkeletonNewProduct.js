@@ -7,7 +7,7 @@ import SkeletonBase from './SkeletonBase';
 
 function SkeletonNewProduct() {
     return (
-        <Col className="px-0">
+        <Col className="px-0 skeleton-col-newproduct" >
             <SkeletonBase type={"thumb"}/>
         </Col>
     )

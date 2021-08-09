@@ -23,6 +23,8 @@ function DetailCosmeticsPage(props) {
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [quantity, setQuantity] = useState(1)
 
+    console.log(viewProduct)
+
     function addToCart (){
         let itemData = {
             itemID : viewProduct.id,
@@ -67,15 +69,19 @@ function DetailCosmeticsPage(props) {
                             <p className="pl-3 pe-3 pl-lg-0 pe-lg-0 mb-4 mb-lg-5" style={{whiteSpace: "pre-line"}}> {viewProduct.description}</p>  
                             <Counter quantity={quantity} setQuantity={setQuantity}/>
                             <Col className="p-0 align-self-center align-self-lg-start" xs={10} lg={6}>
-                                <Button variant="dark" className="d-flex flex-row mt-4 py-3 rounded-5 w-100" onClick={addToCart}>
-                                    <Col xs={3} lg={1}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-fill" viewBox="0 0 16 16">
-                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                        </svg>
-                                    </Col>
-                                    <Col xs={9} lg={11}> 
-                                        Buy Now 
-                                    </Col>
+                                <Button variant="dark" className="d-flex flex-row mt-4 py-3 rounded-5 w-100" onClick={addToCart} disabled={viewProduct.status}>
+                                    {viewProduct.status === 0 ? <>
+                                            <Col xs={3} lg={1}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-fill" viewBox="0 0 16 16">
+                                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                                </svg>
+                                            </Col>
+                                            <Col xs={9} lg={11}> 
+                                                Buy Now 
+                                            </Col>
+                                        </>
+                                    :   <Col>Sold Out</Col>
+                                    }
                                 </Button>
                                 <div className={triggerSuccess ? "d-block p-0 text-success mt-3" : "d-none"} >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" className="bi bi-check-circle"  viewBox="0 0 16 16">
