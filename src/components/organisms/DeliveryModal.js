@@ -91,13 +91,13 @@ function DeliveryModal(props) {
                 template = `${profile.templateMsgTwn}${message}`  
             }
 
-            // if (orderStatus === "Indonesia"){
-            //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waInd +'&text=' +template )
-            // } else if (orderStatus === "Taiwan"){
-            //     window.open('https://api.whatsapp.com/send?phone=+' + profile.waTwn +'&text=' +template )
-            // }
+            if (orderStatus === "Indonesia"){
+                window.open('https://api.whatsapp.com/send?phone=+'+profile.waInd+'&text='+template )
+            } else if (orderStatus === "Taiwan"){
+                window.open('https://api.whatsapp.com/send?phone=+'+profile.waTwn+'&text='+template )
+            }
 
-            window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
+            // window.open(`https://api.whatsapp.com/send?phone=6282283569169&text=${template}` )
             dispatch(clearCartAction())
         }
     }
