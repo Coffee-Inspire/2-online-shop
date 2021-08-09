@@ -36,6 +36,7 @@ function DetailCosmeticsPage(props) {
         }
         dispatch(addCartAction(itemData))
         setTriggerSuccess(true)
+        props.modalcart.current.click()
     }
 
     useEffect(() => {
