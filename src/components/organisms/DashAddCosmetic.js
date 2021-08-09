@@ -86,7 +86,7 @@ function DashAddCosmetic(props) {
             </Col>
         </div>
         }
-        <Form className="ml-3" 
+        <Form className="" 
             onSubmit={(e)=>{
                 e.preventDefault();
                 

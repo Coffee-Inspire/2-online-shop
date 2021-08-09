@@ -16,7 +16,7 @@ function DetailCosmeticsPage(props) {
     let {id} = useParams()
     const dispatch = useDispatch()
     const status = useSelector(state => state.productCosmetic)
-    const [trigger, setTrigger] = useState(false)
+    // const [trigger, setTrigger] = useState(false)
 
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id.toLocaleString() === id) /* Selecting target data for display */   

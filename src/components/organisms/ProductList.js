@@ -17,7 +17,7 @@ function ProductList(props) {
                     <div className="myCardImageFrame">
                         <img
                             alt=""
-                            src={item.image ? item.image : props.imgNotFoundPotrait}
+                            src={item.image ? "/compressed"+item.image : props.imgNotFoundPotrait}
                             className="myCardImage"
                             onClick={(e)=>{
                                 if(props.fashion){

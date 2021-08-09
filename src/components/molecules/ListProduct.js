@@ -12,7 +12,7 @@ function ListProduct(props) {
             className="listProductFrame mr-3 mb-3 cursorPointer">
             <Image 
                 className="listProductImage img-fluid" 
-                src={props.item.image} 
+                src={"/compressed" +props.item.image} 
                 onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFoundPotrait}} 
                 fluid 
             />
