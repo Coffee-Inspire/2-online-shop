@@ -10,6 +10,7 @@ import TitleDashboard from '../atoms/TitleDashboard';
 import TitleBodyDashboard from '../atoms/TitleBodyDashboard';
 import FormHorizontal from '../molecules/FormHorizontal';
 import FormHorizontalArea from '../molecules/FormHorizontalArea';
+import FormHorizontalCheckBox from '../molecules/FormHorizontalCheckbox';
 import FormHorizontalImage from '../molecules/FormHorizontalImage';
 import FormHorizontalSelect from '../molecules/FormHorizontalSelect';
 import ExampleText from '../atoms/ExampleText';
@@ -31,6 +32,21 @@ function DashAddCosmetic(props) {
     const [imagePreview, setImagePreview] = useState("");
     const [editSuccess, setEditSuccess] = useState(false);
 
+    const checkStockout = (e) => {
+        if(e.target.checked){
+            setForm({
+                ...form,
+                status : 1
+            })
+        }
+        else {
+            setForm({
+                ...form,
+                status : 0
+            })
+        }
+    }
+
     const valueChange = (e) => {
         setForm({
             ...form,
@@ -51,6 +67,7 @@ function DashAddCosmetic(props) {
                 priceTwn: "",
                 description: "",
                 category: "",
+                status: 0,
             };
         }
     }
@@ -161,6 +178,20 @@ function DashAddCosmetic(props) {
                 </Col>
                 <Col xs={12} lg={7} xl={8} className="col-xxl-7">
 
+                    {props.edit && 
+                    <>
+                    <FormHorizontalCheckBox 
+                        label="Status"
+                        name="status"
+                        value={form.status}
+                        onChange={checkStockout}
+                        options={["Out of Stock ?"]}
+                        noTextEnd={true}
+                        stockOut={true}
+                    />
+                    <ExampleText text={"Note: Check if out of stock"}/>
+                    </>
+                    }
                     <FormHorizontal 
                         label="Product Name" 
                         type="text" 
