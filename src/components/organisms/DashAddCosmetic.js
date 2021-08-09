@@ -26,6 +26,7 @@ function DashAddCosmetic(props) {
 
     const [form, setForm] = useState(initialData());
 
+    const [show, setShow] = useState(false);
     const [imagePreview, setImagePreview] = useState("");
     const [editSuccess, setEditSuccess] = useState(false);
 
@@ -63,7 +64,10 @@ function DashAddCosmetic(props) {
     }, [props]);
 
     return (
+        <>
+        
         <Row className="m-0">
+            
         {props.edit ? 
             <div className="ps-3 shadow z-index-2 bg-white position-relative">
             <TitleDashboard text="Product / List Product / Edit Cosmetic" />
@@ -199,7 +203,7 @@ function DashAddCosmetic(props) {
                             {(cosmeticData.isLoading) ? "Saving..." : "Save"}
                         </Button>
                     </div>
-                    {cosmeticData.postSuccess &&
+                    {/* {cosmeticData.postSuccess &&
                         <div className="mt-3 text-success text-end">
                             Post Success !
                         </div>
@@ -213,32 +217,32 @@ function DashAddCosmetic(props) {
                         <div className="mt-3 text-danger text-end">
                             Post / Save Failed !
                         </div>
-                    }
-                    <ToastContainer position="top-end" className="p-3">
-                        <Toast>
-                        <Toast.Header>
-                            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                            <strong className="me-auto">Bootstrap</strong>
-                            <small className="text-muted">just now</small>
-                        </Toast.Header>
-                        <Toast.Body>See? Just like this.</Toast.Body>
-                        </Toast>
-                        <Toast>
-                        <Toast.Header>
-                            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                            <strong className="me-auto">Bootstrap</strong>
-                            <small className="text-muted">2 seconds ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Heads up, toasts will stack automatically</Toast.Body>
-                        </Toast>
-                    </ToastContainer>
+                    } */}
                 </Col>
                 </Row>
             </div>
         </Col>
 
         </Form>
+            <ToastContainer className="p-3 mt-3 z-index-4 position-fixed" position={"top-center"}>
+                {console.log((cosmeticData.postSuccess || cosmeticData.saveSuccess || cosmeticData.error))}
+                <Toast onClose={() => setShow(false)} show={(cosmeticData.postSuccess || cosmeticData.saveSuccess || cosmeticData.error)} 
+                    delay={3000} autohide>
+                    <Toast.Header className={
+                        (cosmeticData.postSuccess && "bg-success ") +
+                        ((cosmeticData.saveSuccess && editSuccess) && "bg-success") +
+                        (cosmeticData.error && "bg-danger ")  +" text-white"} >
+                    <strong className="me-auto">Success</strong>
+                    </Toast.Header>
+                    <Toast.Body>
+                        {cosmeticData.postSuccess && "Post Success!"}
+                        {(cosmeticData.saveSuccess && editSuccess) && "Edit Success!"}
+                        {cosmeticData.error && "Post Success!"}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </Row>
+        </>
     )
 }
 
