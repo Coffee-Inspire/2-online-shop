@@ -33,7 +33,7 @@ function DashboardPage() {
                 className={(navDash && "show") + " position-absolute top-0 bg-overlay vh-100 z-index-4"}>
             </div>
 
-            <div className="w-100 bodyDashboard">
+            <div className="w-100 bodyDashboard zoomCustom">
             {/* <div className=""> */}
                 <BarBrown reff={navBtn} status={navDash} setStatus={setNavDash}/>
                 <Switch>

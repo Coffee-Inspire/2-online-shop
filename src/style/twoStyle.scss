@@ -9,7 +9,7 @@ $gray-shadow : rgba(51,51,51, 0.50) !important;
 $gray-color : rgba(51, 51, 51, 0.5) !important;
 $black-color : rgba(51, 51, 51, 0.8) !important;
 
-
+//Extra Small
 @media (max-width: 356px) {
     .tabCustom > nav > .nav-item {
         width: 50%;
@@ -18,6 +18,10 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 
 //Large
 @media (min-width: 992px){	
+    .zoomCustom {
+        zoom: 0.8 !important;
+    }
+
     .navbar-animation{
         margin-left: 0px !important;
         opacity: 1 !important;
@@ -54,7 +58,7 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
     }
 
     .imageFormFrame {
-        height: 500px !important;
+        height: 400px !important;
     }
     
     .btnTypeProduct {
@@ -63,10 +67,39 @@ $black-color : rgba(51, 51, 51, 0.8) !important;
 
 }
 
+// Extra Large
+@media (min-width: 1200px){
+    .zoomCustom {
+        zoom: 0.9 !important;
+    }
+}
+
+//Extra Extra Large
+@media (min-width: 1400px){
+    .imageFormFrame {
+        height: 500px !important;
+    }
+
+    .zoomCustom {
+        zoom: 1 !important;
+    }
+
+    .listProductFrame {
+        height: 140px !important;
+        width: 112px !important;
+    }
+}
+
+
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.zoomCustom {
+    zoom: 1;
 }
 
 .cursorDefault {
@@ -350,8 +383,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .listProductFrame {
-    height: 140px;
-    width: 112px;
+    height: 100px;
+    width: 88px;
     box-shadow: $gray-shadow;
 }
 

@@ -67,13 +67,15 @@ function DashProfile() {
                         />
                         <FormHorizontal 
                             label="WhatsApp number (IND)" 
-                            type="text" 
-                            placeholder="Input Text" 
+                            type="number" 
+                            placeholder="Input Number" 
                             name="waInd" 
                             value={form.waInd}
-                            onChange={valueChange} 
+                            onChange={valueChange}
+                            numberOnly={true} 
+                            phone={true}
                         />
-                        <ExampleText text={"Example: Always start with +62"}/>
+                        <ExampleText text={"Example: Always start with 62"}/>
 
                         <FormHorizontalArea
                             label="Template Message (IND)" 
@@ -87,13 +89,15 @@ function DashProfile() {
 
                         <FormHorizontal 
                             label="WhatsApp number (TW)" 
-                            type="text" 
-                            placeholder="Input Text" 
+                            type="number" 
+                            placeholder="Input Number" 
                             name="waTwn" 
                             value={form.waTwn}
                             onChange={valueChange} 
+                            numberOnly={true}
+                            phone={true}
                         />
-                        <ExampleText text={"Example: Always start with +886"}/>
+                        <ExampleText text={"Example: Always start with 886"}/>
 
                         <FormHorizontalArea
                             label="Template Message (TW)" 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Row, Col, Form, Button, Image, Toast } from 'react-bootstrap';
+import ToastContainer from 'react-bootstrap/ToastContainer'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
@@ -121,14 +122,14 @@ function DashAddCosmetic(props) {
         </Col>
 
         <Col xs={12} md={11} className="mb-3">
-            <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
-                <Row className="p-lg-4 justify-content-around">
+            <div className="p-md-5 p-4 p-2 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
+                <Row className=" justify-content-around">
                 <Col xs={12} lg={4} className="d-none d-lg-block">
                     <div className="imageFormFrame ">
                     <Image className="imageForm" src={imagePreview} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFoundPotrait}} fluid />
                     </div>
                 </Col>
-                <Col xs={12} lg={6} className="">
+                <Col xs={12} lg={7} xl={8} className="col-xxl-7">
                 
                     <FormHorizontal 
                         label="Product Name" 
@@ -213,6 +214,24 @@ function DashAddCosmetic(props) {
                             Post / Save Failed !
                         </div>
                     }
+                    <ToastContainer position="top-end" className="p-3">
+                        <Toast>
+                        <Toast.Header>
+                            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                            <strong className="me-auto">Bootstrap</strong>
+                            <small className="text-muted">just now</small>
+                        </Toast.Header>
+                        <Toast.Body>See? Just like this.</Toast.Body>
+                        </Toast>
+                        <Toast>
+                        <Toast.Header>
+                            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                            <strong className="me-auto">Bootstrap</strong>
+                            <small className="text-muted">2 seconds ago</small>
+                        </Toast.Header>
+                        <Toast.Body>Heads up, toasts will stack automatically</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
                 </Col>
                 </Row>
             </div>

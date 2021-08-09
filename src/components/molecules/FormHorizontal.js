@@ -1,12 +1,21 @@
 import React from 'react'
-import { Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form, InputGroup } from 'react-bootstrap';
 
 function FormHorizontal(props) {
+
+    const keyboard = [
+        190,
+        69,
+    ]
 
     return (
         <Row className="mb-3">
             <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
             <Col>
+            <InputGroup className="">
+            {props.phone &&
+                <InputGroup.Text>+</InputGroup.Text>
+            }
                 <Form.Control 
                     required
                     type={props.type} 
@@ -18,12 +27,18 @@ function FormHorizontal(props) {
                     disabled={props.disabled}
                     onKeyDown={(e)=>{
                         if(props.numberOnly){
-                            if(e.keyCode !== 38 && e.keyCode !== 40 &&  e.keyCode !== 9 && e.keyCode !== 8 && !(e.keyCode >= 48 && e.keyCode <= 57)){
+                            // if(!(e.keyCode >= 37 && e.keyCode <= 40) && 
+                            // e.keyCode !== 9 && e.keyCode !== 8 && 
+                            // !(e.keyCode >= 48 && e.keyCode <= 57)){
+                            //     e.preventDefault();
+                            // }
+                            if(keyboard.includes(e.keyCode)){
                                 e.preventDefault();
                             }
                         }
                     }}
                 />
+            </InputGroup>
                 {props.validator && 
                     props.validator.error &&
                         <Form.Text id="text-muted" muted>
