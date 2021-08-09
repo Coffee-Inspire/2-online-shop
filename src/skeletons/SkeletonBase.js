@@ -6,7 +6,7 @@ function SkeletonBase(props) {
     let classes = props.type
 
     return (
-        <Skeleton count={props.count && props.count} className={`skeleton ${classes}`}/>        
+        <Skeleton duration={0.6} count={props.count && props.count} className={`skeleton ${classes}`}/>        
     )
 }
 

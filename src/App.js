@@ -61,7 +61,7 @@ function App() {
           <CatalogFashionPage/>
         </Route>
         <Route path="/fashion/:id">
-          <DetailFashionPage/>
+          <DetailFashionPage modalcart={modalcart}/>
         </Route>
         <Route>
           <PageNotFound/>
