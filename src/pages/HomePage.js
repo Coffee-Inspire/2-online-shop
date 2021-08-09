@@ -16,6 +16,8 @@ function HomePage() {
 
     const dispatch = useDispatch()
     const status = useSelector(state => state.home)
+    const statusCosmetic = useSelector(state => state.productCosmetic)
+    const statusFashion = useSelector(state => state.productFashion)
     // Storing Promotion Data
     const [dataPromotion, setDataPromotion] = useState(null);
     // Storing Product Data
@@ -29,7 +31,7 @@ function HomePage() {
     }, [dispatch])
 
     return (
-        <Container fluid>
+        <Container fluid className="mb-5">
             {status.isInitial && <SkeletonHomepage/>}
             {!status.isInitial &&  <>
                     <CenterTitle text={dataPromotion && dataPromotion.promoTitle} />
@@ -38,12 +40,17 @@ function HomePage() {
                         image={dataPromotion && dataPromotion.promoImage} 
                         url={dataPromotion && dataPromotion.promoUrl} 
                     />
-                    <NewProductSection
-                        imageNotFound={imageNotFound} 
-                        cosmetic={dataCosmetic && dataCosmetic}
-                        fashion={dataFashion && dataFashion}
-                    />
                 </>
+            }
+            {(dataCosmetic.length>0 || dataFashion.length>0) && 
+                <NewProductSection
+                    imageNotFound={imageNotFound} 
+                    statusCosmetic={statusCosmetic.isInitial}
+                    statusFashion={statusFashion.isInitial}
+                    cosmetic={dataCosmetic}
+                    fashion={dataFashion}
+                />
+                
             }
         </Container>
     )

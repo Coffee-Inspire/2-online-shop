@@ -21,9 +21,9 @@ function DetailFashionPage(props) {
     const [allDataProduct, setAllDataProduct] = useState([]); /* Storing all product data to state */
     let viewProduct = allDataProduct.find((item)=> item.id.toLocaleString() === id) /* Selecting target data for display */
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
-    const [size, setSize] = useState("-")
+    const [size, setSize] = useState("[]")
     const [quantity, setQuantity] = useState(1)
-    
+
     const [sizeChart, setSizeChart] = useState(false)
 
     function addToCart (){
@@ -40,6 +40,7 @@ function DetailFashionPage(props) {
         }
         dispatch(addCartAction(itemData))
         setTriggerSuccess(true)
+        props.modalcart.current.click()
     }
     
     useEffect(() => {

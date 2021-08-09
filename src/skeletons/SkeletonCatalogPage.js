@@ -8,10 +8,10 @@ import SkeletonBase from './SkeletonBase';
 function SkeletonCatalogPage() {
     return (
         <div className="myProductsAreaMargin">
-            <Row className=" d-flex flex-row justify-content-center justify-content-lg-end">
-                <Col xs={12} lg={9}>
-                        <Row className="d-flex justify-content-center">
-                            {[1,2,3].map((item,index)=>(
+            <Row className="d-flex flex-row justify-content-center justify-content-lg-end pt-3">
+                <Col className="px-0" xs={12} lg={9}>
+                        <Row className="d-flex flex-column flex-lg-row justify-content-center">
+                            {[1,2,3,4].map((item,index)=>(
                                 <Col key={index} className="skeleton-card py-0 py-lg-0 px-0 px-lg-4 mb-4" xs={12} lg={4}> 
                                     <div className="h-100 skeleton-card-bg">
                                         <div className="h-75">

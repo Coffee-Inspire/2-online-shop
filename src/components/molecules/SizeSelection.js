@@ -2,8 +2,9 @@ import {React , useState, useEffect} from 'react'
 import {Dropdown , Row , Col} from 'react-bootstrap'
 
 function SizeSelection({size , setSize}) {
-
-    const [selected, setSelected] = useState(size[0])
+    
+    let sizeArr = JSON.parse(size)
+    const [selected, setSelected] = useState(sizeArr[0])
 
     useEffect(() => {
         setSize(selected);
@@ -20,7 +21,7 @@ function SizeSelection({size , setSize}) {
                         </Dropdown.Toggle>
                     
                         <Dropdown.Menu>
-                            {size && size.map((item,index)=>(
+                            {sizeArr && sizeArr.map((item,index)=>(
                                  <Dropdown.Item key={index} onClick={()=>{
                                         setSize(item);
                                         setSelected(item);

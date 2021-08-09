@@ -3,7 +3,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { Navbar, Nav, Col, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-import {getCounterAction , asd} from '../../redux/actions/cart.actions';
+import {getCounterAction} from '../../redux/actions/cart.actions';
 
 import emblem from '../../assets/logos/phanen-shop-emblem.png'
 import CartModal from '../organisms/CartModal';
@@ -15,12 +15,10 @@ function Navigation(props) {
     const number = useSelector(state => state.cart)
     const [cartModalShow, setCartModalShow] = useState(false)
     const [deliveryModalShow, setDeliveryModalShow] = useState(false)
-
     
     const [orderData, setOrderData] = useState([])
     const [totalPriceInd, setTotalPriceInd] = useState(0)
     const [totalPriceTwn, setTotalPriceTwn] = useState(0)
-
 
     useEffect(() => {
         dispatch(getCounterAction())
@@ -65,10 +63,10 @@ function Navigation(props) {
                 triggerdeliverymodal={() => setDeliveryModalShow(true)}
                 orderdata={orderData}
                 setorder={setOrderData}
-                totalPriceInd={totalPriceInd}
-                setTotalPriceInd={setTotalPriceInd}
-                totalPriceTwn={totalPriceTwn}
-                setTotalPriceTwn={setTotalPriceTwn}
+                totalpriceind={totalPriceInd}
+                settotalpriceind={setTotalPriceInd}
+                totalpricetwn={totalPriceTwn}
+                settotalpricetwn={setTotalPriceTwn}
             />
             <DeliveryModal
                 show={deliveryModalShow}
