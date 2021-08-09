@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Button, Modal, Tabs, Tab, Spinner } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Tabs, Tab, Spinner, Toast } from 'react-bootstrap';
+import ToastContainer from 'react-bootstrap/ToastContainer'
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function DashListProduct() {
 
     const [show, setShow] = useState(false);    //Modal
     const [key, setKey] = useState('cosmetic');     //Tabs
+    const [showToast, setShowToast] = useState(false);  //Toast
 
     // 
     const [editStatus, setEditStatus] = useState({
@@ -47,6 +49,7 @@ function DashListProduct() {
                     setEditStatus={setEditStatus}
                     cosmeticForm={cosmeticForm}
                     setCosmeticForm={setCosmeticForm}
+                    setShowToast={setShowToast}
                 />
             }
             {editStatus.type === "fashion" &&
@@ -56,6 +59,7 @@ function DashListProduct() {
                     setEditStatus={setEditStatus}
                     fashionForm={fashionForm}
                     setFashionForm={setFashionForm}
+                    setShowToast={setShowToast}
                 />
             }
         </div>
@@ -213,6 +217,20 @@ function DashListProduct() {
 
             </div> */}
         </Col>
+            <ToastContainer className="p-3 mt-3 z-index-4 position-fixed" position={"top-center"}>
+                <Toast onClose={() => setShowToast(false)} show={showToast} 
+                    delay={3000} autohide>
+                    <Toast.Header className={
+                        ((cosmeticData.deleteSuccess || fashionData.deleteSuccess)  && " bg-success ") +
+                        ((cosmeticData.error || fashionData.error) && " bg-danger ")  +" text-white"} >
+                    <strong className="me-auto">Success</strong>
+                    </Toast.Header>
+                    <Toast.Body>
+                        {(cosmeticData.deleteSuccess || fashionData.deleteSuccess) && "Delete Success!"}
+                        {(cosmeticData.error || fashionData.error) && "Delete Failed!"}
+                    </Toast.Body>
+                </Toast>
+            </ToastContainer>
         </Row>
         </>
     )

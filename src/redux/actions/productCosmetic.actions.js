@@ -5,66 +5,10 @@ import { uploadImageAction } from '../actions/upload.actions';
 export const INITIAL = "INITIAL";
 export const REQUEST = "REQUEST";
 export const FAILED = "FAILED";
-export const GET_SUCCESS = "GET_SUCCESS";
-export const POST_SUCCESS = "POST_SUCCESS";
-export const SAVE_SUCCESS = "SAVE_SUCCESS";
-
-// let DUMMY_PRODUCT_COSMETIC = [
-//     {
-//         id : "11",
-//         name : `signature pink parfume`,
-//         image : productImage,
-//         price : 200000,
-//         quantity : 100,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `body`
-//     },
-//     {
-//         id : "12",
-//         name : `peach lipstick`,
-//         image : productImage,
-//         price : 100000,
-//         quantity : 50,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `face`
-//     },
-//     {
-//         id : "13",
-//         name : `eye scrub`,
-//         image : productImage,
-//         price : 300000,
-//         quantity : 30,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `face`
-//     },
-//     {
-//         id : "14",
-//         name : `special peach cosmetic set`,
-//         image : productImage,
-//         price : 700000,
-//         quantity : 10,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `package`
-//     },
-//     {
-//         id : "15",
-//         name : `apple powder`,
-//         image : productImage,
-//         price : 500000,
-//         quantity : 50,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `body`
-//     },
-//     {
-//         id : "16",
-//         name : `face mask`,
-//         image : productImage,
-//         price : 400000,
-//         quantity : 60,
-//         description : `Signature Pink Parfume merupakan salah satu produk wewangian atau parfum yang diluncukan oleh Maison Francis Kurkdjian (MFK). Nama Maison Francis Kurkdjian mulai terkenal di industri wewangian sejak tahun 2009.`,
-//         category : `face`
-//     }
-// ];
+export const GET_SUCCESS = "GET_SUCCESS_COSMETIC";
+export const POST_SUCCESS = "POST_SUCCESS_COSMETIC";
+export const SAVE_SUCCESS = "SAVE_SUCCESS_COSMETIC";
+export const DELETE_SUCCESS = "DELETE_SUCCESS_COSMETIC";
 
 export const initial = () => {
     return {
@@ -106,6 +50,13 @@ export const save_success = (data) => {
     };
 };
 
+export const delete_success = (id) => {
+    return {
+        type: DELETE_SUCCESS,
+        id: id
+    };
+};
+
 export const getProductCosmeticAction = (setData) => (dispatch) => {
     // setData(DUMMY_PRODUCT_COSMETIC)
     dispatch(initial());
@@ -124,7 +75,7 @@ export const getProductCosmeticAction = (setData) => (dispatch) => {
         });
 };
 
-export const postProductCosmeticAction = (form, image, setProgressBar, setForm, setImagePreview, imagePreviewTop, imageInput) => (dispatch) => {
+export const postProductCosmeticAction = (form, image, setProgressBar, setForm, setImagePreview, imagePreviewTop, imageInput, setShow) => (dispatch) => {
     dispatch(request());
 
     let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
@@ -153,10 +104,12 @@ export const postProductCosmeticAction = (form, image, setProgressBar, setForm, 
                     description: "",
                     category: "",
                 });
+                setShow(true);
                 dispatch(post_success(result.data));
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
+                setShow(true);
                 dispatch(failed(err));
             })
 
@@ -164,7 +117,7 @@ export const postProductCosmeticAction = (form, image, setProgressBar, setForm, 
     .catch(err => dispatch(failed(err)))
 }
 
-export const editProductCosmeticAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess) => (dispatch) => {
+export const editProductCosmeticAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess, setShow) => (dispatch) => {
     dispatch(request());
 
     let edit = (form, imagePath) => {
@@ -190,10 +143,12 @@ export const editProductCosmeticAction = (form, image, setProgressBar, formList,
                 });
                 setFormList([...newData]);
                 setEditSuccess(true);
+                setShow(true);
                 dispatch(save_success(result.data));
             })
             .catch(err => {
                 console.log(err);
+                setShow(true);
                 dispatch(failed(err));
             })
     }
@@ -203,7 +158,43 @@ export const editProductCosmeticAction = (form, image, setProgressBar, formList,
         uploadImage.then(result => {
             edit(form, result);
         })
+        .catch(err => {
+            setShow(true);
+            dispatch(failed(err));
+        })
     } else{
         edit(form, "");
     }
+}
+
+export const deleteProductCosmeticAction = (id, formList, setFormList, setEditStatus, setShow, setShowMain) => (dispatch) => {
+    dispatch(request());
+
+    return axios
+        .delete(process.env.REACT_APP_URL_PCOSMETIC +'/'+ id,{
+            headers: {
+                Authorization: localStorage[process.env.REACT_APP_TOKEN]
+            }
+        })
+        .then(result => {
+            let newData = formList;
+            newData.forEach((item, index) => {
+                if(item.id === id){
+                    newData.splice(index, 1);
+                }
+            })
+            setFormList([...newData]);
+            setShowMain(true);
+            setEditStatus({
+                active : false,
+                type : "",
+                data : {},
+            });
+            dispatch(delete_success(id));
+        })
+        .catch(err => {
+            console.log(err);
+            setShow(true);
+            dispatch(failed(err));
+        })
 }

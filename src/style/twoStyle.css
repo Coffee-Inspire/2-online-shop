@@ -33,9 +33,6 @@
   .position-lg-absolute {
     position: absolute !important;
   }
-  .btnUploadListProduct {
-    width: auto !important;
-  }
   .imageFormFrame {
     height: 400px !important;
   }
@@ -310,7 +307,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btnUploadListProduct {
-  width: 100%;
+  width: auto;
 }
 
 .modalMe {

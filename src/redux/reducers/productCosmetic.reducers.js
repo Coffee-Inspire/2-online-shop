@@ -1,4 +1,4 @@
-import { INITIAL, REQUEST, FAILED, GET_SUCCESS, POST_SUCCESS, SAVE_SUCCESS } from '../actions/productCosmetic.actions'
+import { INITIAL, REQUEST, FAILED, GET_SUCCESS, POST_SUCCESS, SAVE_SUCCESS, DELETE_SUCCESS } from '../actions/productCosmetic.actions'
 
 const initialState = {
     data : [],
@@ -6,6 +6,7 @@ const initialState = {
     isLoading : false,
     postSuccess : false,
     saveSuccess : false,
+    deleteSuccess : false,
     error: false,
 };
 
@@ -19,6 +20,7 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading: false,
                 postSuccess : false,
                 saveSuccess : false,
+                deleteSuccess : false,
                 error: false,
             };
 
@@ -29,6 +31,7 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading: true,
                 postSuccess : false,
                 saveSuccess : false,
+                deleteSuccess : false,
                 error: false,
             };
 
@@ -39,6 +42,7 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading : false,
                 postSuccess : false,
                 saveSuccess : false,
+                deleteSuccess : false,
                 error: true,
             };
 
@@ -50,6 +54,7 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading : false,
                 postSuccess : false,
                 saveSuccess : false,
+                deleteSuccess : false,
                 error: false,
             }
 
@@ -61,6 +66,7 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading : false,
                 postSuccess : true,
                 saveSuccess : false,
+                deleteSuccess : false,
                 error: false,
             }
 
@@ -82,8 +88,29 @@ const productCosmetic = (state = initialState, action) => {
                 isLoading : false,
                 postSuccess : false,
                 saveSuccess : true,
+                deleteSuccess : false,
                 error: false,
             }
+
+        case DELETE_SUCCESS:
+        
+        let newDeleteData = state.data;
+        newDeleteData.forEach((item, index) => {
+            if(item.id === action.id){
+                newDeleteData.splice(index, 1)
+            }
+        })
+        
+            return {
+                ...state,
+                data: [...newDeleteData],
+                isInitial : false,
+                isLoading : false,
+                postSuccess : false,
+                saveSuccess : false,
+                deleteSuccess : true,
+                error: false,
+            }  
 
         default:
             return state;
