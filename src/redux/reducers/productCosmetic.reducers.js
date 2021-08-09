@@ -45,7 +45,7 @@ const productCosmetic = (state = initialState, action) => {
         case GET_SUCCESS:
             return {
                 ...state,
-                data: [action.data],
+                data: action.data,
                 isInitial : false,
                 isLoading : false,
                 postSuccess : false,
@@ -65,9 +65,19 @@ const productCosmetic = (state = initialState, action) => {
             }
 
         case SAVE_SUCCESS:
+
+        let newData = state.data.map((item) => {
+            if(item.id === action.data.id){
+                return action.data;
+            }
+            else{
+                return item;
+            }
+        })
+
             return {
                 ...state,
-                data: {...action.data},
+                data: [...newData],
                 isInitial : false,
                 isLoading : false,
                 postSuccess : false,

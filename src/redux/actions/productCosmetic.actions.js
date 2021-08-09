@@ -163,3 +163,47 @@ export const postProductCosmeticAction = (form, image, setProgressBar, setForm, 
     })
     .catch(err => dispatch(failed(err)))
 }
+
+export const editProductCosmeticAction = (form, image, setProgressBar, formList, setFormList, setEditSuccess) => (dispatch) => {
+    dispatch(request());
+
+    let edit = (form, imagePath) => {
+        let data = {
+            ...form,
+            [imagePath !== "" && "image"] : imagePath,
+        }
+
+        return axios
+            .put(process.env.REACT_APP_URL_PCOSMETIC +'/'+ form.id, data,{
+                headers: {
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
+                }
+            })
+            .then(result => {
+                let newData = formList.map((item) => {
+                    if(item.id === result.data.id){
+                        return result.data;
+                    }
+                    else{
+                        return item;
+                    }
+                });
+                setFormList([...newData]);
+                setEditSuccess(true);
+                dispatch(save_success(result.data));
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch(failed(err));
+            })
+    }
+
+    if(image){
+        let uploadImage = dispatch(uploadImageAction(image, setProgressBar));
+        uploadImage.then(result => {
+            edit(form, result);
+        })
+    } else{
+        edit(form, "");
+    }
+}

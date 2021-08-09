@@ -1,340 +1,378 @@
-@media (min-width: 992px) {
-	.navbar-animation {
-		margin-left: 0px !important;
-		opacity: 1 !important;
-	}
-	.dashImage {
-		zoom: 40% !important;
-	}
-	.navbarDashboard {
-		position: -webkit-sticky !important;
-		position: sticky !important;
-		margin-left: 0 !important;
-		z-index: 16 !important;
-	}
-	.bodyDashboard {
-		margin-left: auto !important;
-	}
-	.closebtn {
-		display: none !important;
-	}
-	.border-image {
-		height: 300px !important;
-	}
-	.position-lg-absolute {
-		position: absolute !important;
-	}
-	.btnUploadListProduct {
-		width: auto !important;
-	}
-	.imageFormFrame {
-		height: 500px !important;
-	}
-	.btnTypeProduct {
-		width: auto !important;
-	}
+@media (max-width: 356px) {
+  .tabCustom > nav > .nav-item {
+    width: 50%;
+  }
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+@media (min-width: 992px) {
+  .zoomCustom {
+    zoom: 0.8 !important;
+  }
+  .navbar-animation {
+    margin-left: 0px !important;
+    opacity: 1 !important;
+  }
+  .dashImage {
+    zoom: 40% !important;
+  }
+  .navbarDashboard {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    margin-left: 0 !important;
+    z-index: 16 !important;
+  }
+  .bodyDashboard {
+    margin-left: auto !important;
+  }
+  .closebtn {
+    display: none !important;
+  }
+  .border-image {
+    height: 300px !important;
+  }
+  .position-lg-absolute {
+    position: absolute !important;
+  }
+  .btnUploadListProduct {
+    width: auto !important;
+  }
+  .imageFormFrame {
+    height: 400px !important;
+  }
+  .btnTypeProduct {
+    width: auto !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .zoomCustom {
+    zoom: 0.9 !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .imageFormFrame {
+    height: 500px !important;
+  }
+  .zoomCustom {
+    zoom: 1 !important;
+  }
+  .listProductFrame {
+    height: 140px !important;
+    width: 112px !important;
+  }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.zoomCustom {
+  zoom: 1;
 }
 
 .cursorDefault {
-	cursor: default;
+  cursor: default;
 }
 
 .cursorPointer {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .opacity-0 {
-	opacity: 0 !important;
+  opacity: 0 !important;
 }
 
 .opacity-1 {
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .z-index-1 {
-	z-index: 5;
+  z-index: 5;
 }
 
 .z-index-2 {
-	z-index: 10;
+  z-index: 10;
 }
 
 .z-index-3 {
-	z-index: 15;
+  z-index: 15;
 }
 
 .z-index-4 {
-	z-index: 20;
+  z-index: 20;
 }
 
 .bg-white {
-	background-color: #fff !important;
+  background-color: #FFF !important;
 }
 
 .bg-dashboard {
-	background-color: #e5e5e5;
+  background-color: #e5e5e5;
 }
 
 .barBrown {
-	background-color: #a98d4a !important;
-	height: 70px;
+  background-color: #A98D4A !important;
+  height: 70px;
 }
 
 .btnBrown {
-	background-color: #a98d4a !important;
-	border-color: #a98d4a !important;
+  background-color: #A98D4A !important;
+  border-color: #A98D4A !important;
 }
 
 .btnBrown:hover {
-	background-color: #926933 !important;
-	border-color: #926933 !important;
+  background-color: #926933 !important;
+  border-color: #926933 !important;
 }
 
 .btnBrown:active {
-	background-color: #926933 !important;
-	border-color: #926933 !important;
+  background-color: #926933 !important;
+  border-color: #926933 !important;
 }
 
-.btnBrown:focus,
-.btnBrown:active + .btnBrown:focus {
-	-webkit-box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
-	box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+.btnBrown:focus, .btnBrown:active + .btnBrown:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+          box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
 }
 
 .shadow-brown {
-	-webkit-box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
-	box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
+  -webkit-box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
+          box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
 }
 
 .imageUploadOverlay {
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(51, 51, 51, 0.8) !important;
-	z-index: 5;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.8) !important;
+  z-index: 5;
 }
 
 .imageUploadOverlay:hover {
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 .btnWhiteTrans {
-	background-color: transparent;
-	border-color: #fff !important;
+  background-color: transparent;
+  border-color: #FFF !important;
 }
 
 .btnWhiteTrans:hover {
-	background-color: #fff !important;
-	border-color: #fff !important;
-	color: rgba(51, 51, 51, 0.8) !important;
+  background-color: #FFF !important;
+  border-color: #FFF !important;
+  color: rgba(51, 51, 51, 0.8) !important;
 }
 
 .btnWhiteTrans:active {
-	background-color: #fff !important;
-	border-color: #fff !important;
+  background-color: #FFF !important;
+  border-color: #FFF !important;
 }
 
-.btnWhiteTrans:focus,
-.btnBrown:active + .btnBrown:focus {
-	-webkit-box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
-	box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
+.btnWhiteTrans:focus, .btnBrown:active + .btnBrown:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
+          box-shadow: 0 0 0 0.25rem rgba(51, 51, 51, 0.5) !important;
 }
 
 .dashNavEmblem {
-	-o-object-fit: cover;
-	object-fit: cover;
-	zoom: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  zoom: 50%;
 }
 
 .bodyDashboard {
-	background-color: #fafdfb !important;
+  background-color: #fafdfb !important;
 }
 
 .closebtn {
-	font-size: 36px;
-	display: block;
+  font-size: 36px;
+  display: block;
 }
 
 .bg-overlayOnly {
-	background-color: rgba(51, 51, 51, 0.8) !important;
+  background-color: rgba(51, 51, 51, 0.8) !important;
 }
 
 .bg-overlay {
-	background-color: rgba(51, 51, 51, 0.8) !important;
-	width: 0;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+  background-color: rgba(51, 51, 51, 0.8) !important;
+  width: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .bg-overlay.show {
-	width: 100vw;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+  width: 100vw;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .navbarDashboard {
-	position: fixed;
-	-webkit-box-shadow: 5px 0px 1rem 0px rgba(0, 0, 0, 0.15);
-	box-shadow: 5px 0px 1rem 0px rgba(0, 0, 0, 0.15);
-	margin-left: -990px;
-	-webkit-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-	z-index: 21;
+  position: fixed;
+  -webkit-box-shadow: 5px 0px 1rem 0px rgba(0, 0, 0, 0.15);
+          box-shadow: 5px 0px 1rem 0px rgba(0, 0, 0, 0.15);
+  margin-left: -990px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  z-index: 21;
 }
 
 .navbarDashboard.show {
-	margin-left: 0px;
+  margin-left: 0px;
 }
 
 .navDashLinkTitle {
-	color: rgba(51, 51, 51, 0.5) !important;
+  color: rgba(51, 51, 51, 0.5) !important;
 }
 
 .navDashLink {
-	padding-left: 2rem !important;
-	font-weight: bold;
-	color: rgba(0, 0, 0, 0.8) !important;
+  padding-left: 2rem !important;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .myHr {
-	border-top: 1px solid rgba(51, 51, 51, 0.5) !important;
-	background-color: rgba(51, 51, 51, 0.5) !important;
+  border-top: 1px solid rgba(51, 51, 51, 0.5) !important;
+  background-color: rgba(51, 51, 51, 0.5) !important;
 }
 
 .navbar-dark .navbar-toggler {
-	color: rgba(255, 255, 255, 0.9) !important;
-	border-color: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .border-image {
-	overflow: hidden;
-	position: relative;
-	height: 200px;
-	width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 200px;
+  width: 100%;
 }
 
 .border-image2 {
-	overflow: hidden;
-	position: relative;
-	height: 400px;
-	width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+  width: 100%;
 }
 
 .border-svg {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .border-image-dashed {
-	stroke-dasharray: 9.7519, 8.237;
-	fill: transparent;
-	stroke: rgba(0, 0, 0, 0.3);
-	stroke-width: 2;
+  stroke-dasharray: 9.7519, 8.237;
+  fill: transparent;
+  stroke: rgba(0, 0, 0, 0.3);
+  stroke-width: 2;
 }
 
 .border-image-inside {
-	height: 100%;
-	width: auto;
-	color: green;
-	font-weight: bold;
-	text-align: center;
+  height: 100%;
+  width: auto;
+  color: green;
+  font-weight: bold;
+  text-align: center;
 }
 
 .imageFrame2 {
-	zoom: 0.5;
-	height: 500px;
-	max-width: 400px;
-	border-radius: 10px;
-	-webkit-box-shadow: 5px 5px 8px #888888;
-	box-shadow: 5px 5px 8px #888888;
+  zoom: 0.5;
+  height: 500px;
+  max-width: 400px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 8px #888888;
+          box-shadow: 5px 5px 8px #888888;
 }
 
 .hoverImage {
-	-o-object-fit: cover;
-	object-fit: cover;
-	width: 100%;
-	height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .circleNotification {
-	background: #c4c4c4;
-	border-radius: 50%;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-	color: #5e5e5e;
-	display: inline-block;
-	font-weight: bold;
-	line-height: 35px;
-	margin-right: 5px;
-	text-align: center;
-	width: 35px;
+  background: #C4C4C4;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #5e5e5e;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 25px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 0.7rem;
+  width: 25px;
 }
 
 .btnUploadListProduct {
-	width: 100%;
+  width: 100%;
 }
 
 .modalMe {
-	display: block;
-	height: 0%;
-	opacity: 0;
-	-webkit-transition: height 0.3 linear, -webkit-transform 0.3s ease-out;
-	transition: height 0.3 linear, -webkit-transform 0.3s ease-out;
-	transition: transform 0.3s ease-out, height 0.3 linear;
-	transition: transform 0.3s ease-out, height 0.3 linear,
-		-webkit-transform 0.3s ease-out;
-	-webkit-transform: translate(0, -50px);
-	transform: translate(0, -50px);
+  display: block;
+  height: 0%;
+  opacity: 0;
+  -webkit-transition: height .3 linear, -webkit-transform .3s ease-out;
+  transition: height .3 linear, -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out, height .3 linear;
+  transition: transform .3s ease-out, height .3 linear, -webkit-transform .3s ease-out;
+  -webkit-transform: translate(0, -50px);
+          transform: translate(0, -50px);
 }
 
 .modalMe.showMe {
-	height: 100% !important;
-	opacity: 1 !important;
-	-webkit-transform: none !important;
-	transform: none !important;
+  height: 100% !important;
+  opacity: 1 !important;
+  -webkit-transform: none !important;
+          transform: none !important;
 }
 
 .imageFormFrame {
-	height: 380px;
-	max-width: 400px;
-	border-radius: 10px;
-	-webkit-box-shadow: 5px 5px 8px #888888;
-	box-shadow: 5px 5px 8px #888888;
+  height: 380px;
+  max-width: 400px;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 8px #888888;
+          box-shadow: 5px 5px 8px #888888;
 }
 
 .imageForm {
-	border-radius: 10px;
-	width: 100%;
-	height: 100%;
-	-o-object-fit: cover;
-	object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .btnTypeProduct {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-	width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .listProductFrame {
-	height: 92px;
-	width: 81px;
-	-webkit-box-shadow: rgba(51, 51, 51, 0.5) !important;
-	box-shadow: rgba(51, 51, 51, 0.5) !important;
+  height: 100px;
+  width: 88px;
+  -webkit-box-shadow: rgba(51, 51, 51, 0.5) !important;
+          box-shadow: rgba(51, 51, 51, 0.5) !important;
 }
 
 .listProductImage {
-	width: 100%;
-	height: 100%;
-	-o-object-fit: cover;
-	object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.active > .myColor {
+  color: black !important;
+}
+
+.myColor {
+  color: #926933 !important;
 }
 /*# sourceMappingURL=twoStyle.css.map */

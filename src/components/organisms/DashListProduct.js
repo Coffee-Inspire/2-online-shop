@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Tabs, Tab, Spinner } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
 import TitleDashboard from '../atoms/TitleDashboard';
-import TitleBodyDashboard from '../atoms/TitleBodyDashboard';
+// import TitleBodyDashboard from '../atoms/TitleBodyDashboard';
 import ListProduct from '../molecules/ListProduct';
+
+import DashAddCosmetic from './DashAddCosmetic';
+import DashAddFashion from './DashAddFashion';
 
 import { getProductCosmeticAction } from '../../redux/actions/productCosmetic.actions';
 import { getProductFashionAction } from '../../redux/actions/productFashion.actions';
@@ -19,18 +22,45 @@ function DashListProduct() {
     const [cosmeticForm, setCosmeticForm] = useState([]);
     const [fashionForm, setFashionForm] = useState([]);
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);    //Modal
+    const [key, setKey] = useState('cosmetic');     //Tabs
+
+    // 
+    const [editStatus, setEditStatus] = useState({
+        active : false,
+        type : "",
+        data : {},
+    });
 
     useEffect(() => {
         dispatch(getProductCosmeticAction(setCosmeticForm));
         dispatch(getProductFashionAction(setFashionForm));
     }, [dispatch])
 
-
-
     return (
         <>
-        <Row className="m-0">
+        <div className={(editStatus.active ? "" : "d-none ")}>
+            {editStatus.type === "cosmetic" &&
+                <DashAddCosmetic 
+                    edit={true} 
+                    data={editStatus.data}
+                    setEditStatus={setEditStatus}
+                    cosmeticForm={cosmeticForm}
+                    setCosmeticForm={setCosmeticForm}
+                />
+            }
+            {editStatus.type === "fashion" &&
+                <DashAddFashion 
+                    edit={true} 
+                    data={editStatus.data}
+                    setEditStatus={setEditStatus}
+                    fashionForm={fashionForm}
+                    setFashionForm={setFashionForm}
+                />
+            }
+        </div>
+
+        <Row className={(editStatus.active && "d-none ") + " m-0"}>
         {/* <Modal size="lg" show={show} onHide={()=>setShow(false)} aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header className="border-0 pb-0" closeButton>
             </Modal.Header>
@@ -75,12 +105,88 @@ function DashListProduct() {
                 </Button>
             </Col>
         </div>
-        <Col xs={12} md={11} className="">
-            <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
+        
+        <Col xs={12} md={11} className="mb-3">
+            <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow tabCustom">
+                <Tabs
+                    id="controlled-tab-example"
+                    activeKey={key}
+                    onSelect={(k) => setKey(k)}
+                    className="mb-3"
+                >
+                    <Tab eventKey="cosmetic" 
+                        title={
+                            <div className="myColor">
+                                Cosmetic
+                                <span className="ml-3 circleNotification">{cosmeticForm.length}</span>
+                            </div>
+                        }>
+
+                        <div className="d-flex justify-content-center justify-content-lg-start flex-wrap overflow-hidden listProduct">
+                            {cosmeticData.isInitial ? 
+                                <div className="w-100 text-center my-5">
+                                    <Spinner animation="border" />
+                                </div>
+                            :
+                                cosmeticForm.length === 0 ? 
+                                <h1 className="fw-light w-100 text-center my-5">Your List is Empty</h1>
+                                :
+                                cosmeticForm.map((item, index) => {
+                                    return <ListProduct key={index} item={item} setEditStatus={setEditStatus}
+                                        editFunction={() => {
+                                            setEditStatus({
+                                                active : true,
+                                                type : "cosmetic",
+                                                data : {...item},
+                                            });
+                                            
+                                        }}
+                                    />
+                                })
+                            }
+                        </div>
+                    </Tab>
+
+                    <Tab eventKey="fashion" 
+                        title={
+                            <div className="myColor">
+                                Fashion
+                                <span className="ml-3 circleNotification">{fashionForm.length}</span>
+                            </div>
+                        }>
+                        
+                        <div className="d-flex justify-content-center justify-content-lg-start flex-wrap overflow-hidden listProduct">
+                            {fashionData.isInitial ? 
+                                <div className="w-100 text-center my-5">
+                                    <Spinner animation="border" />
+                                </div>
+                            :
+                                fashionForm.length === 0 ? 
+                                <h1 className="fw-light w-100 text-center my-5">Your List is Empty</h1>
+                                :
+                                fashionForm.map((item, index) => {
+                                    return <ListProduct key={index} item={item} setEditStatus={setEditStatus}
+                                    editFunction={() => {
+                                        setEditStatus({
+                                            active : true,
+                                            type : "fashion",
+                                            data : {...item},
+                                        });
+                                        
+                                    }}
+                                    />
+                                })
+                            }
+                        </div>
+                    </Tab>
+                </Tabs>
+            </div>
+
+            {/* <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <TitleBodyDashboard text="Cosmetic" number={cosmeticForm.length} />
                 <hr className="myHr" />
 
-                <div className="d-flex justify-content-start">
+                <div className="d-flex justify-content-center justify-content-lg-start flex-wrap overflow-hidden listProduct">
                     {cosmeticForm.length === 0 ? 
                     <h1 className="fw-light text-center my-5">Your List is Empty</h1>
                     :
@@ -105,7 +211,7 @@ function DashListProduct() {
                     })
                     }
 
-            </div>
+            </div> */}
         </Col>
         </Row>
         </>

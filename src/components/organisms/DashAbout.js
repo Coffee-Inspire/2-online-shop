@@ -44,7 +44,7 @@ function DashAbout() {
             {aboutData.isInitial ?
             <div></div>
             :
-            <Col xs={12} md={7} className="">
+            <Col xs={12} md={7} className="mb-3">
                 <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                     <TitleBodyDashboard text="About Us" />
                     <hr className="myHr" />
