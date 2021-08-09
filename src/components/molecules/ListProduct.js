@@ -9,7 +9,7 @@ function ListProduct(props) {
     return (
         <div
             onClick={props.editFunction} 
-            className="listProductFrame mr-3 mb-3 cursorPointer">
+            className={(props.item.status === 1 && "border border-3 border-danger ") +" listProductFrame mr-3 mb-3 cursorPointer"}>
             <Image 
                 className="listProductImage img-fluid" 
                 src={"/compressed" +props.item.image} 

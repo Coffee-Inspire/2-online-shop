@@ -5,7 +5,7 @@ function FormHorizontalCheckBox(props) {
 
     // console.log(props);
     let value = "";
-    if(props.value){
+    if(props.value && !props.stockOut){
         value = JSON.parse(props.value);
     }
 
@@ -14,7 +14,19 @@ function FormHorizontalCheckBox(props) {
             <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
             <Col className="pt-2">
 
-                {props.options.map((item, index) => {
+                {props.stockOut ?
+                    <Form.Check
+                            
+                    inline
+                    label={"Out of Stock ?"}
+                    name={"status"}
+                    type="checkbox"
+                    id={`inline-stock-1`}
+                    checked={props.value}
+                    onChange={props.onChange}
+                />
+                :
+                props.options.map((item, index) => {
                     return <Form.Check
                             
                             inline

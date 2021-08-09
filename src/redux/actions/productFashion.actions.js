@@ -2,9 +2,9 @@ import axios from 'axios';
 // import productImage from '../../assets/images/image-example-3.jpg'
 import { uploadImageAction } from '../actions/upload.actions';
 
-export const INITIAL = "INITIAL";
-export const REQUEST = "REQUEST";
-export const FAILED = "FAILED";
+export const INITIAL = "INITIAL_FASHION";
+export const REQUEST = "REQUEST_FASHION";
+export const FAILED = "FAILED_FASHION";
 export const GET_SUCCESS = "GET_SUCCESS_FASHION";
 export const POST_SUCCESS = "POST_SUCCESS_FASHION";
 export const SAVE_SUCCESS = "SAVE_SUCCESS_FASHION";
@@ -105,6 +105,7 @@ export const postProductFashionAction = (form, image, setProgressBar, setForm, s
                     info: "",
                     description: "",
                     category: "",
+                    status: 0,
                 });
                 setShow(true);
                 dispatch(post_success(result.data));

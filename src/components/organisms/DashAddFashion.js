@@ -32,6 +32,21 @@ function DashAddFashion(props) {
     const [imagePreview, setImagePreview] = useState("");
     const [editSuccess, setEditSuccess] = useState(false);
 
+    const checkStockout = (e) => {
+        if(e.target.checked){
+            setForm({
+                ...form,
+                status : 1
+            })
+        }
+        else {
+            setForm({
+                ...form,
+                status : 0
+            })
+        }
+    }
+
     const checkboxChange = (e) => {
         let size = JSON.parse(form.size);
 
@@ -73,6 +88,7 @@ function DashAddFashion(props) {
                 info: "",
                 description: "",
                 category: "",
+                status: 0,
             };
         }
     }
@@ -181,6 +197,20 @@ function DashAddFashion(props) {
                 </Col>
                 <Col xs={12} lg={6} className="">
                 
+                    {props.edit && 
+                    <>
+                    <FormHorizontalCheckBox 
+                        label="Status"
+                        name="status"
+                        value={form.status}
+                        onChange={checkStockout}
+                        options={["Out of Stock ?"]}
+                        noTextEnd={true}
+                        stockOut={true}
+                    />
+                    <ExampleText text={"Note: Check if out of stock"}/>
+                    </>
+                    }
                     <FormHorizontal 
                         label="Product Name" 
                         type="text" 

@@ -2,9 +2,9 @@ import axios from 'axios';
 // import productImage from '../../assets/images/image-example-2.jpg'
 import { uploadImageAction } from '../actions/upload.actions';
 
-export const INITIAL = "INITIAL";
-export const REQUEST = "REQUEST";
-export const FAILED = "FAILED";
+export const INITIAL = "INITIAL_COSMETIC";
+export const REQUEST = "REQUEST_COSMETIC";
+export const FAILED = "FAILED_COSMETIC";
 export const GET_SUCCESS = "GET_SUCCESS_COSMETIC";
 export const POST_SUCCESS = "POST_SUCCESS_COSMETIC";
 export const SAVE_SUCCESS = "SAVE_SUCCESS_COSMETIC";
@@ -103,6 +103,7 @@ export const postProductCosmeticAction = (form, image, setProgressBar, setForm, 
                     priceTwn: "",
                     description: "",
                     category: "",
+                    status: 0,
                 });
                 setShow(true);
                 dispatch(post_success(result.data));
