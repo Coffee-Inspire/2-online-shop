@@ -23,8 +23,6 @@ function DetailCosmeticsPage(props) {
     const [triggerSuccess, setTriggerSuccess] = useState(false) /* Triggering Purchase Message */
     const [quantity, setQuantity] = useState(1)
 
-    console.log(viewProduct)
-
     function addToCart (){
         let itemData = {
             itemID : viewProduct.id,

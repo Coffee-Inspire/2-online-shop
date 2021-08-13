@@ -42,7 +42,7 @@ function DetailFashionPage(props) {
         setTriggerSuccess(true)
         props.modalcart.current.click()
     }
-    console.log(viewProduct)
+
     useEffect(() => {
        dispatch(getProductFashionAction(setAllDataProduct))
     }, [dispatch])

@@ -4,7 +4,6 @@ import imageNotFound from '../../assets/images/imgNotFound.jpg'
 
 function HighlightNewProduct(props) {
 
-    
     const myref = useRef(null)
 
     return (
