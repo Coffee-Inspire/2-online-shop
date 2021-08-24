@@ -29,11 +29,11 @@ function Navigation(props) {
     return (
         <>
             <Navbar expand="lg" className="myNavbar pt-4 pb-3">
-                <Col  lg={3} className="text-center">
+                <Col  lg={3} className="text-center px-0">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" className=" me-3 mb-3 mb-lg-0 mt-4" />
                     <Link to="/" className="myNavbarEmblemFrame ml-lg-5 mb-4 mb-lg-0">
                         <img alt="" src={emblem} className="myNavbarEmblem" />
                     </Link>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="ml-5 me-3 mb-3 mb-lg-0 mt-4" />
                 </Col>
                 <Col  lg={6}>
                     <Navbar.Collapse id="basic-navbar-nav">
