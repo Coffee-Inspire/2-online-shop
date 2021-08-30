@@ -24,7 +24,7 @@ function FormLogin(props) {
                 validator={props.status}
             />
             <Button className="btnBrown shadow-brown" type="submit" disabled={props.isLoading}>
-                {props.isLoading ? "Login in..." : "Login in"}
+                {props.isLoading ? "Login..." : "Login"}
             </Button>
         </Form>
     )

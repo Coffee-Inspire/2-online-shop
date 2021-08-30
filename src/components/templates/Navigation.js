@@ -29,15 +29,17 @@ function Navigation(props) {
     return (
         <>
             <Navbar expand="lg" className="myNavbar pt-4 pb-3">
-                <Col  lg={3} className="text-center px-0">
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" className=" me-3 mb-3 mb-lg-0 mt-4" />
-                    <Link to="/" className="myNavbarEmblemFrame ml-lg-5 mb-4 mb-lg-0">
-                        <img alt="" src={emblem} className="myNavbarEmblem" />
+                <Col  lg={3} className="px-0 d-flex flex-row justify-content-around align-items-center   ">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="h-50" />
+                    <Link to="/" className="">
+                        <div className="myNavbarEmblemFrame d-flex justify-content-center align-items-center">
+                            <img alt="" src={emblem} className="myNavbarEmblem" />
+                        </div>
                     </Link>
                 </Col>
-                <Col  lg={6}>
+                <Col lg={6}>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="w-100 justify-content-center fw-bold mt-3 ml-3 ml-lg-0 mt-lg-0">
+                        <Nav className="w-100 justify-content-center fw-bold mt-4 ml-2 ml-lg-0 mt-lg-0">
                             <Nav className="myNavbarItems">
                                 <Col className="p-0 d-lg-flex "> 
                                     <Link to="/cosmetic" className="nav-link me-5">COSMETIC</Link>
