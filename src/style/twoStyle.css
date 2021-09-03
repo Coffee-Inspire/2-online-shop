@@ -116,28 +116,28 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btnBrown {
-  background-color: #A98D4A !important;
-  border-color: #A98D4A !important;
+  background-color: #4b8ab4 !important;
+  border-color: #4b8ab4 !important;
 }
 
 .btnBrown:hover {
-  background-color: #926933 !important;
-  border-color: #926933 !important;
+  background-color: #14477e !important;
+  border-color: #14477e !important;
 }
 
 .btnBrown:active {
-  background-color: #926933 !important;
-  border-color: #926933 !important;
+  background-color: #14477e !important;
+  border-color: #14477e !important;
 }
 
 .btnBrown:focus, .btnBrown:active + .btnBrown:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
-          box-shadow: 0 0 0 0.25rem rgba(169, 141, 74, 0.5) !important;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(20, 71, 126, 0.5) !important;
+          box-shadow: 0 0 0 0.25rem rgba(20, 71, 126, 0.5) !important;
 }
 
 .shadow-brown {
-  -webkit-box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
-          box-shadow: 0 0.4rem 0.5rem rgba(169, 141, 74, 0.5) !important;
+  -webkit-box-shadow: 0 0.4rem 0.5rem rgba(20, 71, 126, 0.5) !important;
+          box-shadow: 0 0.4rem 0.5rem rgba(20, 71, 126, 0.5) !important;
 }
 
 .imageUploadOverlay {
@@ -178,7 +178,7 @@ input[type=number]::-webkit-outer-spin-button {
 .dashNavEmblem {
   -o-object-fit: cover;
      object-fit: cover;
-  zoom: 50%;
+  zoom: 20%;
 }
 
 .bodyDashboard {
@@ -370,6 +370,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .myColor {
-  color: #926933 !important;
+  color: #14477e !important;
 }
 /*# sourceMappingURL=twoStyle.css.map */

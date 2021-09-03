@@ -5,9 +5,9 @@ import { Row, Col, Form } from 'react-bootstrap';
 function FormHorizontalSelect(props) {
 
     return (
-        <Row className="mb-3">
-            <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
-            <Col>
+        <Row className="mb-3 justify-content-between">
+            <Form.Label className={(!props.noTextEnd && "text-lg-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
+            <Col lg={8}>
                 <Form.Control 
                     required
                     as="select"

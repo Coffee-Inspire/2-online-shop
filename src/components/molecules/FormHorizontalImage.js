@@ -47,11 +47,11 @@ function FormHorizontalImage(props) {
     }
 
     return (
-        <Row className="mb-3">
+        <Row className="mb-3 justify-content-between">
             {!props.style2 ?
             <>
-            <Form.Label className={(!props.noTextEnd && "text-md-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
-            <Col>    
+            <Form.Label className={(!props.noTextEnd && "text-lg-end " ) + " text-nowrap"} column lg={3}>{props.label} </Form.Label>
+            <Col lg={8}>    
                 <div className="border-image position-relative">
                     <Image ref={props.reff} className="hoverImage " src={imagePreview} onError={(e)=>{e.target.onerror = null; e.target.src=imageNotFound}} fluid />
                     <div ref={uploadDrag} 

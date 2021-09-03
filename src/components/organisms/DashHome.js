@@ -38,7 +38,7 @@ function DashHome() {
         <div className="ps-3 shadow z-index-2 bg-white">
         <TitleDashboard text="Settings / Homepage" />
         </div>
-        <Col xs={12} md={7} className="mb-3">
+        <Col xs={12} md={7} lg={10} xl={8} className="mb-3">
             <div className="p-md-5 p-4 mt-md-5 ms-md-5 mt-3 bg-white rounded shadow">
                 <TitleBodyDashboard text="Homepage" />
                 <hr className="myHr" />
