@@ -31,9 +31,11 @@ function AdminPage() {
 
     return (
         <Container fluid>
-            <BarBrown />
+            <Row>
+                <BarBrown />
+            </Row>
             <Row className="w-100 justify-content-center">
-                <TitleDasboard text="Login Phanen Shop" center={true}/>
+                <TitleDasboard text="Login Outfit Daily Iein" center={true}/>
                 <Col xs={11} md={3}>
                     <FormLogin 
                         status={status} 

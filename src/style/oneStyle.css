@@ -2,8 +2,17 @@
 /* Written By Suryanto */
 
 @media (max-width: 414px) {
+	.myImageBannerFrame {
+		height: 270px !important;
+	}
 	.myCardFrame {
 		width: 350px !important;
+	}
+	.myCardImageFrame {
+		height: 280px !important;
+	}
+	.myProductDetailFrame {
+		height: 400px !important;
 	}
 }
 
@@ -17,6 +26,79 @@
 	.myProductDetailFrame {
 		width: 320px !important;
 	}
+	.myHighlightProductFrame {
+		height: 400px !important;
+	}
+	.myCountrySelectionForm {
+		width: 300px !important;
+	}
+	.myProductsAreaMargin {
+		margin-top: 30px !important;
+	}
+	.myFilterButtonCol {
+		display: block !important;
+	}
+	.myFilterBox {
+		background-color: rgb(70, 70, 70) !important;
+		color: #fff;
+	}
+
+	.myFilterBox Button {
+		color: #fff;
+	}
+
+	.myFilterBoxInline {
+		border-bottom: 1px solid #fff !important;
+	}
+	.myFilterResponsive {
+		position: fixed;
+		z-index: 9;
+		top: 0;
+		left: 0;
+		margin-left: -991px;
+		width: 80%;
+		height: 100%;
+		padding: 0;
+		background-color: rgb(70, 70, 70);
+		overflow-x: hidden;
+		transition: 0.5s;
+	}
+	.myFilterResponsiveOn {
+		position: fixed;
+		z-index: 9;
+		top: 0;
+		left: 0;
+		margin-left: 0;
+		width: 80%;
+		height: 100%;
+		padding: 0;
+		background-color: rgb(70, 70, 70);
+		overflow-x: auto;
+		transition: 0.5s;
+	}
+	.myOverlayOff {
+		height: 100%;
+		width: 0;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		overflow-x: hidden;
+		transition: 0.3s;
+	}
+
+	.myOverlayOn {
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		overflow-x: hidden;
+		transition: 0.3s;
+	}
 }
 
 .myNavbar {
@@ -24,13 +106,16 @@
 }
 
 .myNavbarEmblemFrame {
-	width: 300px;
+	width: 190px;
 	padding: 0;
+	/* background-color: red; */
+	overflow: hidden;
 }
 
 .myNavbarEmblem {
 	object-fit: cover;
-	width: 80%;
+	width: 100%;
+	height: 100%;
 }
 
 .myBannerMargin {
@@ -42,6 +127,19 @@
 }
 
 .myImageBanner {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.myImageBanner:hover {
+	filter: brightness(60%);
+	transition: 0.3s;
+}
+
+.myImageBannerPlain {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -60,14 +158,29 @@
 }
 
 .myHighlightProductFrame {
-	width: 98%;
-	background-color: red;
+	width: 500px;
+	height: 450px;
 }
 
 .myHighlightProductImage {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	transition: 1s;
+	cursor: pointer;
+}
+
+.myHighlightProductImageNoData {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: 1s;
+	cursor: default;
+}
+
+.myHighlightProductImage:hover {
+	filter: brightness(60%);
+	transition: 0.3s;
 }
 
 .myAboutUsRowMargin {
@@ -90,6 +203,13 @@
 
 .myFooterContactItems {
 	font-family: "Roboto", sans-serif !important;
+	font-size: 14px;
+}
+
+.mySold {
+	padding: 5px 0 5px 0;
+	background-color: rgb(226, 69, 69);
+	color: white;
 }
 
 .myRibbonMargin {
@@ -98,6 +218,11 @@
 
 .myProductsAreaMargin {
 	margin: 80px 30px 80px 30px;
+}
+
+.myFilterCloseCol,
+.myFilterButtonCol {
+	display: none;
 }
 
 .myFilterBox {
@@ -110,25 +235,30 @@
 
 .myProductListRow {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 400px);
+	grid-template-columns: repeat(auto-fill, 300px);
 	justify-content: center;
-	grid-gap: 20px 60px;
+	grid-gap: 0px 25px;
 }
 
 .myCardFrame {
 	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
 	width: 400px;
 	box-shadow: 5px 5px 8px #888888;
-}
-
-.myCardImageFrame {
-	width: 100%;
+	overflow: hidden;
 }
 
 .myCardImage {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.myCardImageSold {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: brightness(0.3);
 }
 
 .myCardImage:hover {
@@ -142,8 +272,47 @@
 
 .myProductDetailFrame {
 	width: 500px;
+	height: 600px;
 }
 
 .myProductDetailImage {
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.myCartItemImageFrame {
+	width: 100%;
+}
+
+.myCardImageFrame {
+	width: 100%;
+	height: 300px;
+	cursor: pointer;
+}
+
+.myCartItemImage {
+	width: 100%;
+	object-fit: cover;
+}
+
+.myClickStyleNone:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.myCountrySelectionForm {
+	font-size: 15px;
+	width: 450px;
+	height: 200px;
+	overflow: scroll;
+}
+
+.myCartCounter {
+	font-size: 12px;
+	background-color: rgb(255, 196, 187);
+	padding: 5px 11px 5px 11px;
+	border-radius: 50px;
+	position: absolute;
+	top: 0;
 }

@@ -1,15 +1,17 @@
 import {React, useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap'
 
 import {getProductCosmeticAction} from '../redux/actions/productCosmetic.actions';
 
 import Ribbon from '../components/molecules/Ribbon'
 import ProductsArea from '../components/templates/ProductsArea'
+import SkeletonCatalogPage from '../skeletons/SkeletonCatalogPage';
 
 function CatalogCosmeticsPage(props) {
 
     const dispatch = useDispatch()
+    const status = useSelector(state => state.productCosmetic)
     const [dataProduct, setDataProduct] = useState([]);
 
     // Filter state
@@ -19,7 +21,9 @@ function CatalogCosmeticsPage(props) {
     const [triggerSortHighestPrice, setTriggerSortHighestPrice] = useState(false)
     const [triggerSortProductName, setTriggerSortProductName] = useState(false)
 
-    let dataProductNew = dataProduct.filter((item)=>item.name.includes(searchText) && item.category.includes(searchCategory))
+    let dataProductNew = dataProduct.filter((item)=>
+        item.name.toUpperCase().includes(searchText.toUpperCase()) && item.category.toUpperCase().includes(searchCategory.toUpperCase())
+    )
 
     function sortLowestPrice(){
         dataProductNew.sort((a,b)=>(a.price - b.price))
@@ -56,15 +60,18 @@ function CatalogCosmeticsPage(props) {
     return (
         <Container fluid>
             <Ribbon text={"cosmetics"}/>
-            <ProductsArea 
-                dataProduct={dataProductNew} 
-                setItemDetailCosmetic={props.setItemDetailCosmetic}
-                setSearchText={setSearchText}
-                setSearchCategory={setSearchCategory}
-                setTriggerSortLowestPrice={setTriggerSortLowestPrice}
-                setTriggerSortHighestPrice={setTriggerSortHighestPrice}
-                setTriggerSortProductName={setTriggerSortProductName}
-            />
+            {status.isInitial && <SkeletonCatalogPage/> }
+            {!status.isInitial && dataProduct.length>0 && 
+                <ProductsArea 
+                    dataProduct={dataProductNew} 
+                    setItemDetailCosmetic={props.setItemDetailCosmetic}
+                    setSearchText={setSearchText}
+                    setSearchCategory={setSearchCategory}
+                    setTriggerSortLowestPrice={setTriggerSortLowestPrice}
+                    setTriggerSortHighestPrice={setTriggerSortHighestPrice}
+                    setTriggerSortProductName={setTriggerSortProductName}
+                />
+            }
         </Container>
     )
 }

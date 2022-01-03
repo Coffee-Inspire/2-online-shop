@@ -8,10 +8,12 @@ function Banner(props) {
         <Row className={props.plain ? "myBannerMargin myImageBannerFrame" : "position-relative myImageBannerFrame"}>
             <img 
                 alt=""
-                src={props.image}
-                className="p-0 myImageBanner"
+                src={props.image ? props.image : props.imageNotFound}
+                className={props.plain ? "p-0 myImageBannerPlain" : "p-0 myImageBanner" }
+                onClick={props.plain ? null : (()=>window.location=`${props.url}`)}
+                onError={(e)=>{e.target.src=props.imageNotFound}}
             />
-            {!props.plain && <BannerButton text={"shop now"}/>}
+            {props.image && !props.plain && <BannerButton text={"shop now"} url={props.url}/>}
         </Row>
     )
 }

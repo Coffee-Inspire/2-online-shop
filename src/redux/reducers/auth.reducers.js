@@ -1,6 +1,6 @@
 import { AUTH_REQUEST, AUTH_FAILED, LOGIN_SUCCESS, EDIT_SUCCESS, LOGOUT } from '../actions/auth.actions'
 
-const token = localStorage.ifgfToken;
+const token = localStorage.phanenToken;
 
 const initialState = (token !== undefined && token !== null) ? {
     isLogged: true,

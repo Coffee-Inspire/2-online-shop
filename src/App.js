@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './style/oneStyle.css';
 import './style/twoStyle.css';
+import {React , useRef } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import {useSelector } from 'react-redux';
 
@@ -11,6 +12,9 @@ import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
 import CatalogCosmeticPage from './pages/CatalogCosmeticsPage';
 import DetailCosmeticsPage from './pages/DetailCosmeticsPage';
+import CatalogFashionPage from './pages/CatalogFashionPage';
+import DetailFashionPage from './pages/DetailFashionPage';
+import PageNotFound from './pages/PageNotFound';
 
 // Admin
 import AdminPage from './pages/AdminPage';
@@ -18,6 +22,7 @@ import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const isLogin = useSelector(state => state.auth.isLogged)
+  const modalcart = useRef(null)
 
   return (
     <Router>
@@ -28,7 +33,7 @@ function App() {
         <Route path="/dashboard">
         </Route>
         <Route path="/">
-          <Navigation />
+          <Navigation modalcart={modalcart}/>
         </Route>
       </Switch>
 
@@ -50,7 +55,16 @@ function App() {
           <CatalogCosmeticPage/>
         </Route>
         <Route path="/cosmetic/:id">
-          <DetailCosmeticsPage/>
+          <DetailCosmeticsPage modalcart={modalcart}/>
+        </Route>
+        <Route exact path="/fashion">
+          <CatalogFashionPage/>
+        </Route>
+        <Route path="/fashion/:id">
+          <DetailFashionPage modalcart={modalcart}/>
+        </Route>
+        <Route>
+          <PageNotFound/>
         </Route>
       </Switch>
 

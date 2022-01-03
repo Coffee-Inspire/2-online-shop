@@ -45,11 +45,11 @@ export const loginAction = (data, history, setStatus) => (dispatch) => {
         .post(process.env.REACT_APP_URL_AUTH+"/login", data)
         .then(result => {
             if(result.data.token !== undefined) {
-                localStorage.phanenToken = result.data.token
-                localStorage.phanenPayload = JSON.stringify(result.data.user);
+                localStorage[process.env.REACT_APP_TOKEN] = result.data.token
+                localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data.user);
                 dispatch(loginSuccess(result.data.token))
                 
-                history.push('/dashboard');
+                history.push('/dashboard/listproduct');
             } else{
                 setStatus({
                     error : true,
@@ -72,7 +72,7 @@ export const logoutAction = () => (dispatch) => {
 
     return axios.get(process.env.REACT_APP_URL_AUTH+"/logout",{
                 headers: {
-                    Authorization: localStorage.ifgfToken
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
                 }
             })
             .then(result => {
@@ -86,46 +86,33 @@ export const logoutAction = () => (dispatch) => {
             })
 }
 
-export const editAdminAction = (e, currentEmail, formEdit, setFormEdit) => (dispatch) => {
+export const editAdminAction = (e, currentUsername, formEdit, setFormEdit) => (dispatch) => {
     e.preventDefault();
     dispatch(authRequest());
 
-    let data = {};
+    let data = {...formEdit};
 
-    if(formEdit.password === ""){
-        data = {
-            email : formEdit.email,
-            email_old : currentEmail,
-            password_old : formEdit.password_old
-        }
-    } else{
-        data = {
-            ...formEdit,
-            email_old : currentEmail
-        }
-    }
-
-    if(data.email === currentEmail){
-        delete data.email;
+    if(data.username === currentUsername){
+        delete data.username;
     }
 
     return axios
             .put(process.env.REACT_APP_URL_AUTH, data,{
                 headers: {
-                    Authorization: localStorage.ifgfToken
+                    Authorization: localStorage[process.env.REACT_APP_TOKEN]
                 }
             })
             .then(result => {
                 // console.log(result);
-                if(result.data.error){
+                if(result.data.error || result.data.status === "Token is Expired"){
                     dispatch(authFailed());
                 } else{
-                    localStorage.ifgfPayload = JSON.stringify(result.data);
+                    localStorage[process.env.REACT_APP_PAYLOAD] = JSON.stringify(result.data);
                     setFormEdit({
                         ...formEdit,
+                        password_old : "",
                         password : "",
                         password_confirmation : "",
-                        password_old : "",
                     })
                     dispatch(editSuccess());
                 }

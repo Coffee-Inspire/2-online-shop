@@ -23,8 +23,8 @@ function FormLogin(props) {
                 name={"password"}
                 validator={props.status}
             />
-            <Button className="btnBrown" type="submit" variant="primary" disabled={props.isLoading}>
-                {props.isLoading ? "Login in..." : "Login in"}
+            <Button className="btnBrown shadow-brown" type="submit" disabled={props.isLoading}>
+                {props.isLoading ? "Login..." : "Login"}
             </Button>
         </Form>
     )
