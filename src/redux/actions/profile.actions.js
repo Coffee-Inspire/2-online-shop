@@ -51,7 +51,7 @@ export const save_success = (data) => {
 };
 
 export const getCountryListAction = (setCountry) => (dispatch) => {
-    axios.get(`https://restcountries.eu/rest/v2/all`)
+    axios.get(`https://restcountries.com/v2/all`)
     .then((result)=>setCountry(result.data))
 };
 

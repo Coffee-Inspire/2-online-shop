@@ -76,7 +76,7 @@ function DeliveryModal(props) {
                     `
                     )
                     
-            let template = ""
+            let template = "";
             let message = `
                 %0a%0a*Customer Data (Order for ${orderStatus})*
                 ${customerData}

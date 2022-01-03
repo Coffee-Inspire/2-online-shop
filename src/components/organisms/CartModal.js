@@ -30,8 +30,8 @@ function CartModal(props) {
 
     function switchToDelivery(){
         props.setorder(data.dataLocal)
-        props.settotalpriceind(data.totalpriceind)
-        props.settotalpricetwn(data.totalpricetwn)
+        props.settotalpriceind(data.totalPriceInd)
+        props.settotalpricetwn(data.totalPriceTwn)
         props.triggerdeliverymodal()
         props.onHide()
     }
